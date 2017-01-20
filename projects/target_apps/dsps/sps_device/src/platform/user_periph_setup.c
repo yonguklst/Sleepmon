@@ -364,15 +364,19 @@ void sleepcb()
 	//else arch_set_extended_sleep();
 	
 
-	if(connected==false && charging==false) 
+	if(connected==false) 
 	{
-		leadoff = ADS1292R_RDATA();
-		if(leadoff.data!=0x007FFFFF) ldoff++;
-		else 
+		if(charging==false)
 		{
-			ldoff=0;
+			leadoff = ADS1292R_RDATA();
+			if(leadoff.data!=0x007FFFFF) ldoff++;
+			else 
+			{
+				ldoff=0;
+			}
+			if(ldoff>4) system_on();
+			else timer_used = app_easy_timer(50, sleepcb);
 		}
-		if(ldoff>4) system_on();
 		else timer_used = app_easy_timer(50, sleepcb);
 	}
 	else if(systemstat==false) 
