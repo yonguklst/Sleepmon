@@ -90,8 +90,8 @@ static void user_gattc_exc_mtu_cmd(uint8_t conidx)
             gattc_exc_mtu_cmd);
     
     cmd->req_type = GATTC_MTU_EXCH;
-    	wdg_reload(0xFF);
-			wdg_resume();   
+    wdg_reload(0xFF);
+		wdg_resume();   
     ke_msg_send(cmd);
 }
 

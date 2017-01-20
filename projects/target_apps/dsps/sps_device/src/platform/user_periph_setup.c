@@ -108,12 +108,12 @@ void butcb0()
 		m_PPG =ppg_raw.data;
 		
 		m_PPG_HPF_pre = m_PPG_HPF;
-		m_PPG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * m_PPG_HPF_pre)
-		+ (0.053 / (0.053 + SAMPLINGTIME)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
+		m_PPG_HPF = ((0.159 / (0.159 + SAMPLINGTIME)) * m_PPG_HPF_pre)
+		+ (0.159 / (0.159 + SAMPLINGTIME)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
 		
 		m_PPG_LPF_pre = m_PPG_LPF;
-		m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * m_PPG_LPF_pre 
-		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
+		m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0159))) * m_PPG_LPF_pre 
+		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0159)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
 		
 		/*
 		l_ECG_pre = l_ECG;
@@ -163,7 +163,7 @@ void butcb1()
 			ecg_raw=ADS1292R_RDATA();
 			GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_7, OUTPUT, PID_GPIO, true);//SPEAKER
 
-			if(ldcnt>500)
+			if(ldcnt>50 || cur_batt_level<10)
 			{
 				GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_5, OUTPUT, PID_GPIO, false);
 				beep=false;
@@ -182,9 +182,7 @@ void butcb1()
 				ldcnt=0;
 				leastbeep++;
 			}
-			
-			
-			
+						
 		n_ECG_pre = n_ECG;
 		n_ECG = ecg_raw.data;
 
@@ -214,7 +212,7 @@ void butcb1()
 			//if(rri_ready>=400 && rri_ready<1000) lastrri=rri_ready;
 //		if(rri_ready>=400 || leastbeep>=lastrri/2)
 
-			if(rri_ready>300) //&& rri_ready<1000)
+			if(rri_ready>=300 && rri_ready<=2000)
 			{
 				GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_5, OUTPUT, PID_GPIO, true);
 				beep=true;
@@ -291,14 +289,15 @@ void sleepcb()
 	static int chgcnt=0;//,batcnt=0;
 	static bool isled=true;
 	app_easy_timer_cancel(timer_used);
+	
 	if(GPIO_GetPinStatus(GPIO_PORT_1, GPIO_PIN_3))
 	{
 		arch_disable_sleep();
 		if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
 		if(cur_batt_level>90) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, false);//LED2
-		if(cur_batt_level>80) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
-		if(cur_batt_level>60) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, false);//LED4
-		if(cur_batt_level>40) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, false);//LED5
+		if(cur_batt_level>70) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
+		if(cur_batt_level>50) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, false);//LED4
+		if(cur_batt_level>20) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, false);//LED5
 		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_6, OUTPUT, PID_GPIO, false);//LED6
 		charging=true;
 		if(chgcnt<=0)
@@ -315,30 +314,42 @@ void sleepcb()
 		if(isled) isled=false;
 		else isled=true;
 		
-		if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, isled);//LED1
+		if(cur_batt_level>110) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
+		else if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, isled);//LED1
 		else if(cur_batt_level>90) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, isled);//LED2
-		else if(cur_batt_level>80) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, isled);//LED3
-		else if(cur_batt_level>60) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, isled);//LED4
-		else if(cur_batt_level>40) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, isled);//LED5
+		else if(cur_batt_level>70) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, isled);//LED3
+		else if(cur_batt_level>50) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, isled);//LED4
+		else if(cur_batt_level>20) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, isled);//LED5
+		else GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_6, OUTPUT, PID_GPIO, isled);//LED6
 	}
 	else if(battcheck)
 	{
 		app_batt_lvl();
-				//if(batcnt>20 && cur_batt_level<=100 ) cur_batt_level++;
+		if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
+		if(cur_batt_level>90) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, false);//LED2
+		if(cur_batt_level>70) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
+		if(cur_batt_level>50) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, false);//LED4
+		if(cur_batt_level>20) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, false);//LED5
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_6, OUTPUT, PID_GPIO, false);//LED6
 				
 		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_6, OUTPUT, PID_GPIO, false);//LED6
+		
 		battcheck=false;
 		GPIO_ConfigurePin(GPIO_PORT_2, GPIO_PIN_6, OUTPUT, PID_GPIO, battcheck);
 		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_7, OUTPUT, PID_GPIO, battcheck);//battcheck
+		
 		chgcnt=5;
+		
 		if(isled) isled=false;
 		else isled=true;
 		
-		if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, isled);//LED1
+		if(cur_batt_level>110) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
+		else if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, isled);//LED1
 		else if(cur_batt_level>90) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, isled);//LED2
-		else if(cur_batt_level>80) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, isled);//LED3
-		else if(cur_batt_level>60) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, isled);//LED4
-		else if(cur_batt_level>40) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, isled);//LED5
+		else if(cur_batt_level>70) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, isled);//LED3
+		else if(cur_batt_level>50) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, isled);//LED4
+		else if(cur_batt_level>20) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, isled);//LED5
+		else GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_6, OUTPUT, PID_GPIO, isled);//LED6
 	}
 	else
 	{
@@ -353,7 +364,7 @@ void sleepcb()
 	//else arch_set_extended_sleep();
 	
 
-	if(connected==false) 
+	if(connected==false && charging==false) 
 	{
 		leadoff = ADS1292R_RDATA();
 		if(leadoff.data!=0x007FFFFF) ldoff++;
@@ -361,7 +372,7 @@ void sleepcb()
 		{
 			ldoff=0;
 		}
-		if(ldoff>4 && charging==false) system_on();
+		if(ldoff>4) system_on();
 		else timer_used = app_easy_timer(50, sleepcb);
 	}
 	else if(systemstat==false) 
@@ -369,6 +380,9 @@ void sleepcb()
 		timer_used = app_easy_timer(50, sleepcb);
 		resetcnt--;
 	}
+	
+	
+	
 	if(resetcnt)
 	{
 		wdg_reload(WATCHDOG_DEFAULT_PERIOD);
@@ -411,9 +425,9 @@ void system_on()
 	
 		if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
 		if(cur_batt_level>90) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, false);//LED2
-		if(cur_batt_level>80) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
-		if(cur_batt_level>60) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, false);//LED4
-		if(cur_batt_level>40) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, false);//LED5
+		if(cur_batt_level>70) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
+		if(cur_batt_level>50) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, false);//LED4
+		if(cur_batt_level>20) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, false);//LED5
 		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_6, OUTPUT, PID_GPIO, false);//LED6
 	
 	
