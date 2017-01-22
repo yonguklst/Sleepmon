@@ -293,6 +293,14 @@ void sleepcb()
 	if(GPIO_GetPinStatus(GPIO_PORT_1, GPIO_PIN_3))
 	{
 		arch_disable_sleep();
+		
+		
+		
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, false);//LED2
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, false);//LED4
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, false);//LED5
 		if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
 		if(cur_batt_level>90) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, false);//LED2
 		if(cur_batt_level>70) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
@@ -314,6 +322,7 @@ void sleepcb()
 		if(isled) isled=false;
 		else isled=true;
 		
+		
 		if(cur_batt_level>110) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
 		else if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, isled);//LED1
 		else if(cur_batt_level>90) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, isled);//LED2
@@ -325,13 +334,17 @@ void sleepcb()
 	else if(battcheck)
 	{
 		app_batt_lvl();
+		
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, false);//LED2
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, false);//LED4
+		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, false);//LED5
 		if(cur_batt_level>100) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, false);//LED1
 		if(cur_batt_level>90) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, false);//LED2
 		if(cur_batt_level>70) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, false);//LED3
 		if(cur_batt_level>50) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_4, OUTPUT, PID_GPIO, false);//LED4
 		if(cur_batt_level>20) GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_5, OUTPUT, PID_GPIO, false);//LED5
-		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_6, OUTPUT, PID_GPIO, false);//LED6
-				
 		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_6, OUTPUT, PID_GPIO, false);//LED6
 		
 		battcheck=false;
@@ -374,7 +387,7 @@ void sleepcb()
 			{
 				ldoff=0;
 			}
-			if(ldoff>4) system_on();
+			if(ldoff>2) system_on();
 			else timer_used = app_easy_timer(50, sleepcb);
 		}
 		else timer_used = app_easy_timer(50, sleepcb);

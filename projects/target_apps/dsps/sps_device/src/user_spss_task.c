@@ -174,6 +174,7 @@ int user_sps_server_data_rx_ind_handler(ke_msg_id_t const msgid,
 			else if(val==0x02)
 			{
 					system_off();
+					resetcnt=30;
 			}				
 			else if(val==0x03)
 			{
