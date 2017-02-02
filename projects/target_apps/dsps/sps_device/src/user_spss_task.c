@@ -159,6 +159,7 @@ int user_sps_server_data_tx_cfm_handler(ke_msg_id_t const msgid,
  * @return If the message was consumed or not.
  ****************************************************************************************
  */
+extern uint8_t samplemode;
 int user_sps_server_data_rx_ind_handler(ke_msg_id_t const msgid,
                                       struct sps_server_data_rx_ind const *param,
                                       ke_task_id_t const dest_id,
@@ -180,6 +181,17 @@ int user_sps_server_data_rx_ind_handler(ke_msg_id_t const msgid,
 			{
 					resetcnt=60;
 			}
+			else if(val==0x11)
+			{
+				samplemode=0;
+				system_on();
+			}
+			else if(val==0x12)
+			{
+				samplemode=1;
+				system_on();
+			}
+			
 			
 	
     return (KE_MSG_CONSUMED);

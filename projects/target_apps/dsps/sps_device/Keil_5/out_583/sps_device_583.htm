@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\out_583\sps_device_583.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\out_583\sps_device_583.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Thu Jan 19 09:38:15 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Thu Feb 02 15:48:59 2017
 <BR><P>
 <H3>Maximum Stack Usage =       1196 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -224,7 +224,7 @@ Function Pointers
  <LI><a href="#[44]">save_configure_restore_func</a> from rom_symdef.txt(ABSOLUTE) referenced from jump_table.o(jump_table_mem_area)
  <LI><a href="#[4f]">set_gauss_modgain_func</a> from rom_symdef.txt(ABSOLUTE) referenced from jump_table.o(jump_table_mem_area)
  <LI><a href="#[48]">set_rf_cal_cap_func</a> from rom_symdef.txt(ABSOLUTE) referenced from jump_table.o(jump_table_mem_area)
- <LI><a href="#[66]">sleepcb</a> from user_periph_setup.o(.text) referenced from user_periph_setup.o(.text)
+ <LI><a href="#[66]">sleepcb</a> from user_periph_setup.o(.text) referenced 2 times from user_periph_setup.o(.text)
  <LI><a href="#[90]">smpc_check_pairing_feat</a> from smpc.obj(.text) referenced from arch_patch.o(.constdata)
  <LI><a href="#[91]">smpc_pairing_cfm_handler</a> from smpc_task.obj(.text) referenced from arch_patch.o(.constdata)
  <LI><a href="#[8f]">smpc_send_pairing_req_ind</a> from smpc.obj(.text) referenced from arch_patch.o(.constdata)
@@ -269,7 +269,7 @@ Function Pointers
 <H3>
 Global Symbols
 </H3>
-<P><STRONG><a name="[266]"></a>exec_patching_spota</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
+<P><STRONG><a name="[265]"></a>exec_patching_spota</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
 <BR><BR>[Called By]<UL></UL>
 
 <P><STRONG><a name="[200]"></a>get_patching_spota_length</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
@@ -940,9 +940,9 @@ Global Symbols
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bass_batt_level_upd_req_handler (via Veneer)
 <LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bass_batt_level_upd_cfm_send (via Veneer)
 <LI><a href="#[1b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prf_server_error_ind_send (via Veneer)
-<LI><a href="#[22d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_tx_flow_ctrl (via Veneer)
-<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx (via Veneer)
-<LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_confirm_data_tx (via Veneer)
+<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_tx_flow_ctrl (via Veneer)
+<LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx (via Veneer)
+<LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_confirm_data_tx (via Veneer)
 </UL>
 
 <P><STRONG><a name="[15f]"></a>gapc_get_role</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
@@ -1005,7 +1005,8 @@ Global Symbols
 <LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bass_batt_level_upd_cfm_send (via Veneer)
 <LI><a href="#[1b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prf_server_send_event (via Veneer)
 <LI><a href="#[1b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prf_server_error_ind_send (via Veneer)
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_ble (via Veneer)
+<LI><a href="#[215]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_ble (via Veneer)
+<LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_70 (via Veneer)
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;diss_create_db_cfm_handler (via Veneer)
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spotar_create_db_cfm_handler (via Veneer)
 <LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spotar_send_mem_info_update_req (via Veneer)
@@ -1027,9 +1028,9 @@ Global Symbols
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_sps_create_db_cfm_handler (via Veneer)
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_enable_req_handler (via Veneer)
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_create_db_req_handler (via Veneer)
-<LI><a href="#[22d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_tx_flow_ctrl (via Veneer)
-<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx (via Veneer)
-<LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_confirm_data_tx (via Veneer)
+<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_tx_flow_ctrl (via Veneer)
+<LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx (via Veneer)
+<LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_confirm_data_tx (via Veneer)
 </UL>
 
 <P><STRONG><a name="[160]"></a>ke_msg_send</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
@@ -1048,7 +1049,8 @@ Global Symbols
 <LI><a href="#[1bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bass_batt_level_upd_cfm_send (via Veneer)
 <LI><a href="#[1b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prf_server_send_event (via Veneer)
 <LI><a href="#[1b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prf_server_error_ind_send (via Veneer)
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_ble (via Veneer)
+<LI><a href="#[215]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_ble (via Veneer)
+<LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_70 (via Veneer)
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;diss_create_db_cfm_handler (via Veneer)
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spotar_create_db_cfm_handler (via Veneer)
 <LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spotar_send_mem_info_update_req (via Veneer)
@@ -1072,12 +1074,12 @@ Global Symbols
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_sps_create_db_cfm_handler (via Veneer)
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_enable_req_handler (via Veneer)
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_create_db_req_handler (via Veneer)
-<LI><a href="#[22d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_tx_flow_ctrl (via Veneer)
-<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx (via Veneer)
-<LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_confirm_data_tx (via Veneer)
+<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_tx_flow_ctrl (via Veneer)
+<LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx (via Veneer)
+<LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_confirm_data_tx (via Veneer)
 </UL>
 
-<P><STRONG><a name="[260]"></a>ke_msg_send_basic</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
+<P><STRONG><a name="[25f]"></a>ke_msg_send_basic</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
 <BR><BR>[Called By]<UL></UL>
 
 <P><STRONG><a name="[159]"></a>ke_msg_free</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
@@ -1249,7 +1251,7 @@ Global Symbols
 <LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI (via Veneer)
 </UL>
 
-<P><STRONG><a name="[263]"></a>rand</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
+<P><STRONG><a name="[262]"></a>rand</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
 <BR><BR>[Called By]<UL></UL>
 
 <P><STRONG><a name="[129]"></a>srand</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
@@ -1269,16 +1271,16 @@ Global Symbols
 <LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_easy_gap_adv_read_from_NVDS (via Veneer)
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gattc_write_cmd_ind_handler (via Veneer)
 <LI><a href="#[1ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;attm_svc_create_db_128 (via Veneer)
-<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_ble (via Veneer)
+<LI><a href="#[215]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_ble (via Veneer)
+<LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_70 (via Veneer)
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;diss_create_db_cfm_handler (via Veneer)
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spotar_patch_data_ind_handler (via Veneer)
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gapc_connection_req_ind_handler (via Veneer)
-<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx (via Veneer)
+<LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx (via Veneer)
 </UL>
 
-<P><STRONG><a name="[222]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
-<BR><BR>[Called By]<UL><LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iir_Notch_60Hz_Sample_500Hz (via Veneer)
-</UL>
+<P><STRONG><a name="[271]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
+<BR><BR>[Called By]<UL></UL>
 
 <P><STRONG><a name="[208]"></a>__aeabi_memset</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
 <BR><BR>[Called By]<UL><LI><a href="#[206]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_read_image_headers (via Veneer)
@@ -1310,25 +1312,25 @@ Global Symbols
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0 (via Veneer)
 </UL>
 
-<P><STRONG><a name="[23e]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
+<P><STRONG><a name="[23d]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE), UNUSED)
 <BR><BR>[Called By]<UL></UL>
 
-<P><STRONG><a name="[234]"></a>_double_round</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
+<P><STRONG><a name="[233]"></a>_double_round</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
 <BR><BR>[Called By]<UL><LI><a href="#[211]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv (via Veneer)
 <LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd (via Veneer)
-<LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt (via Veneer)
+<LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt (via Veneer)
 </UL>
 
-<P><STRONG><a name="[233]"></a>_double_epilogue</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
+<P><STRONG><a name="[232]"></a>_double_epilogue</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
 <BR><BR>[Called By]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd (via Veneer)
 </UL>
 
-<P><STRONG><a name="[231]"></a>__aeabi_llsl</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
+<P><STRONG><a name="[230]"></a>__aeabi_llsl</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
 <BR><BR>[Called By]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd (via Veneer)
 </UL>
 
-<P><STRONG><a name="[237]"></a>__aeabi_llsr</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
-<BR><BR>[Called By]<UL><LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt (via Veneer)
+<P><STRONG><a name="[236]"></a>__aeabi_llsr</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
+<BR><BR>[Called By]<UL><LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt (via Veneer)
 </UL>
 
 <P><STRONG><a name="[13b]"></a>__ARM_common_switch8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rom_symdef.txt(ABSOLUTE))
@@ -1341,25 +1343,25 @@ Global Symbols
 <P><STRONG><a name="[55]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> boot_vectors.o(.text)
 </UL>
-<P><STRONG><a name="[282]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[283]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[101]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[238]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<P><STRONG><a name="[237]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Called By]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[283]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[284]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[284]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[285]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[285]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[286]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[286]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[287]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[287]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[288]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[54]"></a>SystemInit</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, system_armcm0.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> boot_vectors.o(.text)
@@ -1457,7 +1459,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_init
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arch_set_sleep_mode
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleepcb
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 </UL>
 
 <P><STRONG><a name="[11d]"></a>arch_set_extended_sleep</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, arch_sleep.o(.text))
@@ -1775,12 +1777,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ConfigurePin
 <LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_cs_low
 <LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
-<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
+<LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
 <LI><a href="#[20c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_RDATA
-<LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
-<LI><a href="#[21d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
+<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
+<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
 <LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_RDATA
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_batt_alert_timer_handler
 <LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_on_connection
 </UL>
@@ -1790,12 +1792,12 @@ Global Symbols
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ConfigurePin
 <LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_cs_high
 <LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
-<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
+<LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
 <LI><a href="#[20c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_RDATA
-<LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
-<LI><a href="#[21d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
+<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
+<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
 <LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_RDATA
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_batt_alert_timer_handler
 <LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_batt_alert_start
 </UL>
@@ -1811,16 +1813,16 @@ Global Symbols
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;da14583_spi_flash_init
 <LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
-<LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
+<LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleepcb
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afeon
 <LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_spotar_spi_config
 <LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_batt_lvl
 <LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_on_connection
 </UL>
 
-<P><STRONG><a name="[21e]"></a>GPIO_GetPinStatus</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, gpio.o(.text))
+<P><STRONG><a name="[21d]"></a>GPIO_GetPinStatus</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleepcb
 </UL>
 
@@ -1829,7 +1831,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpioshift16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<BR>[Called By]<UL><LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afeon
 </UL>
 
@@ -1839,12 +1841,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpioshift16
 </UL>
 <BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOn_Handler
-<LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
+<LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
 <LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_on_connection
 </UL>
 
-<P><STRONG><a name="[21b]"></a>GPIO_RegisterCallback</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<P><STRONG><a name="[21a]"></a>GPIO_RegisterCallback</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afeon
 </UL>
 
@@ -2028,7 +2030,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;da14583_spi_flash_init
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_flash_enable
-<LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
+<LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
 <LI><a href="#[1fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_spi_flash_init
 </UL>
 
@@ -2062,10 +2064,10 @@ Global Symbols
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_read_flash_memory_man_and_dev_id
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_flash_page_program
 <LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_read_flash_jedec_id
-<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
+<LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
 <LI><a href="#[20c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_RDATA
-<LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
-<LI><a href="#[21d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
+<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
+<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
 <LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_RDATA
 </UL>
 
@@ -2815,7 +2817,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleepcb
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afeon
 </UL>
 
@@ -2830,7 +2832,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleepcb
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 </UL>
 
 <P><STRONG><a name="[cd]"></a>app_bass_create_db</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, app_bass.o(.text))
@@ -2892,7 +2894,7 @@ Global Symbols
 <LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_batt_alert_start
 </UL>
 <BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sleepcb
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_batt_timer_handler
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;batt_level_ntf_cfg_ind_handler
 </UL>
@@ -3231,16 +3233,15 @@ Global Symbols
 <P><STRONG><a name="[ee]"></a>diss_disable_ind_handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, app_diss_task.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> app_diss_task.o(.constdata)
 </UL>
-<P><STRONG><a name="[63]"></a>butcb0</STRONG> (Thumb, 474 bytes, Stack size 80 bytes, user_periph_setup.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 180<LI>Call Chain = butcb0 &rArr; iir_Notch_60Hz_Sample_500Hz &rArr; __aeabi_fsub &rArr; __aeabi_fadd &rArr; _float_epilogue
+<P><STRONG><a name="[63]"></a>butcb0</STRONG> (Thumb, 428 bytes, Stack size 64 bytes, user_periph_setup.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = butcb0 &rArr; __aeabi_dadd &rArr; __aeabi_lasr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_ble
-<LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iir_Notch_60Hz_Sample_500Hz
+<BR>[Calls]<UL><LI><a href="#[215]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_ble
+<LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_send_70
 <LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
-<LI><a href="#[215]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[214]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[214]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[212]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul (via Veneer)
 <LI><a href="#[211]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
@@ -3254,27 +3255,27 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = afeon &rArr; GPIO_EnableIRQ
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ConfigurePin
-<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_RegisterCallback
+<LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_RegisterCallback
 <LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_EnableIRQ
-<LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE44x0_Default_Reg_Init
-<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
-<LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
+<LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE44x0_Default_Reg_Init
+<LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
+<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
 <LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_easy_timer_cancel
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> user_periph_setup.o(.text)
 </UL>
-<P><STRONG><a name="[21c]"></a>system_on</STRONG> (Thumb, 302 bytes, Stack size 32 bytes, user_periph_setup.o(.text))
+<P><STRONG><a name="[21b]"></a>system_on</STRONG> (Thumb, 302 bytes, Stack size 32 bytes, user_periph_setup.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = system_on &rArr; app_batt_lvl &rArr; battery_get_lvl &rArr; adc_calibrate
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ConfigurePin
-<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_RegisterCallback
+<LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_RegisterCallback
 <LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_EnableIRQ
 <LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetActive
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetInactive
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arch_disable_sleep
-<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
-<LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
-<LI><a href="#[21d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
+<LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
+<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
+<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
 <LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_batt_lvl
 <LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_easy_timer_cancel
 <LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_easy_timer
@@ -3283,15 +3284,15 @@ Global Symbols
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_sps_server_data_rx_ind_handler
 </UL>
 
-<P><STRONG><a name="[66]"></a>sleepcb</STRONG> (Thumb, 686 bytes, Stack size 24 bytes, user_periph_setup.o(.text))
+<P><STRONG><a name="[66]"></a>sleepcb</STRONG> (Thumb, 936 bytes, Stack size 24 bytes, user_periph_setup.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = sleepcb &rArr; system_on &rArr; app_batt_lvl &rArr; battery_get_lvl &rArr; adc_calibrate
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ConfigurePin
-<LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_GetPinStatus
+<LI><a href="#[21d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_GetPinStatus
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arch_set_extended_sleep
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arch_disable_sleep
 <LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_RDATA
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_batt_lvl
 <LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;platform_reset (via Veneer)
 <LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_easy_timer_cancel
@@ -3299,7 +3300,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> user_periph_setup.o(.text)
 </UL>
-<P><STRONG><a name="[21f]"></a>set_pad_functions</STRONG> (Thumb, 390 bytes, Stack size 32 bytes, user_periph_setup.o(.text))
+<P><STRONG><a name="[21e]"></a>set_pad_functions</STRONG> (Thumb, 424 bytes, Stack size 32 bytes, user_periph_setup.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = set_pad_functions &rArr; spi_init &rArr; spi_cs_high
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_init
@@ -3310,16 +3311,16 @@ Global Symbols
 <LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
 </UL>
 
-<P><STRONG><a name="[1cc]"></a>system_off</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, user_periph_setup.o(.text))
+<P><STRONG><a name="[1cc]"></a>system_off</STRONG> (Thumb, 114 bytes, Stack size 16 bytes, user_periph_setup.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = system_off &rArr; set_pad_functions &rArr; spi_init &rArr; spi_cs_high
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ConfigurePin
 <LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetActive
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetInactive
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;arch_set_extended_sleep
-<LI><a href="#[21a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
-<LI><a href="#[21d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
-<LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
+<LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_sendmsg
+<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADS1292R_WREG_multi
+<LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
 <LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_easy_timer_cancel
 <LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_easy_timer
 </UL>
@@ -3329,7 +3330,7 @@ Global Symbols
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_sps_server_data_rx_ind_handler
 </UL>
 
-<P><STRONG><a name="[65]"></a>butcb1</STRONG> (Thumb, 590 bytes, Stack size 72 bytes, user_periph_setup.o(.text))
+<P><STRONG><a name="[65]"></a>butcb1</STRONG> (Thumb, 556 bytes, Stack size 72 bytes, user_periph_setup.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = butcb1 &rArr; getRRI &rArr; getRms &rArr; sqrt &rArr; _dsqrt
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ConfigurePin
@@ -3338,7 +3339,7 @@ Global Symbols
 <LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[214]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[212]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul (via Veneer)
 <LI><a href="#[211]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
@@ -3351,7 +3352,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = periph_init &rArr; set_pad_functions &rArr; spi_init &rArr; spi_cs_high
 </UL>
 <BR>[Calls]<UL><LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;patch_func
-<LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
+<LI><a href="#[21e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pad_functions
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_init
 <LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BLE_WAKEUP_LP_Handler
@@ -3369,7 +3370,7 @@ Global Symbols
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
 </UL>
 
-<P><STRONG><a name="[21d]"></a>ADS1292R_WREG_multi</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, ads1292.o(.text))
+<P><STRONG><a name="[21c]"></a>ADS1292R_WREG_multi</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, ads1292.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = ADS1292R_WREG_multi &rArr; spi_access
 </UL>
 <BR>[Calls]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_access
@@ -3377,10 +3378,10 @@ Global Symbols
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetInactive
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 </UL>
 
-<P><STRONG><a name="[21a]"></a>ADS1292R_sendmsg</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, ads1292.o(.text))
+<P><STRONG><a name="[219]"></a>ADS1292R_sendmsg</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, ads1292.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = ADS1292R_sendmsg &rArr; spi_access
 </UL>
 <BR>[Calls]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_access
@@ -3388,7 +3389,7 @@ Global Symbols
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetInactive
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afeon
 </UL>
 
@@ -3402,54 +3403,43 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
 </UL>
 
-<P><STRONG><a name="[219]"></a>AFE4400_WREG</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, afe4400.o(.text))
+<P><STRONG><a name="[218]"></a>AFE4400_WREG</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, afe4400.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = AFE4400_WREG &rArr; spi_access
 </UL>
 <BR>[Calls]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spi_access
 <LI><a href="#[172]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetActive
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetInactive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE44x0_Default_Reg_Init
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<BR>[Called By]<UL><LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE44x0_Default_Reg_Init
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afeon
 </UL>
 
-<P><STRONG><a name="[218]"></a>AFE44x0_Default_Reg_Init</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, afe4400.o(.text))
+<P><STRONG><a name="[217]"></a>AFE44x0_Default_Reg_Init</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, afe4400.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = AFE44x0_Default_Reg_Init &rArr; AFE4400_WREG &rArr; spi_access
 </UL>
-<BR>[Calls]<UL><LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
+<BR>[Calls]<UL><LI><a href="#[218]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AFE4400_WREG
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afeon
 </UL>
 
-<P><STRONG><a name="[216]"></a>iir_Notch_60Hz_Sample_500Hz</STRONG> (Thumb, 124 bytes, Stack size 64 bytes, dsp.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = iir_Notch_60Hz_Sample_500Hz &rArr; __aeabi_fsub &rArr; __aeabi_fadd &rArr; _float_epilogue
-</UL>
-<BR>[Calls]<UL><LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
-<LI><a href="#[222]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4 (via Veneer)
-<LI><a href="#[223]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
-</UL>
-
-<P><STRONG><a name="[225]"></a>getMax</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, ecgtohr.o(.text))
+<P><STRONG><a name="[222]"></a>getMax</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, ecgtohr.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = getMax
 </UL>
-<BR>[Calls]<UL><LI><a href="#[226]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
+<BR>[Calls]<UL><LI><a href="#[223]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
 </UL>
 <BR>[Called By]<UL><LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI
 </UL>
 
-<P><STRONG><a name="[227]"></a>getRms</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, ecgtohr.o(.text))
+<P><STRONG><a name="[224]"></a>getRms</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, ecgtohr.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = getRms &rArr; sqrt &rArr; _dsqrt
 </UL>
 <BR>[Calls]<UL><LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[213]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[229]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
-<LI><a href="#[223]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[228]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
-<LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<LI><a href="#[228]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
+<LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[226]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI
 </UL>
@@ -3463,9 +3453,9 @@ Global Symbols
 <LI><a href="#[212]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul (via Veneer)
 <LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[213]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
-<LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMax
+<LI><a href="#[229]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
+<LI><a href="#[222]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMax
 </UL>
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
 </UL>
@@ -3480,7 +3470,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prf_init_func
 </UL>
 
-<P><STRONG><a name="[22b]"></a>sps_server_confirm_data_tx</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, sps_server.o(.text))
+<P><STRONG><a name="[22a]"></a>sps_server_confirm_data_tx</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, sps_server.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = sps_server_confirm_data_tx
 </UL>
 <BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ke_msg_send (via Veneer)
@@ -3490,7 +3480,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gattc_cmp_evt_handler
 </UL>
 
-<P><STRONG><a name="[22c]"></a>sps_server_indicate_data_rx</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, sps_server.o(.text))
+<P><STRONG><a name="[22b]"></a>sps_server_indicate_data_rx</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, sps_server.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = sps_server_indicate_data_rx
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy (via Veneer)
@@ -3501,7 +3491,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gattc_write_cmd_ind_handler
 </UL>
 
-<P><STRONG><a name="[22d]"></a>sps_server_indicate_tx_flow_ctrl</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, sps_server.o(.text))
+<P><STRONG><a name="[22c]"></a>sps_server_indicate_tx_flow_ctrl</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, sps_server.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = sps_server_indicate_tx_flow_ctrl
 </UL>
 <BR>[Calls]<UL><LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ke_msg_send (via Veneer)
@@ -3511,8 +3501,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gattc_write_cmd_ind_handler
 </UL>
 
-<P><STRONG><a name="[217]"></a>user_send_ble</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, user_sps_device.o(.text))
+<P><STRONG><a name="[215]"></a>user_send_ble</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, user_sps_device.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = user_send_ble
+</UL>
+<BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy (via Veneer)
+<LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ke_msg_send (via Veneer)
+<LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ke_msg_alloc (via Veneer)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
+</UL>
+
+<P><STRONG><a name="[216]"></a>user_send_70</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, user_sps_device.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = user_send_70
 </UL>
 <BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy (via Veneer)
 <LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ke_msg_send (via Veneer)
@@ -3617,11 +3617,11 @@ Global Symbols
 <P><STRONG><a name="[f9]"></a>user_sps_server_data_tx_cfm_handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, user_spss_task.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> user_spss_task.o(.constdata)
 </UL>
-<P><STRONG><a name="[fa]"></a>user_sps_server_data_rx_ind_handler</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, user_spss_task.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = user_sps_server_data_rx_ind_handler &rArr; system_on &rArr; app_batt_lvl &rArr; battery_get_lvl &rArr; adc_calibrate
+<P><STRONG><a name="[fa]"></a>user_sps_server_data_rx_ind_handler</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, user_spss_task.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = user_sps_server_data_rx_ind_handler &rArr; system_on &rArr; app_batt_lvl &rArr; battery_get_lvl &rArr; adc_calibrate
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_off
-<LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
+<LI><a href="#[21b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_on
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> user_spss_task.o(.constdata)
 </UL>
@@ -3635,80 +3635,76 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> user_spss_task.o(.constdata)
 </UL>
-<P><STRONG><a name="[224]"></a>__aeabi_fadd</STRONG> (Thumb, 162 bytes, Stack size 24 bytes, fadd.o(.text))
+<P><STRONG><a name="[226]"></a>__aeabi_fadd</STRONG> (Thumb, 162 bytes, Stack size 24 bytes, fadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[22f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
-<LI><a href="#[22e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
+<BR>[Calls]<UL><LI><a href="#[22e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
+<LI><a href="#[22d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iir_Notch_60Hz_Sample_500Hz
-<LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
-<LI><a href="#[230]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
-<LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
+<BR>[Called By]<UL><LI><a href="#[20e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[22f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
+<LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
 </UL>
 
 <P><STRONG><a name="[20e]"></a>__aeabi_fsub</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, fadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = __aeabi_fsub &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<BR>[Calls]<UL><LI><a href="#[226]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iir_Notch_60Hz_Sample_500Hz
-<LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI
+<BR>[Called By]<UL><LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
 </UL>
 
-<P><STRONG><a name="[230]"></a>__aeabi_frsub</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, fadd.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<P><STRONG><a name="[22f]"></a>__aeabi_frsub</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, fadd.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[226]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
-<P><STRONG><a name="[223]"></a>__aeabi_fmul</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, fmul.o(.text))
+<P><STRONG><a name="[225]"></a>__aeabi_fmul</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, fmul.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iir_Notch_60Hz_Sample_500Hz
-<LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
+<BR>[Called By]<UL><LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
 </UL>
 
-<P><STRONG><a name="[228]"></a>__aeabi_fdiv</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, fdiv.o(.text))
+<P><STRONG><a name="[227]"></a>__aeabi_fdiv</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, fdiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fdiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[22f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
+<BR>[Calls]<UL><LI><a href="#[22e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
+<BR>[Called By]<UL><LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
 </UL>
 
 <P><STRONG><a name="[210]"></a>__aeabi_dadd</STRONG> (Thumb, 328 bytes, Stack size 48 bytes, dadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = __aeabi_dadd &rArr; __aeabi_lasr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[232]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_lasr
-<LI><a href="#[231]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl (via Veneer)
-<LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue (via Veneer)
-<LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round (via Veneer)
+<BR>[Calls]<UL><LI><a href="#[231]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_lasr
+<LI><a href="#[230]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl (via Veneer)
+<LI><a href="#[232]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue (via Veneer)
+<LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round (via Veneer)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI
-<LI><a href="#[214]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
-<LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 </UL>
 
-<P><STRONG><a name="[235]"></a>__aeabi_dsub</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text), UNUSED)
+<P><STRONG><a name="[234]"></a>__aeabi_dsub</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
-<P><STRONG><a name="[214]"></a>__aeabi_drsub</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text))
+<P><STRONG><a name="[21f]"></a>__aeabi_drsub</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = __aeabi_drsub &rArr; __aeabi_dadd &rArr; __aeabi_lasr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
 </UL>
 
 <P><STRONG><a name="[211]"></a>__aeabi_ddiv</STRONG> (Thumb, 234 bytes, Stack size 40 bytes, ddiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = __aeabi_ddiv
 </UL>
-<BR>[Calls]<UL><LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round (via Veneer)
+<BR>[Calls]<UL><LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round (via Veneer)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
@@ -3717,13 +3713,13 @@ Global Symbols
 <P><STRONG><a name="[20d]"></a>__aeabi_i2f</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, fflti.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = __aeabi_i2f &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[22e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
+<BR>[Calls]<UL><LI><a href="#[22d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
 </UL>
 
-<P><STRONG><a name="[215]"></a>__aeabi_f2iz</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ffixi.o(.text))
+<P><STRONG><a name="[214]"></a>__aeabi_f2iz</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ffixi.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
 </UL>
 
@@ -3731,74 +3727,74 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
-<LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
+<LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
 </UL>
 
-<P><STRONG><a name="[22a]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, cdrcmple.o(.text))
+<P><STRONG><a name="[229]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, cdrcmple.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI
 </UL>
 
 <P><STRONG><a name="[213]"></a>__aeabi_d2f</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, d2f.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_d2f
 </UL>
-<BR>[Calls]<UL><LI><a href="#[22f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
+<BR>[Calls]<UL><LI><a href="#[22e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
 </UL>
 <BR>[Called By]<UL><LI><a href="#[220]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRRI
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb1
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;butcb0
-<LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
+<LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
 </UL>
 
-<P><STRONG><a name="[226]"></a>__aeabi_cfrcmple</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, cfrcmple.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMax
+<P><STRONG><a name="[223]"></a>__aeabi_cfrcmple</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, cfrcmple.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[222]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMax
 </UL>
 
-<P><STRONG><a name="[232]"></a>__aeabi_lasr</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, llsshr.o(.text))
+<P><STRONG><a name="[231]"></a>__aeabi_lasr</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, llsshr.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_lasr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[210]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
-<P><STRONG><a name="[288]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
+<P><STRONG><a name="[289]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
 
-<P><STRONG><a name="[22f]"></a>_float_round</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, fepilogue.o(.text))
+<P><STRONG><a name="[22e]"></a>_float_round</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, fepilogue.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[213]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[228]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
-<LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[226]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
-<P><STRONG><a name="[22e]"></a>_float_epilogue</STRONG> (Thumb, 114 bytes, Stack size 12 bytes, fepilogue.o(.text))
+<P><STRONG><a name="[22d]"></a>_float_epilogue</STRONG> (Thumb, 114 bytes, Stack size 12 bytes, fepilogue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = _float_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[20d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<LI><a href="#[226]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
-<P><STRONG><a name="[236]"></a>_dsqrt</STRONG> (Thumb, 162 bytes, Stack size 32 bytes, dsqrt.o(.text))
+<P><STRONG><a name="[235]"></a>_dsqrt</STRONG> (Thumb, 162 bytes, Stack size 32 bytes, dsqrt.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = _dsqrt
 </UL>
-<BR>[Calls]<UL><LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr (via Veneer)
-<LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round (via Veneer)
+<BR>[Calls]<UL><LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr (via Veneer)
+<LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round (via Veneer)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[229]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
+<BR>[Called By]<UL><LI><a href="#[228]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
 </UL>
 
 <P><STRONG><a name="[102]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[238]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
+<BR><BR>[Calls]<UL><LI><a href="#[237]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
 </UL>
 <BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[289]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[28a]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
-<P><STRONG><a name="[28a]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[28b]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[28b]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[28c]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[28c]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[28d]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[239]"></a>__set_errno</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, errno.o(i.__set_errno))
-<BR><BR>[Called By]<UL><LI><a href="#[229]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
+<P><STRONG><a name="[238]"></a>__set_errno</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, errno.o(i.__set_errno))
+<BR><BR>[Called By]<UL><LI><a href="#[228]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
 </UL>
 
 <P><STRONG><a name="[1dd]"></a>free</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, malloc.o(i.free))
@@ -3813,13 +3809,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_easy_gap_adv_read_from_NVDS
 </UL>
 
-<P><STRONG><a name="[229]"></a>sqrt</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, sqrt.o(i.sqrt))
+<P><STRONG><a name="[228]"></a>sqrt</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, sqrt.o(i.sqrt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = sqrt &rArr; _dsqrt
 </UL>
-<BR>[Calls]<UL><LI><a href="#[239]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
-<LI><a href="#[236]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt
+<BR>[Calls]<UL><LI><a href="#[238]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
+<LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dsqrt
 </UL>
-<BR>[Called By]<UL><LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
+<BR>[Called By]<UL><LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getRms
 </UL>
 <P>
 <H3>
@@ -4235,7 +4231,7 @@ Local Symbols
 <P><STRONG><a name="[f2]"></a>gattc_cmp_evt_handler</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, sps_server_task.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = gattc_cmp_evt_handler &rArr; sps_server_confirm_data_tx
 </UL>
-<BR>[Calls]<UL><LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_confirm_data_tx
+<BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_confirm_data_tx
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> sps_server_task.o(.constdata)
 </UL>
@@ -4261,8 +4257,8 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atts_write_rsp_send (via Veneer)
 <LI><a href="#[1b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prf_server_send_event
 <LI><a href="#[1b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;attmdb_att_set_value (via Veneer)
-<LI><a href="#[22d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_tx_flow_ctrl
-<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx
+<LI><a href="#[22c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_tx_flow_ctrl
+<LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sps_server_indicate_data_rx
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> sps_server_task.o(.constdata)
 </UL><P>

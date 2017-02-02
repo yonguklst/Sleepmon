@@ -40,6 +40,7 @@ bool systemstat=false;
 bool charging=false;
 bool battcheck=false;
 void user_send_ble(void);
+void user_send_70(void);
 void system_on(void);
 void system_off(void);
 
@@ -73,6 +74,7 @@ uint16_t ldcnt=0;
 uint16_t ldoff=0;
 uint16_t leastbeep=0;
 uint16_t resetcnt=14;
+uint8_t samplemode=0;
 
 void butcb0()
 {
@@ -97,9 +99,9 @@ void butcb0()
 		+ (0.053 / (0.053 + SAMPLINGTIME)) * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
 		
 			// ECG Low Pass Filter
-		n_ECG_LPF_pre = n_ECG_LPF;
-		n_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * n_ECG_LPF_pre 
-		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * n_ECG_HPF_pre;	// LPF fc = 30 Hz
+		//n_ECG_LPF_pre = n_ECG_LPF;
+		//n_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * n_ECG_LPF_pre 
+		//+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * n_ECG_HPF_pre;	// LPF fc = 30 Hz
 		
 		
 	//	ecg_raw.data+=940000;
@@ -111,9 +113,9 @@ void butcb0()
 		m_PPG_HPF = ((0.159 / (0.159 + SAMPLINGTIME)) * m_PPG_HPF_pre)
 		+ (0.159 / (0.159 + SAMPLINGTIME)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
 		
-		m_PPG_LPF_pre = m_PPG_LPF;
-		m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0159))) * m_PPG_LPF_pre 
-		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0159)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
+		//m_PPG_LPF_pre = m_PPG_LPF;
+		//m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0159))) * m_PPG_LPF_pre 
+		//+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0159)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
 		
 		/*
 		l_ECG_pre = l_ECG;
@@ -129,23 +131,45 @@ void butcb0()
 		l_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * l_ECG_LPF_pre 
 		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * l_ECG_HPF_pre;	// LPF fc = 30 Hz
 		*/
-		ecg_raw.data=((int)n_ECG_LPF);
-		ppg_raw.data=((int)iir_Notch_60Hz_Sample_500Hz(m_PPG_LPF));
+		ecg_raw.data=((int)n_ECG_HPF);
+		ppg_raw.data=((int)m_PPG_HPF);
 		
-		ecgbuff[i].part[3]=ecg_raw.part[2];
-		ecgbuff[i].part[2]=ecg_raw.part[1];
-		ecgbuff[i].part[1]=ecg_raw.part[0];
-		ecgbuff[i].part[6]=ppg_raw.part[2];
-		ecgbuff[i].part[5]=ppg_raw.part[1];
-		ecgbuff[i].part[4]=ppg_raw.part[0];
-		ecgbuff[i].part[0]=cnt++;
-		i++;
-		if(i>=20)
-		{	
-			user_send_ble();
-			i=0;
+		if(samplemode==1)
+		{
+			if(i%2==0)
+			{
+				ecgbuff[i/2].part[3]=ecg_raw.part[2];
+				ecgbuff[i/2].part[2]=ecg_raw.part[1];
+				ecgbuff[i/2].part[1]=ecg_raw.part[0];
+				ecgbuff[i/2].part[6]=ppg_raw.part[2];
+				ecgbuff[i/2].part[5]=ppg_raw.part[1];
+				ecgbuff[i/2].part[4]=ppg_raw.part[0];
+				ecgbuff[i/2].part[0]=cnt++;
+			}
+			i++;
+			if(i>=20)
+			{	
+				user_send_70();
+				i=0;
+			}
 		}
-	}
+		else// if(samplemode==0)
+		{
+			ecgbuff[i].part[3]=ecg_raw.part[2];
+			ecgbuff[i].part[2]=ecg_raw.part[1];
+			ecgbuff[i].part[1]=ecg_raw.part[0];
+			ecgbuff[i].part[6]=ppg_raw.part[2];
+			ecgbuff[i].part[5]=ppg_raw.part[1];
+			ecgbuff[i].part[4]=ppg_raw.part[0];
+			ecgbuff[i].part[0]=cnt++;
+			i++;
+			if(i>=20)
+			{	
+				user_send_ble();
+				i=0;
+			}
+		}
+}
 
 	
 	

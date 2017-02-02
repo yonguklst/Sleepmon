@@ -1,4 +1,4 @@
-Component: ARM Compiler 5.06 update 1 (build 61) Tool: armlink [4d35a8]
+Component: ARM Compiler 5.05 update 2 (build 169) Tool: armlink [4d0f33]
 
 ==============================================================================
 
@@ -417,7 +417,6 @@ Section Cross References
     user_periph_setup.o(.text) refers to ddiv.o(.text) for __aeabi_ddiv
     user_periph_setup.o(.text) refers to d2f.o(.text) for __aeabi_d2f
     user_periph_setup.o(.text) refers to ffixi.o(.text) for __aeabi_f2iz
-    user_periph_setup.o(.text) refers to dsp.o(.text) for iir_Notch_60Hz_Sample_500Hz
     user_periph_setup.o(.text) refers to user_sps_device.o(.text) for user_send_ble
     user_periph_setup.o(.text) refers to app_easy_timer.o(.text) for app_easy_timer_cancel
     user_periph_setup.o(.text) refers to gpio.o(.text) for GPIO_ConfigurePin
@@ -545,6 +544,7 @@ Section Cross References
     user_spss_task.o(.text) refers to user_periph_setup.o(.text) for system_on
     user_spss_task.o(.text) refers to user_spss_task.o(.constdata) for .constdata
     user_spss_task.o(.text) refers to user_periph_setup.o(.data) for resetcnt
+    user_spss_task.o(.text) refers to user_periph_setup.o(.bss) for samplemode
     user_spss_task.o(.constdata) refers to user_spss_task.o(.text) for user_sps_create_db_cfm_handler
     sqrt.o(i.__softfp_sqrt) refers to dsqrt.o(.text) for _dsqrt
     sqrt.o(i.__softfp_sqrt) refers to errno.o(i.__set_errno) for __set_errno
@@ -781,7 +781,10 @@ Removing Unused input sections from the image.
     Removing dsp.o(.text), (132 bytes).
     Removing dsp.o(.text), (132 bytes).
     Removing dsp.o(.text), (132 bytes).
+    Removing dsp.o(.text), (132 bytes).
     Removing dsp.o(.text), (68 bytes).
+    Removing dsp.o(.bss), (676 bytes).
+    Removing dsp.o(.constdata), (328 bytes).
     Removing ecgtohr.o(.text), (28 bytes).
     Removing ecgtohr.o(.text), (356 bytes).
     Removing ecgtohr.o(.text), (12 bytes).
@@ -799,7 +802,7 @@ Removing Unused input sections from the image.
     Removing wkupct_quadec.o(i.quad_decoder_get_y_counter), (12 bytes).
     Removing wkupct_quadec.o(i.quad_decoder_get_x_counter), (12 bytes).
 
-187 unused section(s) (total 7305 bytes) removed from the image.
+190 unused section(s) (total 8441 bytes) removed from the image.
 
 ==============================================================================
 
@@ -919,13 +922,12 @@ Adding Veneers to the image
     Adding TT veneer (12 bytes, Long) for call to 'get_patching_spota_length' from app_spotar.o(.text).
     Adding TT veneer (12 bytes, Long) for call to '__aeabi_memset' from app_spotar.o(.text).
     Adding TT veneer (12 bytes, Long) for call to '__aeabi_dmul' from user_periph_setup.o(.text).
-    Adding TT veneer (12 bytes, Long) for call to '__aeabi_memcpy4' from dsp.o(.text).
     Adding TT veneer (12 bytes, Long) for call to '__aeabi_llsl' from dadd.o(.text).
     Adding TT veneer (12 bytes, Long) for call to '_double_epilogue' from dadd.o(.text).
     Adding TT veneer (12 bytes, Long) for call to '_double_round' from dadd.o(.text).
     Adding TT veneer (12 bytes, Long) for call to '__aeabi_llsr' from dsqrt.o(.text).
 
-119 Veneer(s) (total 1428 bytes) added to the image.
+118 Veneer(s) (total 1416 bytes) added to the image.
 
 ==============================================================================
 
@@ -936,29 +938,29 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
     ../clib/microlib/malloc/mvars.c          0x00000000   Number         0  mvars.o ABSOLUTE
     ../fplib/microlib/d2f.c                  0x00000000   Number         0  d2f.o ABSOLUTE
     ../fplib/microlib/f2d.c                  0x00000000   Number         0  f2d.o ABSOLUTE
-    ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  fadd.o ABSOLUTE
+    ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  fdiv.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
@@ -1159,237 +1161,216 @@ Image Symbol Table
     .text                                    0x20004a00   Section        0  app_diss.o(.text)
     .text                                    0x20004a48   Section        0  app_diss_task.o(.text)
     .text                                    0x20004bac   Section        0  user_periph_setup.o(.text)
-    .text                                    0x2000565c   Section        0  ads1292.o(.text)
-    .text                                    0x20005714   Section        0  afe4400.o(.text)
-    .text                                    0x200057b0   Section        0  dsp.o(.text)
-    .text                                    0x20005834   Section        0  ecgtohr.o(.text)
-    .text                                    0x20005a38   Section        0  sps_server.o(.text)
-    .text                                    0x20005ae4   Section        0  sps_server_task.o(.text)
-    sps_server_create_db_req_handler         0x20005ae5   Thumb Code    72  sps_server_task.o(.text)
-    sps_server_enable_req_handler            0x20005b2d   Thumb Code    88  sps_server_task.o(.text)
-    gapc_disconnect_ind_handler              0x20005b85   Thumb Code    24  sps_server_task.o(.text)
-    gattc_cmp_evt_handler                    0x20005b9d   Thumb Code    42  sps_server_task.o(.text)
-    sps_server_data_tx_req_handler           0x20005bc7   Thumb Code    58  sps_server_task.o(.text)
-    sps_server_rx_flow_ctrl_req_handler      0x20005c01   Thumb Code    54  sps_server_task.o(.text)
-    gattc_write_cmd_ind_handler              0x20005c37   Thumb Code   214  sps_server_task.o(.text)
-    .text                                    0x20005d18   Section        0  user_sps_device.o(.text)
-    .text                                    0x20005e60   Section        0  user_spss.o(.text)
-    .text                                    0x20005e98   Section        0  user_spss_task.o(.text)
-    .text                                    0x20005f28   Section        0  fadd.o(.text)
-    .text                                    0x20005fda   Section        0  fmul.o(.text)
-    .text                                    0x20006054   Section        0  fdiv.o(.text)
-    .text                                    0x200060d0   Section        0  dadd.o(.text)
-    .text                                    0x20006234   Section        0  ddiv.o(.text)
-    .text                                    0x20006324   Section        0  fflti.o(.text)
-    .text                                    0x2000633a   Section        0  ffixi.o(.text)
-    .text                                    0x2000636c   Section        0  f2d.o(.text)
-    .text                                    0x20006394   Section       40  cdrcmple.o(.text)
-    .text                                    0x200063bc   Section        0  d2f.o(.text)
-    .text                                    0x200063f4   Section       20  cfrcmple.o(.text)
-    .text                                    0x20006408   Section        0  llsshr.o(.text)
-    .text                                    0x2000642e   Section        0  fepilogue.o(.text)
-    .text                                    0x200064b0   Section        0  dsqrt.o(.text)
-    .text                                    0x20006554   Section       36  init.o(.text)
-    i.__scatterload_copy                     0x20006b0c   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x20006b1a   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x20006b1c   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.__set_errno                            0x20006b2c   Section        0  errno.o(i.__set_errno)
-    i.free                                   0x20006b38   Section        0  malloc.o(i.free)
-    i.malloc                                 0x20006b8c   Section        0  malloc.o(i.malloc)
-    i.sqrt                                   0x20006bf8   Section        0  sqrt.o(i.sqrt)
-    .constdata                               0x20006c40   Section        6  nvds.o(.constdata)
-    all_ones_bdaddr                          0x20006c40   Data           6  nvds.o(.constdata)
-    .constdata                               0x20006c46   Section       22  jump_table.o(.constdata)
-    .constdata                               0x20006c5c   Section      304  arch_patch.o(.constdata)
-    my_llm_default_state                     0x20006c5c   Data         304  arch_patch.o(.constdata)
-    .constdata                               0x20006d8c   Section        8  arch_patch.o(.constdata)
-    my_llm_default_handler                   0x20006d8c   Data           8  arch_patch.o(.constdata)
-    .constdata                               0x20006d94   Section       48  arch_patch.o(.constdata)
-    TASK_DESC_LLM                            0x20006d94   Data          16  arch_patch.o(.constdata)
-    patch_table                              0x20006da4   Data          32  arch_patch.o(.constdata)
-    .constdata                               0x20006dc4   Section      304  llc.obj(.constdata)
-    my_llc_default_state                     0x20006dc4   Data         304  llc.obj(.constdata)
-    .constdata                               0x20006ef4   Section       16  llc.obj(.constdata)
-    my_llc_stopping                          0x20006ef4   Data          16  llc.obj(.constdata)
-    .constdata                               0x20006f04   Section      176  llc.obj(.constdata)
-    .constdata                               0x20006fb4   Section        8  llc.obj(.constdata)
-    .constdata                               0x20006fbc   Section       16  llc.obj(.constdata)
-    .constdata                               0x20006fcc   Section       80  spi_flash.o(.constdata)
-    .constdata                               0x2000701c   Section       60  bass.o(.constdata)
-    .constdata                               0x20007058   Section        2  bass.o(.constdata)
-    .constdata                               0x2000705a   Section        5  bass.o(.constdata)
-    .constdata                               0x20007060   Section       16  bass.o(.constdata)
-    TASK_DESC_BASS                           0x20007060   Data          16  bass.o(.constdata)
-    .constdata                               0x20007070   Section        8  bass_task.o(.constdata)
-    .constdata                               0x20007078   Section        8  bass_task.o(.constdata)
-    .constdata                               0x20007080   Section       24  bass_task.o(.constdata)
-    .constdata                               0x20007098   Section        8  bass_task.o(.constdata)
-    .constdata                               0x200070a0   Section       24  bass_task.o(.constdata)
-    .constdata                               0x200070b8   Section        8  bass_task.o(.constdata)
-    .constdata                               0x200070c0   Section        2  spotar.o(.constdata)
-    .constdata                               0x200070c2   Section       16  spotar.o(.constdata)
-    .constdata                               0x200070d2   Section       16  spotar.o(.constdata)
-    .constdata                               0x200070e2   Section       16  spotar.o(.constdata)
-    .constdata                               0x200070f2   Section       16  spotar.o(.constdata)
-    .constdata                               0x20007102   Section       16  spotar.o(.constdata)
-    .constdata                               0x20007112   Section       16  spotar.o(.constdata)
-    .constdata                               0x20007124   Section       16  spotar.o(.constdata)
-    TASK_DESC_SPOTAR                         0x20007124   Data          16  spotar.o(.constdata)
-    .constdata                               0x20007134   Section        8  spotar_task.o(.constdata)
-    .constdata                               0x2000713c   Section        8  spotar_task.o(.constdata)
-    .constdata                               0x20007144   Section       24  spotar_task.o(.constdata)
-    .constdata                               0x2000715c   Section        8  spotar_task.o(.constdata)
-    .constdata                               0x20007164   Section       24  spotar_task.o(.constdata)
-    .constdata                               0x2000717c   Section        8  spotar_task.o(.constdata)
-    .constdata                               0x20007184   Section      228  diss.o(.constdata)
-    .constdata                               0x20007268   Section        2  diss.o(.constdata)
-    .constdata                               0x2000726a   Section        5  diss.o(.constdata)
-    .constdata                               0x2000726f   Section        5  diss.o(.constdata)
-    .constdata                               0x20007274   Section        5  diss.o(.constdata)
-    .constdata                               0x20007279   Section        5  diss.o(.constdata)
-    .constdata                               0x2000727e   Section        5  diss.o(.constdata)
-    .constdata                               0x20007283   Section        5  diss.o(.constdata)
-    .constdata                               0x20007288   Section        5  diss.o(.constdata)
-    .constdata                               0x2000728d   Section        5  diss.o(.constdata)
-    .constdata                               0x20007292   Section        5  diss.o(.constdata)
-    .constdata                               0x20007298   Section       16  diss.o(.constdata)
-    TASK_DESC_DISS                           0x20007298   Data          16  diss.o(.constdata)
-    .constdata                               0x200072a8   Section        8  diss_task.o(.constdata)
-    .constdata                               0x200072b0   Section       16  diss_task.o(.constdata)
-    .constdata                               0x200072c0   Section        8  diss_task.o(.constdata)
-    .constdata                               0x200072c8   Section       24  diss_task.o(.constdata)
-    .constdata                               0x200072e0   Section        8  diss_task.o(.constdata)
-    .constdata                               0x200072e8   Section      148  app.o(.constdata)
-    user_adv_conf                            0x200072e8   Data          24  app.o(.constdata)
-    user_gapm_conf                           0x20007300   Data          34  app.o(.constdata)
-    user_prf_funcs                           0x20007324   Data          24  app.o(.constdata)
-    TASK_DESC_APP                            0x2000736c   Data          16  app.o(.constdata)
-    .constdata                               0x2000737c   Section       60  app_task.o(.constdata)
-    app_process_catch_rest_cb                0x2000737c   Data           4  app_task.o(.constdata)
-    app_gap_process_handlers                 0x20007380   Data          56  app_task.o(.constdata)
-    .constdata                               0x200073b8   Section        8  app_task.o(.constdata)
-    .constdata                               0x200073c0   Section        8  app_task.o(.constdata)
-    .constdata                               0x200073c8   Section       28  app_entry_point.o(.constdata)
-    app_process_catch_rest_cb                0x200073c8   Data           4  app_entry_point.o(.constdata)
-    .constdata                               0x200073e4   Section       48  app_bass_task.o(.constdata)
-    .constdata                               0x20007414   Section       40  app_spotar_task.o(.constdata)
-    .constdata                               0x2000743c   Section       16  app_diss_task.o(.constdata)
-    app_dis_process_handlers                 0x2000743c   Data          16  app_diss_task.o(.constdata)
-    .constdata                               0x2000744c   Section      196  afe4400.o(.constdata)
-    .constdata                               0x20007510   Section      328  dsp.o(.constdata)
-    .constdata                               0x20007658   Section        4  ecgtohr.o(.constdata)
-    .constdata                               0x2000765c   Section       16  sps_server.o(.constdata)
-    sps_service                              0x2000765c   Data          16  sps_server.o(.constdata)
-    .constdata                               0x2000766c   Section       16  sps_server.o(.constdata)
-    spss_tx_data_val                         0x2000766c   Data          16  sps_server.o(.constdata)
-    .constdata                               0x2000767c   Section       16  sps_server.o(.constdata)
-    spss_rx_data_val                         0x2000767c   Data          16  sps_server.o(.constdata)
-    .constdata                               0x2000768c   Section       16  sps_server.o(.constdata)
-    spss_flow_ctrl_val                       0x2000768c   Data          16  sps_server.o(.constdata)
-    .constdata                               0x2000769c   Section        2  sps_server.o(.constdata)
-    att_decl_svc                             0x2000769c   Data           2  sps_server.o(.constdata)
-    .constdata                               0x2000769e   Section        2  sps_server.o(.constdata)
-    att_decl_char                            0x2000769e   Data           2  sps_server.o(.constdata)
-    .constdata                               0x200076a0   Section        2  sps_server.o(.constdata)
-    att_decl_cfg                             0x200076a0   Data           2  sps_server.o(.constdata)
-    .constdata                               0x200076a2   Section        2  sps_server.o(.constdata)
-    att_decl_user_desc                       0x200076a2   Data           2  sps_server.o(.constdata)
-    .constdata                               0x200076a4   Section      208  sps_server.o(.constdata)
-    .constdata                               0x20007774   Section       16  sps_server.o(.constdata)
-    TASK_DESC_SPS_SERVER                     0x20007774   Data          16  sps_server.o(.constdata)
-    .constdata                               0x20007784   Section        8  sps_server_task.o(.constdata)
-    .constdata                               0x2000778c   Section        8  sps_server_task.o(.constdata)
-    .constdata                               0x20007794   Section       40  sps_server_task.o(.constdata)
-    .constdata                               0x200077bc   Section       24  sps_server_task.o(.constdata)
-    .constdata                               0x200077d4   Section        8  sps_server_task.o(.constdata)
-    .constdata                               0x200077dc   Section        4  user_sps_device.o(.constdata)
-    .constdata                               0x200077e0   Section       48  user_spss_task.o(.constdata)
-    .conststring                             0x20007810   Section       45  sps_server.o(.conststring)
-    .data                                    0x20007870   Section        4  arch_system.o(.data)
-    .data                                    0x20007874   Section       19  spotar.o(.data)
-    .data                                    0x20007887   Section       19  spotar.o(.data)
-    .data                                    0x2000789a   Section       19  spotar.o(.data)
-    .data                                    0x200078ad   Section       19  spotar.o(.data)
-    .data                                    0x200078c0   Section       19  spotar.o(.data)
-    .data                                    0x200078d3   Section       19  spotar.o(.data)
-    .data                                    0x200078e6   Section        4  user_periph_setup.o(.data)
-    isled                                    0x200078e6   Data           1  user_periph_setup.o(.data)
-    .data                                    0x200078ea   Section       12  ads1292.o(.data)
-    .data                                    0x200078f6   Section       19  sps_server.o(.data)
-    spss_tx_data_char                        0x200078f6   Data          19  sps_server.o(.data)
-    .data                                    0x20007909   Section       19  sps_server.o(.data)
-    spss_rx_data_char                        0x20007909   Data          19  sps_server.o(.data)
-    .data                                    0x2000791c   Section       19  sps_server.o(.data)
-    spss_flow_ctrl_char                      0x2000791c   Data          19  sps_server.o(.data)
-    .data                                    0x20007930   Section        4  mvars.o(.data)
-    .data                                    0x20007934   Section        4  mvars.o(.data)
-    .data                                    0x20007938   Section        4  errno.o(.data)
-    _errno                                   0x20007938   Data           4  errno.o(.data)
+    .text                                    0x20005740   Section        0  ads1292.o(.text)
+    .text                                    0x200057f8   Section        0  afe4400.o(.text)
+    .text                                    0x20005894   Section        0  ecgtohr.o(.text)
+    .text                                    0x20005a98   Section        0  sps_server.o(.text)
+    .text                                    0x20005b44   Section        0  sps_server_task.o(.text)
+    sps_server_create_db_req_handler         0x20005b45   Thumb Code    72  sps_server_task.o(.text)
+    sps_server_enable_req_handler            0x20005b8d   Thumb Code    88  sps_server_task.o(.text)
+    gapc_disconnect_ind_handler              0x20005be5   Thumb Code    24  sps_server_task.o(.text)
+    gattc_cmp_evt_handler                    0x20005bfd   Thumb Code    42  sps_server_task.o(.text)
+    sps_server_data_tx_req_handler           0x20005c27   Thumb Code    58  sps_server_task.o(.text)
+    sps_server_rx_flow_ctrl_req_handler      0x20005c61   Thumb Code    54  sps_server_task.o(.text)
+    gattc_write_cmd_ind_handler              0x20005c97   Thumb Code   214  sps_server_task.o(.text)
+    .text                                    0x20005d78   Section        0  user_sps_device.o(.text)
+    .text                                    0x20005ee4   Section        0  user_spss.o(.text)
+    .text                                    0x20005f1c   Section        0  user_spss_task.o(.text)
+    .text                                    0x20005fc4   Section        0  fadd.o(.text)
+    .text                                    0x20006076   Section        0  fmul.o(.text)
+    .text                                    0x200060f0   Section        0  fdiv.o(.text)
+    .text                                    0x2000616c   Section        0  dadd.o(.text)
+    .text                                    0x200062d0   Section        0  ddiv.o(.text)
+    .text                                    0x200063c0   Section        0  fflti.o(.text)
+    .text                                    0x200063d6   Section        0  ffixi.o(.text)
+    .text                                    0x20006408   Section        0  f2d.o(.text)
+    .text                                    0x20006430   Section       40  cdrcmple.o(.text)
+    .text                                    0x20006458   Section        0  d2f.o(.text)
+    .text                                    0x20006490   Section       20  cfrcmple.o(.text)
+    .text                                    0x200064a4   Section        0  llsshr.o(.text)
+    .text                                    0x200064ca   Section        0  fepilogue.o(.text)
+    .text                                    0x2000654c   Section        0  dsqrt.o(.text)
+    .text                                    0x200065f0   Section       36  init.o(.text)
+    i.__scatterload_copy                     0x20006b9c   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x20006baa   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x20006bac   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.__set_errno                            0x20006bbc   Section        0  errno.o(i.__set_errno)
+    i.free                                   0x20006bc8   Section        0  malloc.o(i.free)
+    i.malloc                                 0x20006c1c   Section        0  malloc.o(i.malloc)
+    i.sqrt                                   0x20006c88   Section        0  sqrt.o(i.sqrt)
+    .constdata                               0x20006cd0   Section        6  nvds.o(.constdata)
+    all_ones_bdaddr                          0x20006cd0   Data           6  nvds.o(.constdata)
+    .constdata                               0x20006cd6   Section       22  jump_table.o(.constdata)
+    .constdata                               0x20006cec   Section      304  arch_patch.o(.constdata)
+    my_llm_default_state                     0x20006cec   Data         304  arch_patch.o(.constdata)
+    .constdata                               0x20006e1c   Section        8  arch_patch.o(.constdata)
+    my_llm_default_handler                   0x20006e1c   Data           8  arch_patch.o(.constdata)
+    .constdata                               0x20006e24   Section       48  arch_patch.o(.constdata)
+    TASK_DESC_LLM                            0x20006e24   Data          16  arch_patch.o(.constdata)
+    patch_table                              0x20006e34   Data          32  arch_patch.o(.constdata)
+    .constdata                               0x20006e54   Section      304  llc.obj(.constdata)
+    my_llc_default_state                     0x20006e54   Data         304  llc.obj(.constdata)
+    .constdata                               0x20006f84   Section       16  llc.obj(.constdata)
+    my_llc_stopping                          0x20006f84   Data          16  llc.obj(.constdata)
+    .constdata                               0x20006f94   Section      176  llc.obj(.constdata)
+    .constdata                               0x20007044   Section        8  llc.obj(.constdata)
+    .constdata                               0x2000704c   Section       16  llc.obj(.constdata)
+    .constdata                               0x2000705c   Section       80  spi_flash.o(.constdata)
+    .constdata                               0x200070ac   Section       60  bass.o(.constdata)
+    .constdata                               0x200070e8   Section        2  bass.o(.constdata)
+    .constdata                               0x200070ea   Section        5  bass.o(.constdata)
+    .constdata                               0x200070f0   Section       16  bass.o(.constdata)
+    TASK_DESC_BASS                           0x200070f0   Data          16  bass.o(.constdata)
+    .constdata                               0x20007100   Section        8  bass_task.o(.constdata)
+    .constdata                               0x20007108   Section        8  bass_task.o(.constdata)
+    .constdata                               0x20007110   Section       24  bass_task.o(.constdata)
+    .constdata                               0x20007128   Section        8  bass_task.o(.constdata)
+    .constdata                               0x20007130   Section       24  bass_task.o(.constdata)
+    .constdata                               0x20007148   Section        8  bass_task.o(.constdata)
+    .constdata                               0x20007150   Section        2  spotar.o(.constdata)
+    .constdata                               0x20007152   Section       16  spotar.o(.constdata)
+    .constdata                               0x20007162   Section       16  spotar.o(.constdata)
+    .constdata                               0x20007172   Section       16  spotar.o(.constdata)
+    .constdata                               0x20007182   Section       16  spotar.o(.constdata)
+    .constdata                               0x20007192   Section       16  spotar.o(.constdata)
+    .constdata                               0x200071a2   Section       16  spotar.o(.constdata)
+    .constdata                               0x200071b4   Section       16  spotar.o(.constdata)
+    TASK_DESC_SPOTAR                         0x200071b4   Data          16  spotar.o(.constdata)
+    .constdata                               0x200071c4   Section        8  spotar_task.o(.constdata)
+    .constdata                               0x200071cc   Section        8  spotar_task.o(.constdata)
+    .constdata                               0x200071d4   Section       24  spotar_task.o(.constdata)
+    .constdata                               0x200071ec   Section        8  spotar_task.o(.constdata)
+    .constdata                               0x200071f4   Section       24  spotar_task.o(.constdata)
+    .constdata                               0x2000720c   Section        8  spotar_task.o(.constdata)
+    .constdata                               0x20007214   Section      228  diss.o(.constdata)
+    .constdata                               0x200072f8   Section        2  diss.o(.constdata)
+    .constdata                               0x200072fa   Section        5  diss.o(.constdata)
+    .constdata                               0x200072ff   Section        5  diss.o(.constdata)
+    .constdata                               0x20007304   Section        5  diss.o(.constdata)
+    .constdata                               0x20007309   Section        5  diss.o(.constdata)
+    .constdata                               0x2000730e   Section        5  diss.o(.constdata)
+    .constdata                               0x20007313   Section        5  diss.o(.constdata)
+    .constdata                               0x20007318   Section        5  diss.o(.constdata)
+    .constdata                               0x2000731d   Section        5  diss.o(.constdata)
+    .constdata                               0x20007322   Section        5  diss.o(.constdata)
+    .constdata                               0x20007328   Section       16  diss.o(.constdata)
+    TASK_DESC_DISS                           0x20007328   Data          16  diss.o(.constdata)
+    .constdata                               0x20007338   Section        8  diss_task.o(.constdata)
+    .constdata                               0x20007340   Section       16  diss_task.o(.constdata)
+    .constdata                               0x20007350   Section        8  diss_task.o(.constdata)
+    .constdata                               0x20007358   Section       24  diss_task.o(.constdata)
+    .constdata                               0x20007370   Section        8  diss_task.o(.constdata)
+    .constdata                               0x20007378   Section      148  app.o(.constdata)
+    user_adv_conf                            0x20007378   Data          24  app.o(.constdata)
+    user_gapm_conf                           0x20007390   Data          34  app.o(.constdata)
+    user_prf_funcs                           0x200073b4   Data          24  app.o(.constdata)
+    TASK_DESC_APP                            0x200073fc   Data          16  app.o(.constdata)
+    .constdata                               0x2000740c   Section       60  app_task.o(.constdata)
+    app_process_catch_rest_cb                0x2000740c   Data           4  app_task.o(.constdata)
+    app_gap_process_handlers                 0x20007410   Data          56  app_task.o(.constdata)
+    .constdata                               0x20007448   Section        8  app_task.o(.constdata)
+    .constdata                               0x20007450   Section        8  app_task.o(.constdata)
+    .constdata                               0x20007458   Section       28  app_entry_point.o(.constdata)
+    app_process_catch_rest_cb                0x20007458   Data           4  app_entry_point.o(.constdata)
+    .constdata                               0x20007474   Section       48  app_bass_task.o(.constdata)
+    .constdata                               0x200074a4   Section       40  app_spotar_task.o(.constdata)
+    .constdata                               0x200074cc   Section       16  app_diss_task.o(.constdata)
+    app_dis_process_handlers                 0x200074cc   Data          16  app_diss_task.o(.constdata)
+    .constdata                               0x200074dc   Section      196  afe4400.o(.constdata)
+    .constdata                               0x200075a0   Section        4  ecgtohr.o(.constdata)
+    .constdata                               0x200075a4   Section       16  sps_server.o(.constdata)
+    sps_service                              0x200075a4   Data          16  sps_server.o(.constdata)
+    .constdata                               0x200075b4   Section       16  sps_server.o(.constdata)
+    spss_tx_data_val                         0x200075b4   Data          16  sps_server.o(.constdata)
+    .constdata                               0x200075c4   Section       16  sps_server.o(.constdata)
+    spss_rx_data_val                         0x200075c4   Data          16  sps_server.o(.constdata)
+    .constdata                               0x200075d4   Section       16  sps_server.o(.constdata)
+    spss_flow_ctrl_val                       0x200075d4   Data          16  sps_server.o(.constdata)
+    .constdata                               0x200075e4   Section        2  sps_server.o(.constdata)
+    att_decl_svc                             0x200075e4   Data           2  sps_server.o(.constdata)
+    .constdata                               0x200075e6   Section        2  sps_server.o(.constdata)
+    att_decl_char                            0x200075e6   Data           2  sps_server.o(.constdata)
+    .constdata                               0x200075e8   Section        2  sps_server.o(.constdata)
+    att_decl_cfg                             0x200075e8   Data           2  sps_server.o(.constdata)
+    .constdata                               0x200075ea   Section        2  sps_server.o(.constdata)
+    att_decl_user_desc                       0x200075ea   Data           2  sps_server.o(.constdata)
+    .constdata                               0x200075ec   Section      208  sps_server.o(.constdata)
+    .constdata                               0x200076bc   Section       16  sps_server.o(.constdata)
+    TASK_DESC_SPS_SERVER                     0x200076bc   Data          16  sps_server.o(.constdata)
+    .constdata                               0x200076cc   Section        8  sps_server_task.o(.constdata)
+    .constdata                               0x200076d4   Section        8  sps_server_task.o(.constdata)
+    .constdata                               0x200076dc   Section       40  sps_server_task.o(.constdata)
+    .constdata                               0x20007704   Section       24  sps_server_task.o(.constdata)
+    .constdata                               0x2000771c   Section        8  sps_server_task.o(.constdata)
+    .constdata                               0x20007724   Section        4  user_sps_device.o(.constdata)
+    .constdata                               0x20007728   Section       48  user_spss_task.o(.constdata)
+    .conststring                             0x20007758   Section       45  sps_server.o(.conststring)
+    .data                                    0x200077b8   Section        4  arch_system.o(.data)
+    .data                                    0x200077bc   Section       19  spotar.o(.data)
+    .data                                    0x200077cf   Section       19  spotar.o(.data)
+    .data                                    0x200077e2   Section       19  spotar.o(.data)
+    .data                                    0x200077f5   Section       19  spotar.o(.data)
+    .data                                    0x20007808   Section       19  spotar.o(.data)
+    .data                                    0x2000781b   Section       19  spotar.o(.data)
+    .data                                    0x2000782e   Section        4  user_periph_setup.o(.data)
+    isled                                    0x2000782e   Data           1  user_periph_setup.o(.data)
+    .data                                    0x20007832   Section       12  ads1292.o(.data)
+    .data                                    0x2000783e   Section       19  sps_server.o(.data)
+    spss_tx_data_char                        0x2000783e   Data          19  sps_server.o(.data)
+    .data                                    0x20007851   Section       19  sps_server.o(.data)
+    spss_rx_data_char                        0x20007851   Data          19  sps_server.o(.data)
+    .data                                    0x20007864   Section       19  sps_server.o(.data)
+    spss_flow_ctrl_char                      0x20007864   Data          19  sps_server.o(.data)
+    .data                                    0x20007878   Section        4  mvars.o(.data)
+    .data                                    0x2000787c   Section        4  mvars.o(.data)
+    .data                                    0x20007880   Section        4  errno.o(.data)
+    _errno                                   0x20007880   Data           4  errno.o(.data)
     .bss                                     0x20008000   Section      212  user_periph_setup.o(.bss)
-    i                                        0x20008003   Data           1  user_periph_setup.o(.bss)
-    cnt                                      0x20008004   Data           1  user_periph_setup.o(.bss)
-    beepcnt                                  0x20008005   Data           1  user_periph_setup.o(.bss)
-    beep                                     0x20008006   Data           1  user_periph_setup.o(.bss)
+    i                                        0x20008004   Data           1  user_periph_setup.o(.bss)
+    cnt                                      0x20008005   Data           1  user_periph_setup.o(.bss)
+    beepcnt                                  0x20008006   Data           1  user_periph_setup.o(.bss)
+    beep                                     0x20008007   Data           1  user_periph_setup.o(.bss)
     chgcnt                                   0x2000802c   Data           4  user_periph_setup.o(.bss)
-    .bss                                     0x200080d4   Section      676  dsp.o(.bss)
-    y                                        0x20008110   Data          84  dsp.o(.bss)
-    x                                        0x20008164   Data          84  dsp.o(.bss)
-    y                                        0x200081b8   Data          84  dsp.o(.bss)
-    x                                        0x2000820c   Data          84  dsp.o(.bss)
-    y                                        0x20008260   Data          20  dsp.o(.bss)
-    x                                        0x20008274   Data          20  dsp.o(.bss)
-    y                                        0x20008288   Data          20  dsp.o(.bss)
-    x                                        0x2000829c   Data          20  dsp.o(.bss)
-    y                                        0x200082b0   Data          20  dsp.o(.bss)
-    x                                        0x200082c4   Data          20  dsp.o(.bss)
-    y                                        0x200082d8   Data          20  dsp.o(.bss)
-    x                                        0x200082ec   Data          20  dsp.o(.bss)
-    y                                        0x20008300   Data          20  dsp.o(.bss)
-    x                                        0x20008314   Data          20  dsp.o(.bss)
-    y                                        0x20008328   Data          20  dsp.o(.bss)
-    x                                        0x2000833c   Data          20  dsp.o(.bss)
-    y                                        0x20008350   Data          20  dsp.o(.bss)
-    x                                        0x20008364   Data          20  dsp.o(.bss)
-    .bss                                     0x20008378   Section      256  ecgtohr.o(.bss)
-    HEAP                                     0x20008478   Section      256  boot_vectors.o(HEAP)
-    retention_mem_area0                      0x20008578   Section        6  nvds.o(retention_mem_area0)
-    retention_mem_area0                      0x2000857e   Section        1  arch_main.o(retention_mem_area0)
-    retention_mem_area0                      0x2000857f   Section        4  arch_sleep.o(retention_mem_area0)
-    retention_mem_area0                      0x20008584   Section       20  arch_system.o(retention_mem_area0)
-    retention_mem_area0                      0x20008598   Section       24  llc.obj(retention_mem_area0)
-    retention_mem_area0                      0x200085b0   Section       12  wkupct_quadec.o(retention_mem_area0)
-    wkupct_deb_time                          0x200085b2   Data           2  wkupct_quadec.o(retention_mem_area0)
-    QUADDEC_callback                         0x200085b4   Data           4  wkupct_quadec.o(retention_mem_area0)
-    WKUPCT_callback                          0x200085b8   Data           4  wkupct_quadec.o(retention_mem_area0)
-    retention_mem_area0                      0x200085bc   Section        1  rf_580.o(retention_mem_area0)
-    near_field_mode                          0x200085bc   Data           1  rf_580.o(retention_mem_area0)
-    retention_mem_area0                      0x200085be   Section        8  rwble.o(retention_mem_area0)
-    retention_mem_area0                      0x200085c6   Section       14  bass.o(retention_mem_area0)
-    retention_mem_area0                      0x200085d4   Section        1  bass_task.o(retention_mem_area0)
-    retention_mem_area0                      0x200085d6   Section        8  spotar.o(retention_mem_area0)
-    retention_mem_area0                      0x200085de   Section        1  spotar_task.o(retention_mem_area0)
-    retention_mem_area0                      0x200085e0   Section       18  diss.o(retention_mem_area0)
-    retention_mem_area0                      0x200085f2   Section        1  diss_task.o(retention_mem_area0)
-    retention_mem_area0                      0x200085f4   Section       56  app.o(retention_mem_area0)
-    i                                        0x200085f4   Data           1  app.o(retention_mem_area0)
-    k                                        0x200085f5   Data           1  app.o(retention_mem_area0)
-    adv_timer_id                             0x200085f6   Data           1  app.o(retention_mem_area0)
-    param_update_cmd                         0x200085f8   Data           4  app.o(retention_mem_area0)
-    set_dev_config_cmd                       0x200085fc   Data           4  app.o(retention_mem_area0)
-    adv_cmd                                  0x20008600   Data           4  app.o(retention_mem_area0)
-    start_connection_cmd                     0x20008604   Data           4  app.o(retention_mem_area0)
-    adv_timeout_callback                     0x20008608   Data           4  app.o(retention_mem_area0)
-    retention_mem_area0                      0x2000862c   Section        1  app_task.o(retention_mem_area0)
-    retention_mem_area0                      0x20008630   Section       24  app_easy_msg_utils.o(retention_mem_area0)
-    wakeup_id                                0x20008630   Data           2  app_easy_msg_utils.o(retention_mem_area0)
-    msg_util_callbacks                       0x20008634   Data          20  app_easy_msg_utils.o(retention_mem_area0)
-    retention_mem_area0                      0x20008648   Section       40  app_easy_timer.o(retention_mem_area0)
-    timer_callbacks                          0x20008648   Data          40  app_easy_timer.o(retention_mem_area0)
-    retention_mem_area0                      0x20008670   Section       10  app_bass.o(retention_mem_area0)
-    active_conhdl                            0x20008678   Data           2  app_bass.o(retention_mem_area0)
-    retention_mem_area0                      0x2000867c   Section       44  app_spotar.o(retention_mem_area0)
-    active_conhdl                            0x2000867c   Data           2  app_spotar.o(retention_mem_area0)
-    retention_mem_area0                      0x200086a8   Section       16  sps_server.o(retention_mem_area0)
+    .bss                                     0x200080d4   Section      256  ecgtohr.o(.bss)
+    HEAP                                     0x200081d8   Section      256  boot_vectors.o(HEAP)
+    retention_mem_area0                      0x200082d8   Section        6  nvds.o(retention_mem_area0)
+    retention_mem_area0                      0x200082de   Section        1  arch_main.o(retention_mem_area0)
+    retention_mem_area0                      0x200082df   Section        4  arch_sleep.o(retention_mem_area0)
+    retention_mem_area0                      0x200082e4   Section       20  arch_system.o(retention_mem_area0)
+    retention_mem_area0                      0x200082f8   Section       24  llc.obj(retention_mem_area0)
+    retention_mem_area0                      0x20008310   Section       12  wkupct_quadec.o(retention_mem_area0)
+    wkupct_deb_time                          0x20008312   Data           2  wkupct_quadec.o(retention_mem_area0)
+    QUADDEC_callback                         0x20008314   Data           4  wkupct_quadec.o(retention_mem_area0)
+    WKUPCT_callback                          0x20008318   Data           4  wkupct_quadec.o(retention_mem_area0)
+    retention_mem_area0                      0x2000831c   Section        1  rf_580.o(retention_mem_area0)
+    near_field_mode                          0x2000831c   Data           1  rf_580.o(retention_mem_area0)
+    retention_mem_area0                      0x2000831e   Section        8  rwble.o(retention_mem_area0)
+    retention_mem_area0                      0x20008326   Section       14  bass.o(retention_mem_area0)
+    retention_mem_area0                      0x20008334   Section        1  bass_task.o(retention_mem_area0)
+    retention_mem_area0                      0x20008336   Section        8  spotar.o(retention_mem_area0)
+    retention_mem_area0                      0x2000833e   Section        1  spotar_task.o(retention_mem_area0)
+    retention_mem_area0                      0x20008340   Section       18  diss.o(retention_mem_area0)
+    retention_mem_area0                      0x20008352   Section        1  diss_task.o(retention_mem_area0)
+    retention_mem_area0                      0x20008354   Section       56  app.o(retention_mem_area0)
+    i                                        0x20008354   Data           1  app.o(retention_mem_area0)
+    k                                        0x20008355   Data           1  app.o(retention_mem_area0)
+    adv_timer_id                             0x20008356   Data           1  app.o(retention_mem_area0)
+    param_update_cmd                         0x20008358   Data           4  app.o(retention_mem_area0)
+    set_dev_config_cmd                       0x2000835c   Data           4  app.o(retention_mem_area0)
+    adv_cmd                                  0x20008360   Data           4  app.o(retention_mem_area0)
+    start_connection_cmd                     0x20008364   Data           4  app.o(retention_mem_area0)
+    adv_timeout_callback                     0x20008368   Data           4  app.o(retention_mem_area0)
+    retention_mem_area0                      0x2000838c   Section        1  app_task.o(retention_mem_area0)
+    retention_mem_area0                      0x20008390   Section       24  app_easy_msg_utils.o(retention_mem_area0)
+    wakeup_id                                0x20008390   Data           2  app_easy_msg_utils.o(retention_mem_area0)
+    msg_util_callbacks                       0x20008394   Data          20  app_easy_msg_utils.o(retention_mem_area0)
+    retention_mem_area0                      0x200083a8   Section       40  app_easy_timer.o(retention_mem_area0)
+    timer_callbacks                          0x200083a8   Data          40  app_easy_timer.o(retention_mem_area0)
+    retention_mem_area0                      0x200083d0   Section       10  app_bass.o(retention_mem_area0)
+    active_conhdl                            0x200083d8   Data           2  app_bass.o(retention_mem_area0)
+    retention_mem_area0                      0x200083dc   Section       44  app_spotar.o(retention_mem_area0)
+    active_conhdl                            0x200083dc   Data           2  app_spotar.o(retention_mem_area0)
+    retention_mem_area0                      0x20008408   Section       16  sps_server.o(retention_mem_area0)
     heap_mem_area_not_ret                    0x200087f4   Section     2060  jump_table.o(heap_mem_area_not_ret)
     .bss                                     0x20009020   Section       20  gpio.o(.bss)
     .bss                                     0x20009034   Section        4  systick.o(.bss)
@@ -2364,266 +2345,266 @@ Image Symbol Table
     app_dis_process_handler                  0x20004a49   Thumb Code    24  app_diss_task.o(.text)
     diss_create_db_cfm_handler               0x20004a61   Thumb Code   288  app_diss_task.o(.text)
     diss_disable_ind_handler                 0x20004b81   Thumb Code     4  app_diss_task.o(.text)
-    butcb0                                   0x20004bad   Thumb Code   474  user_periph_setup.o(.text)
-    afeon                                    0x20004d87   Thumb Code    90  user_periph_setup.o(.text)
-    system_on                                0x20004de1   Thumb Code   302  user_periph_setup.o(.text)
-    sleepcb                                  0x20004f0f   Thumb Code   686  user_periph_setup.o(.text)
-    set_pad_functions                        0x200051bd   Thumb Code   390  user_periph_setup.o(.text)
-    system_off                               0x20005343   Thumb Code   116  user_periph_setup.o(.text)
-    butcb1                                   0x200053b7   Thumb Code   590  user_periph_setup.o(.text)
-    periph_init                              0x20005605   Thumb Code    50  user_periph_setup.o(.text)
-    ADS1292R_RDATA                           0x2000565d   Thumb Code   102  ads1292.o(.text)
-    ADS1292R_WREG_multi                      0x200056c3   Thumb Code    48  ads1292.o(.text)
-    ADS1292R_sendmsg                         0x200056f3   Thumb Code    28  ads1292.o(.text)
-    AFE4400_RDATA                            0x20005715   Thumb Code    72  afe4400.o(.text)
-    AFE4400_WREG                             0x2000575d   Thumb Code    52  afe4400.o(.text)
-    AFE44x0_Default_Reg_Init                 0x20005791   Thumb Code    26  afe4400.o(.text)
-    iir_Notch_60Hz_Sample_500Hz              0x200057b1   Thumb Code   124  dsp.o(.text)
-    getMax                                   0x20005835   Thumb Code    58  ecgtohr.o(.text)
-    getRms                                   0x2000586f   Thumb Code    52  ecgtohr.o(.text)
-    getRRI                                   0x200058a3   Thumb Code   364  ecgtohr.o(.text)
-    sps_server_init                          0x20005a39   Thumb Code    28  sps_server.o(.text)
-    sps_server_confirm_data_tx               0x20005a55   Thumb Code    38  sps_server.o(.text)
-    sps_server_indicate_data_rx              0x20005a7b   Thumb Code    54  sps_server.o(.text)
-    sps_server_indicate_tx_flow_ctrl         0x20005ab1   Thumb Code    40  sps_server.o(.text)
-    user_send_ble                            0x20005d19   Thumb Code    38  user_sps_device.o(.text)
-    user_process_catch                       0x20005d3f   Thumb Code    14  user_sps_device.o(.text)
-    user_on_connection                       0x20005d4d   Thumb Code   162  user_sps_device.o(.text)
-    user_on_disconnect                       0x20005def   Thumb Code    20  user_sps_device.o(.text)
-    user_on_connect_failed                   0x20005e03   Thumb Code    16  user_sps_device.o(.text)
-    user_on_init                             0x20005e13   Thumb Code     8  user_sps_device.o(.text)
-    on_spotar_status_change                  0x20005e1b   Thumb Code    36  user_sps_device.o(.text)
-    user_sps_db_create                       0x20005e61   Thumb Code    24  user_spss.o(.text)
-    user_sps_enable                          0x20005e79   Thumb Code    28  user_spss.o(.text)
-    user_spss_process_handler                0x20005e99   Thumb Code    24  user_spss_task.o(.text)
-    user_sps_create_db_cfm_handler           0x20005eb1   Thumb Code    38  user_spss_task.o(.text)
-    user_sps_server_enable_cfm_handler       0x20005ed7   Thumb Code     4  user_spss_task.o(.text)
-    user_sps_server_data_tx_cfm_handler      0x20005edb   Thumb Code     4  user_spss_task.o(.text)
-    user_sps_server_data_rx_ind_handler      0x20005edf   Thumb Code    44  user_spss_task.o(.text)
-    user_sps_server_tx_flow_ctrl_ind_handler 0x20005f0b   Thumb Code     4  user_spss_task.o(.text)
-    user_sps_server_error_ind_handler        0x20005f0f   Thumb Code    12  user_spss_task.o(.text)
-    __aeabi_fadd                             0x20005f29   Thumb Code   162  fadd.o(.text)
-    __aeabi_fsub                             0x20005fcb   Thumb Code     8  fadd.o(.text)
-    __aeabi_frsub                            0x20005fd3   Thumb Code     8  fadd.o(.text)
-    __aeabi_fmul                             0x20005fdb   Thumb Code   122  fmul.o(.text)
-    __aeabi_fdiv                             0x20006055   Thumb Code   124  fdiv.o(.text)
-    __aeabi_dadd                             0x200060d1   Thumb Code   328  dadd.o(.text)
-    __aeabi_dsub                             0x20006219   Thumb Code    12  dadd.o(.text)
-    __aeabi_drsub                            0x20006225   Thumb Code    12  dadd.o(.text)
-    __aeabi_ddiv                             0x20006235   Thumb Code   234  ddiv.o(.text)
-    __aeabi_i2f                              0x20006325   Thumb Code    22  fflti.o(.text)
-    __aeabi_f2iz                             0x2000633b   Thumb Code    50  ffixi.o(.text)
-    __aeabi_f2d                              0x2000636d   Thumb Code    40  f2d.o(.text)
-    __aeabi_cdrcmple                         0x20006395   Thumb Code    38  cdrcmple.o(.text)
-    __aeabi_d2f                              0x200063bd   Thumb Code    56  d2f.o(.text)
-    __aeabi_cfrcmple                         0x200063f5   Thumb Code    20  cfrcmple.o(.text)
-    __aeabi_lasr                             0x20006409   Thumb Code    38  llsshr.o(.text)
-    _ll_sshift_r                             0x20006409   Thumb Code     0  llsshr.o(.text)
-    _float_round                             0x2000642f   Thumb Code    16  fepilogue.o(.text)
-    _float_epilogue                          0x2000643f   Thumb Code   114  fepilogue.o(.text)
-    _dsqrt                                   0x200064b1   Thumb Code   162  dsqrt.o(.text)
-    __scatterload                            0x20006555   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x20006555   Thumb Code     0  init.o(.text)
-    Long Thumb to Thumb Veneer to memcmp     0x20006579   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_memcpy 0x20006585   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to nvds_get_func 0x20006591   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_memclr4 0x2000659d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_sleep_check 0x200065a9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to rwip_prevent_sleep_get 0x200065b5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_event_get 0x200065c1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to rwip_schedule 0x200065cd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to func_check_mem 0x200065d9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to test_rxdone 0x200065e5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_mem_is_empty 0x200065f1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to rwip_wakeup_delay_set 0x200065fd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to $Super$$get_rc16m_count_func 0x20006609   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to get_rc16m_count 0x20006615   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to pll_vcocal_LUT_InitUpdate 0x20006621   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to rf_calibration 0x2000662d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_sleep_us_2_lpcycles_func 0x20006639   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_sleep_lpcycles_2_us_func 0x20006645   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to uart_flow_on 0x20006651   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to srand      0x2000665d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to set_system_clocks 0x20006669   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to nvds_init  0x20006675   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to rwip_init  0x20006681   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to enable_rf_diag_irq 0x2000668d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to platform_reset_func 0x20006699   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_state_get 0x200066a5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __ARM_common_switch8 0x200066b1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to TASK_LLM_lld_data_ind_handler 0x200066bd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to co_buf_rx_free 0x200066c9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_timer_clear 0x200066d5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_send_cmd_cmp 0x200066e1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_state_set 0x200066ed   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_mtu_exc_resp 0x200066f9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_find_info_resp 0x20006705   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_find_by_type_resp 0x20006711   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_read_by_type_resp 0x2000671d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_read_by_grp_type_resp 0x20006729   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_read_resp 0x20006735   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_read_blob_resp 0x20006741   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_read_mult_resp 0x2000674d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_write_no_resp 0x20006759   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_write_resp 0x20006765   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_signed_write_resp 0x20006771   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_prepare_write_resp 0x2000677d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_execute_write_resp 0x20006789   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_con_update_ind 0x20006795   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_uidivmod 0x200067a1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to llc_util_dicon_procedure 0x200067ad   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_ch_map_ind 0x200067b9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to gapm_get_privacy_flag 0x200067c5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to gapm_set_recon_addr 0x200067d1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to co_list_pop_front 0x200067dd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_task_handler_get 0x200067e9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_msg_free 0x200067f5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to co_list_push_back 0x20006801   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_event_clear 0x2000680d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_event_callback_set 0x20006819   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_msg_alloc 0x20006825   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to gapc_get_enc_keysize 0x20006831   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to gapc_get_role 0x2000683d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_msg_send 0x20006849   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_generate_rand 0x20006855   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_tkdp_send_continue 0x20006861   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_pdu_send 0x2000686d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_tkdp_rcp_start 0x20006879   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_pairing_end 0x20006885   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_check_max_key_size 0x20006891   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_check_key_distrib 0x2000689d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_get_key_sec_prop 0x200068a9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to smpc_is_sec_mode_reached 0x200068b5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to llc_le_con_update_cmd_handler 0x200068c1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to llm_util_get_role 0x200068cd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_evt_int_extract 0x200068d9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_free    0x200068e5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_stop_ind_handler 0x200068f1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_timer_set 0x200068fd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to llc_start_enc_rsp_pdu_send 0x20006909   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to llc_common_enc_change_evt_send 0x20006915   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_idivmod 0x20006921   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to IffCalibration 0x2000692d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to DCoffsetCalibration 0x20006939   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ble_regs_pop 0x20006945   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to rwip_wakeup 0x20006951   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to rf_workaround_init 0x2000695d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to rf_reinit  0x20006969   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to $Super$$BLE_CSCNT_Handler 0x20006975   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_evt_rx_isr 0x20006981   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_evt_end_isr 0x2000698d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to set_rf_cal_cap 0x20006999   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to set_gauss_modgain 0x200069a5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_evt_start_isr 0x200069b1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_sleep_check 0x200069bd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_timer_sleep_check 0x200069c9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to lld_sleep_enter 0x200069d5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ble_regs_push 0x200069e1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to attmdb_add_service 0x200069ed   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to attmdb_add_attribute 0x200069f9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to attmdb_att_set_value 0x20006a05   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to attmdb_att_partial_value_update 0x20006a11   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to gapc_get_conhdl 0x20006a1d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to gapc_send_disconect_ind 0x20006a29   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_memclr 0x20006a35   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to ke_task_create 0x20006a41   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to attmdb_att_get_value 0x20006a4d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to attm_svc_create_db 0x20006a59   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to attmdb_svc_set_permission 0x20006a65   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to attmdb_att_set_permission 0x20006a71   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to gapc_get_conidx 0x20006a7d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to atts_write_rsp_send 0x20006a89   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to nvds_get   0x20006a95   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to platform_reset 0x20006aa1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to get_patching_spota_length 0x20006aad   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_memset 0x20006ab9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_dmul 0x20006ac5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_memcpy4 0x20006ad1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_llsl 0x20006add   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to _double_epilogue 0x20006ae9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to _double_round 0x20006af5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    Long Thumb to Thumb Veneer to __aeabi_llsr 0x20006b01   Thumb Code    12  anon$$obj.o(Veneer$$Code)
-    __scatterload_copy                       0x20006b0d   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x20006b1b   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x20006b1d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    __set_errno                              0x20006b2d   Thumb Code     6  errno.o(i.__set_errno)
-    free                                     0x20006b39   Thumb Code    80  malloc.o(i.free)
-    malloc                                   0x20006b8d   Thumb Code    92  malloc.o(i.malloc)
-    sqrt                                     0x20006bf9   Thumb Code    66  sqrt.o(i.sqrt)
-    LUT_CFG                                  0x20006c46   Data          22  jump_table.o(.constdata)
-    my_llc_state_handler                     0x20006f04   Data         176  llc.obj(.constdata)
-    my_llc_default_handler                   0x20006fb4   Data           8  llc.obj(.constdata)
-    TASK_DESC_LLC                            0x20006fbc   Data          16  llc.obj(.constdata)
-    SPI_FLASH_KNOWN_DEVICES_PARAMETERS_LIST  0x20006fcc   Data          80  spi_flash.o(.constdata)
-    bas_att_db                               0x2000701c   Data          60  bass.o(.constdata)
-    bas_svc                                  0x20007058   Data           2  bass.o(.constdata)
-    bas_batt_level_char                      0x2000705a   Data           5  bass.o(.constdata)
-    bass_disabled                            0x20007070   Data           8  bass_task.o(.constdata)
-    bass_idle                                0x20007078   Data           8  bass_task.o(.constdata)
-    bass_connected                           0x20007080   Data          24  bass_task.o(.constdata)
-    bass_default_state                       0x20007098   Data           8  bass_task.o(.constdata)
-    bass_state_handler                       0x200070a0   Data          24  bass_task.o(.constdata)
-    bass_default_handler                     0x200070b8   Data           8  bass_task.o(.constdata)
-    spotar_service                           0x200070c0   Data           2  spotar.o(.constdata)
-    spotar_patch_mem_dev_val                 0x200070c2   Data          16  spotar.o(.constdata)
-    spotar_gpio_map_val                      0x200070d2   Data          16  spotar.o(.constdata)
-    spotar_patch_mem_info_val                0x200070e2   Data          16  spotar.o(.constdata)
-    spotar_patch_len_val                     0x200070f2   Data          16  spotar.o(.constdata)
-    spotar_patch_data_val                    0x20007102   Data          16  spotar.o(.constdata)
-    spotar_patch_status_val                  0x20007112   Data          16  spotar.o(.constdata)
-    spotar_disabled                          0x20007134   Data           8  spotar_task.o(.constdata)
-    spotar_idle                              0x2000713c   Data           8  spotar_task.o(.constdata)
-    spotar_active                            0x20007144   Data          24  spotar_task.o(.constdata)
-    spotar_default_state                     0x2000715c   Data           8  spotar_task.o(.constdata)
-    spotar_state_handler                     0x20007164   Data          24  spotar_task.o(.constdata)
-    spotar_default_handler                   0x2000717c   Data           8  spotar_task.o(.constdata)
-    diss_att_db                              0x20007184   Data         228  diss.o(.constdata)
-    diss_dis_svc                             0x20007268   Data           2  diss.o(.constdata)
-    diss_manufacturer_name_char              0x2000726a   Data           5  diss.o(.constdata)
-    diss_model_nb_str_char                   0x2000726f   Data           5  diss.o(.constdata)
-    diss_serial_nb_str_char                  0x20007274   Data           5  diss.o(.constdata)
-    diss_hard_rev_str_char                   0x20007279   Data           5  diss.o(.constdata)
-    diss_firm_rev_str_char                   0x2000727e   Data           5  diss.o(.constdata)
-    diss_sw_rev_str_char                     0x20007283   Data           5  diss.o(.constdata)
-    diss_system_id_char                      0x20007288   Data           5  diss.o(.constdata)
-    diss_ieee_char                           0x2000728d   Data           5  diss.o(.constdata)
-    diss_pnp_id_char                         0x20007292   Data           5  diss.o(.constdata)
-    diss_disabled                            0x200072a8   Data           8  diss_task.o(.constdata)
-    diss_idle                                0x200072b0   Data          16  diss_task.o(.constdata)
-    diss_default_state                       0x200072c0   Data           8  diss_task.o(.constdata)
-    diss_state_handler                       0x200072c8   Data          24  diss_task.o(.constdata)
-    diss_default_handler                     0x200072e0   Data           8  diss_task.o(.constdata)
-    prf_funcs                                0x2000733c   Data          48  app.o(.constdata)
-    app_default_state                        0x200073b8   Data           8  app_task.o(.constdata)
-    app_default_handler                      0x200073c0   Data           8  app_task.o(.constdata)
-    app_process_handlers                     0x200073cc   Data          24  app_entry_point.o(.constdata)
-    app_bass_process_handlers                0x200073e4   Data          48  app_bass_task.o(.constdata)
-    app_spota_process_handlers               0x20007414   Data          40  app_spotar_task.o(.constdata)
-    AFE44xx_Default_Register_500Hz_Settings  0x2000744c   Data         196  afe4400.o(.constdata)
-    SAMPLINGTIME                             0x20007658   Data           4  ecgtohr.o(.constdata)
-    sps_att_db                               0x200076a4   Data         208  sps_server.o(.constdata)
-    sps_server_disabled                      0x20007784   Data           8  sps_server_task.o(.constdata)
-    sps_server_idle                          0x2000778c   Data           8  sps_server_task.o(.constdata)
-    sps_server_active                        0x20007794   Data          40  sps_server_task.o(.constdata)
-    sps_server_state_handler                 0x200077bc   Data          24  sps_server_task.o(.constdata)
-    sps_server_default_handler               0x200077d4   Data           8  sps_server_task.o(.constdata)
-    user_spss_process_handlers               0x200077e0   Data          48  user_spss_task.o(.constdata)
-    Region$$Table$$Base                      0x20007840   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x20007870   Number         0  anon$$obj.o(Region$$Table)
-    startup_sleep_delay                      0x20007870   Data           4  arch_system.o(.data)
-    spotar_patch_mem_dev_char                0x20007874   Data          19  spotar.o(.data)
-    spotar_gpio_map_char                     0x20007887   Data          19  spotar.o(.data)
-    spotar_patch_mem_info_char               0x2000789a   Data          19  spotar.o(.data)
-    spotar_patch_len_char                    0x200078ad   Data          19  spotar.o(.data)
-    spotar_patch_data_char                   0x200078c0   Data          19  spotar.o(.data)
-    spotar_patch_status_char                 0x200078d3   Data          19  spotar.o(.data)
-    resetcnt                                 0x200078e8   Data           2  user_periph_setup.o(.data)
-    ADS1292R_Default_Register_Settings       0x200078ea   Data          12  ads1292.o(.data)
-    __microlib_freelist                      0x20007930   Data           4  mvars.o(.data)
-    __microlib_freelist_initialised          0x20007934   Data           4  mvars.o(.data)
+    butcb0                                   0x20004bad   Thumb Code   428  user_periph_setup.o(.text)
+    afeon                                    0x20004d59   Thumb Code    90  user_periph_setup.o(.text)
+    system_on                                0x20004db3   Thumb Code   302  user_periph_setup.o(.text)
+    sleepcb                                  0x20004ee1   Thumb Code   936  user_periph_setup.o(.text)
+    set_pad_functions                        0x20005289   Thumb Code   424  user_periph_setup.o(.text)
+    system_off                               0x20005431   Thumb Code   114  user_periph_setup.o(.text)
+    butcb1                                   0x200054a3   Thumb Code   556  user_periph_setup.o(.text)
+    periph_init                              0x200056cf   Thumb Code    50  user_periph_setup.o(.text)
+    ADS1292R_RDATA                           0x20005741   Thumb Code   102  ads1292.o(.text)
+    ADS1292R_WREG_multi                      0x200057a7   Thumb Code    48  ads1292.o(.text)
+    ADS1292R_sendmsg                         0x200057d7   Thumb Code    28  ads1292.o(.text)
+    AFE4400_RDATA                            0x200057f9   Thumb Code    72  afe4400.o(.text)
+    AFE4400_WREG                             0x20005841   Thumb Code    52  afe4400.o(.text)
+    AFE44x0_Default_Reg_Init                 0x20005875   Thumb Code    26  afe4400.o(.text)
+    getMax                                   0x20005895   Thumb Code    58  ecgtohr.o(.text)
+    getRms                                   0x200058cf   Thumb Code    52  ecgtohr.o(.text)
+    getRRI                                   0x20005903   Thumb Code   364  ecgtohr.o(.text)
+    sps_server_init                          0x20005a99   Thumb Code    28  sps_server.o(.text)
+    sps_server_confirm_data_tx               0x20005ab5   Thumb Code    38  sps_server.o(.text)
+    sps_server_indicate_data_rx              0x20005adb   Thumb Code    54  sps_server.o(.text)
+    sps_server_indicate_tx_flow_ctrl         0x20005b11   Thumb Code    40  sps_server.o(.text)
+    user_send_ble                            0x20005d79   Thumb Code    38  user_sps_device.o(.text)
+    user_send_70                             0x20005d9f   Thumb Code    38  user_sps_device.o(.text)
+    user_process_catch                       0x20005dc5   Thumb Code    14  user_sps_device.o(.text)
+    user_on_connection                       0x20005dd3   Thumb Code   162  user_sps_device.o(.text)
+    user_on_disconnect                       0x20005e75   Thumb Code    20  user_sps_device.o(.text)
+    user_on_connect_failed                   0x20005e89   Thumb Code    16  user_sps_device.o(.text)
+    user_on_init                             0x20005e99   Thumb Code     8  user_sps_device.o(.text)
+    on_spotar_status_change                  0x20005ea1   Thumb Code    36  user_sps_device.o(.text)
+    user_sps_db_create                       0x20005ee5   Thumb Code    24  user_spss.o(.text)
+    user_sps_enable                          0x20005efd   Thumb Code    28  user_spss.o(.text)
+    user_spss_process_handler                0x20005f1d   Thumb Code    24  user_spss_task.o(.text)
+    user_sps_create_db_cfm_handler           0x20005f35   Thumb Code    38  user_spss_task.o(.text)
+    user_sps_server_enable_cfm_handler       0x20005f5b   Thumb Code     4  user_spss_task.o(.text)
+    user_sps_server_data_tx_cfm_handler      0x20005f5f   Thumb Code     4  user_spss_task.o(.text)
+    user_sps_server_data_rx_ind_handler      0x20005f63   Thumb Code    66  user_spss_task.o(.text)
+    user_sps_server_tx_flow_ctrl_ind_handler 0x20005fa5   Thumb Code     4  user_spss_task.o(.text)
+    user_sps_server_error_ind_handler        0x20005fa9   Thumb Code    12  user_spss_task.o(.text)
+    __aeabi_fadd                             0x20005fc5   Thumb Code   162  fadd.o(.text)
+    __aeabi_fsub                             0x20006067   Thumb Code     8  fadd.o(.text)
+    __aeabi_frsub                            0x2000606f   Thumb Code     8  fadd.o(.text)
+    __aeabi_fmul                             0x20006077   Thumb Code   122  fmul.o(.text)
+    __aeabi_fdiv                             0x200060f1   Thumb Code   124  fdiv.o(.text)
+    __aeabi_dadd                             0x2000616d   Thumb Code   328  dadd.o(.text)
+    __aeabi_dsub                             0x200062b5   Thumb Code    12  dadd.o(.text)
+    __aeabi_drsub                            0x200062c1   Thumb Code    12  dadd.o(.text)
+    __aeabi_ddiv                             0x200062d1   Thumb Code   234  ddiv.o(.text)
+    __aeabi_i2f                              0x200063c1   Thumb Code    22  fflti.o(.text)
+    __aeabi_f2iz                             0x200063d7   Thumb Code    50  ffixi.o(.text)
+    __aeabi_f2d                              0x20006409   Thumb Code    40  f2d.o(.text)
+    __aeabi_cdrcmple                         0x20006431   Thumb Code    38  cdrcmple.o(.text)
+    __aeabi_d2f                              0x20006459   Thumb Code    56  d2f.o(.text)
+    __aeabi_cfrcmple                         0x20006491   Thumb Code    20  cfrcmple.o(.text)
+    __aeabi_lasr                             0x200064a5   Thumb Code    38  llsshr.o(.text)
+    _ll_sshift_r                             0x200064a5   Thumb Code     0  llsshr.o(.text)
+    _float_round                             0x200064cb   Thumb Code    16  fepilogue.o(.text)
+    _float_epilogue                          0x200064db   Thumb Code   114  fepilogue.o(.text)
+    _dsqrt                                   0x2000654d   Thumb Code   162  dsqrt.o(.text)
+    __scatterload                            0x200065f1   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x200065f1   Thumb Code     0  init.o(.text)
+    Long Thumb to Thumb Veneer to memcmp     0x20006615   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_memcpy 0x20006621   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to nvds_get_func 0x2000662d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_memclr4 0x20006639   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_sleep_check 0x20006645   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to rwip_prevent_sleep_get 0x20006651   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_event_get 0x2000665d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to rwip_schedule 0x20006669   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to func_check_mem 0x20006675   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to test_rxdone 0x20006681   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_mem_is_empty 0x2000668d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to rwip_wakeup_delay_set 0x20006699   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to $Super$$get_rc16m_count_func 0x200066a5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to get_rc16m_count 0x200066b1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to pll_vcocal_LUT_InitUpdate 0x200066bd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to rf_calibration 0x200066c9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_sleep_us_2_lpcycles_func 0x200066d5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_sleep_lpcycles_2_us_func 0x200066e1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to uart_flow_on 0x200066ed   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to srand      0x200066f9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to set_system_clocks 0x20006705   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to nvds_init  0x20006711   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to rwip_init  0x2000671d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to enable_rf_diag_irq 0x20006729   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to platform_reset_func 0x20006735   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_state_get 0x20006741   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __ARM_common_switch8 0x2000674d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to TASK_LLM_lld_data_ind_handler 0x20006759   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to co_buf_rx_free 0x20006765   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_timer_clear 0x20006771   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_send_cmd_cmp 0x2000677d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_state_set 0x20006789   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_mtu_exc_resp 0x20006795   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_find_info_resp 0x200067a1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_find_by_type_resp 0x200067ad   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_read_by_type_resp 0x200067b9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_read_by_grp_type_resp 0x200067c5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_read_resp 0x200067d1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_read_blob_resp 0x200067dd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_read_mult_resp 0x200067e9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_write_no_resp 0x200067f5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_write_resp 0x20006801   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_signed_write_resp 0x2000680d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_prepare_write_resp 0x20006819   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_execute_write_resp 0x20006825   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_con_update_ind 0x20006831   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_uidivmod 0x2000683d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to llc_util_dicon_procedure 0x20006849   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_ch_map_ind 0x20006855   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to gapm_get_privacy_flag 0x20006861   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to gapm_set_recon_addr 0x2000686d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to co_list_pop_front 0x20006879   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_task_handler_get 0x20006885   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_msg_free 0x20006891   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to co_list_push_back 0x2000689d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_event_clear 0x200068a9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_event_callback_set 0x200068b5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_msg_alloc 0x200068c1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to gapc_get_enc_keysize 0x200068cd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to gapc_get_role 0x200068d9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_msg_send 0x200068e5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_generate_rand 0x200068f1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_tkdp_send_continue 0x200068fd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_pdu_send 0x20006909   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_tkdp_rcp_start 0x20006915   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_pairing_end 0x20006921   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_check_max_key_size 0x2000692d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_check_key_distrib 0x20006939   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_get_key_sec_prop 0x20006945   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to smpc_is_sec_mode_reached 0x20006951   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to llc_le_con_update_cmd_handler 0x2000695d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to llm_util_get_role 0x20006969   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_evt_int_extract 0x20006975   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_free    0x20006981   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_stop_ind_handler 0x2000698d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_timer_set 0x20006999   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to llc_start_enc_rsp_pdu_send 0x200069a5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to llc_common_enc_change_evt_send 0x200069b1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_idivmod 0x200069bd   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to IffCalibration 0x200069c9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to DCoffsetCalibration 0x200069d5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ble_regs_pop 0x200069e1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to rwip_wakeup 0x200069ed   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to rf_workaround_init 0x200069f9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to rf_reinit  0x20006a05   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to $Super$$BLE_CSCNT_Handler 0x20006a11   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_evt_rx_isr 0x20006a1d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_evt_end_isr 0x20006a29   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to set_rf_cal_cap 0x20006a35   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to set_gauss_modgain 0x20006a41   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_evt_start_isr 0x20006a4d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_sleep_check 0x20006a59   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_timer_sleep_check 0x20006a65   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to lld_sleep_enter 0x20006a71   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ble_regs_push 0x20006a7d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to attmdb_add_service 0x20006a89   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to attmdb_add_attribute 0x20006a95   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to attmdb_att_set_value 0x20006aa1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to attmdb_att_partial_value_update 0x20006aad   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to gapc_get_conhdl 0x20006ab9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to gapc_send_disconect_ind 0x20006ac5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_memclr 0x20006ad1   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to ke_task_create 0x20006add   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to attmdb_att_get_value 0x20006ae9   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to attm_svc_create_db 0x20006af5   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to attmdb_svc_set_permission 0x20006b01   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to attmdb_att_set_permission 0x20006b0d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to gapc_get_conidx 0x20006b19   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to atts_write_rsp_send 0x20006b25   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to nvds_get   0x20006b31   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to platform_reset 0x20006b3d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to get_patching_spota_length 0x20006b49   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_memset 0x20006b55   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_dmul 0x20006b61   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_llsl 0x20006b6d   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to _double_epilogue 0x20006b79   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to _double_round 0x20006b85   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    Long Thumb to Thumb Veneer to __aeabi_llsr 0x20006b91   Thumb Code    12  anon$$obj.o(Veneer$$Code)
+    __scatterload_copy                       0x20006b9d   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x20006bab   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x20006bad   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    __set_errno                              0x20006bbd   Thumb Code     6  errno.o(i.__set_errno)
+    free                                     0x20006bc9   Thumb Code    80  malloc.o(i.free)
+    malloc                                   0x20006c1d   Thumb Code    92  malloc.o(i.malloc)
+    sqrt                                     0x20006c89   Thumb Code    66  sqrt.o(i.sqrt)
+    LUT_CFG                                  0x20006cd6   Data          22  jump_table.o(.constdata)
+    my_llc_state_handler                     0x20006f94   Data         176  llc.obj(.constdata)
+    my_llc_default_handler                   0x20007044   Data           8  llc.obj(.constdata)
+    TASK_DESC_LLC                            0x2000704c   Data          16  llc.obj(.constdata)
+    SPI_FLASH_KNOWN_DEVICES_PARAMETERS_LIST  0x2000705c   Data          80  spi_flash.o(.constdata)
+    bas_att_db                               0x200070ac   Data          60  bass.o(.constdata)
+    bas_svc                                  0x200070e8   Data           2  bass.o(.constdata)
+    bas_batt_level_char                      0x200070ea   Data           5  bass.o(.constdata)
+    bass_disabled                            0x20007100   Data           8  bass_task.o(.constdata)
+    bass_idle                                0x20007108   Data           8  bass_task.o(.constdata)
+    bass_connected                           0x20007110   Data          24  bass_task.o(.constdata)
+    bass_default_state                       0x20007128   Data           8  bass_task.o(.constdata)
+    bass_state_handler                       0x20007130   Data          24  bass_task.o(.constdata)
+    bass_default_handler                     0x20007148   Data           8  bass_task.o(.constdata)
+    spotar_service                           0x20007150   Data           2  spotar.o(.constdata)
+    spotar_patch_mem_dev_val                 0x20007152   Data          16  spotar.o(.constdata)
+    spotar_gpio_map_val                      0x20007162   Data          16  spotar.o(.constdata)
+    spotar_patch_mem_info_val                0x20007172   Data          16  spotar.o(.constdata)
+    spotar_patch_len_val                     0x20007182   Data          16  spotar.o(.constdata)
+    spotar_patch_data_val                    0x20007192   Data          16  spotar.o(.constdata)
+    spotar_patch_status_val                  0x200071a2   Data          16  spotar.o(.constdata)
+    spotar_disabled                          0x200071c4   Data           8  spotar_task.o(.constdata)
+    spotar_idle                              0x200071cc   Data           8  spotar_task.o(.constdata)
+    spotar_active                            0x200071d4   Data          24  spotar_task.o(.constdata)
+    spotar_default_state                     0x200071ec   Data           8  spotar_task.o(.constdata)
+    spotar_state_handler                     0x200071f4   Data          24  spotar_task.o(.constdata)
+    spotar_default_handler                   0x2000720c   Data           8  spotar_task.o(.constdata)
+    diss_att_db                              0x20007214   Data         228  diss.o(.constdata)
+    diss_dis_svc                             0x200072f8   Data           2  diss.o(.constdata)
+    diss_manufacturer_name_char              0x200072fa   Data           5  diss.o(.constdata)
+    diss_model_nb_str_char                   0x200072ff   Data           5  diss.o(.constdata)
+    diss_serial_nb_str_char                  0x20007304   Data           5  diss.o(.constdata)
+    diss_hard_rev_str_char                   0x20007309   Data           5  diss.o(.constdata)
+    diss_firm_rev_str_char                   0x2000730e   Data           5  diss.o(.constdata)
+    diss_sw_rev_str_char                     0x20007313   Data           5  diss.o(.constdata)
+    diss_system_id_char                      0x20007318   Data           5  diss.o(.constdata)
+    diss_ieee_char                           0x2000731d   Data           5  diss.o(.constdata)
+    diss_pnp_id_char                         0x20007322   Data           5  diss.o(.constdata)
+    diss_disabled                            0x20007338   Data           8  diss_task.o(.constdata)
+    diss_idle                                0x20007340   Data          16  diss_task.o(.constdata)
+    diss_default_state                       0x20007350   Data           8  diss_task.o(.constdata)
+    diss_state_handler                       0x20007358   Data          24  diss_task.o(.constdata)
+    diss_default_handler                     0x20007370   Data           8  diss_task.o(.constdata)
+    prf_funcs                                0x200073cc   Data          48  app.o(.constdata)
+    app_default_state                        0x20007448   Data           8  app_task.o(.constdata)
+    app_default_handler                      0x20007450   Data           8  app_task.o(.constdata)
+    app_process_handlers                     0x2000745c   Data          24  app_entry_point.o(.constdata)
+    app_bass_process_handlers                0x20007474   Data          48  app_bass_task.o(.constdata)
+    app_spota_process_handlers               0x200074a4   Data          40  app_spotar_task.o(.constdata)
+    AFE44xx_Default_Register_500Hz_Settings  0x200074dc   Data         196  afe4400.o(.constdata)
+    SAMPLINGTIME                             0x200075a0   Data           4  ecgtohr.o(.constdata)
+    sps_att_db                               0x200075ec   Data         208  sps_server.o(.constdata)
+    sps_server_disabled                      0x200076cc   Data           8  sps_server_task.o(.constdata)
+    sps_server_idle                          0x200076d4   Data           8  sps_server_task.o(.constdata)
+    sps_server_active                        0x200076dc   Data          40  sps_server_task.o(.constdata)
+    sps_server_state_handler                 0x20007704   Data          24  sps_server_task.o(.constdata)
+    sps_server_default_handler               0x2000771c   Data           8  sps_server_task.o(.constdata)
+    user_spss_process_handlers               0x20007728   Data          48  user_spss_task.o(.constdata)
+    Region$$Table$$Base                      0x20007788   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x200077b8   Number         0  anon$$obj.o(Region$$Table)
+    startup_sleep_delay                      0x200077b8   Data           4  arch_system.o(.data)
+    spotar_patch_mem_dev_char                0x200077bc   Data          19  spotar.o(.data)
+    spotar_gpio_map_char                     0x200077cf   Data          19  spotar.o(.data)
+    spotar_patch_mem_info_char               0x200077e2   Data          19  spotar.o(.data)
+    spotar_patch_len_char                    0x200077f5   Data          19  spotar.o(.data)
+    spotar_patch_data_char                   0x20007808   Data          19  spotar.o(.data)
+    spotar_patch_status_char                 0x2000781b   Data          19  spotar.o(.data)
+    resetcnt                                 0x20007830   Data           2  user_periph_setup.o(.data)
+    ADS1292R_Default_Register_Settings       0x20007832   Data          12  ads1292.o(.data)
+    __microlib_freelist                      0x20007878   Data           4  mvars.o(.data)
+    __microlib_freelist_initialised          0x2000787c   Data           4  mvars.o(.data)
     systemstat                               0x20008000   Data           1  user_periph_setup.o(.bss)
     charging                                 0x20008001   Data           1  user_periph_setup.o(.bss)
     battcheck                                0x20008002   Data           1  user_periph_setup.o(.bss)
+    samplemode                               0x20008003   Data           1  user_periph_setup.o(.bss)
     ldcnt                                    0x20008008   Data           2  user_periph_setup.o(.bss)
     ldoff                                    0x2000800a   Data           2  user_periph_setup.o(.bss)
     leastbeep                                0x2000800c   Data           2  user_periph_setup.o(.bss)
@@ -2643,74 +2624,73 @@ Image Symbol Table
     n_ECG_HPF_pre                            0x20008040   Data           4  user_periph_setup.o(.bss)
     n_ECG_HPF                                0x20008044   Data           4  user_periph_setup.o(.bss)
     ecgbuff                                  0x20008048   Data         140  user_periph_setup.o(.bss)
-    Mdata                                    0x200080d4   Data          60  dsp.o(.bss)
-    IsPeak                                   0x20008378   Data           1  ecgtohr.o(.bss)
-    m_EcgInitFlag                            0x2000837c   Data           4  ecgtohr.o(.bss)
-    m_ECG                                    0x20008380   Data           4  ecgtohr.o(.bss)
-    m_ECG_pre                                0x20008384   Data           4  ecgtohr.o(.bss)
-    m_ECG_diff                               0x20008388   Data           4  ecgtohr.o(.bss)
-    m_ECG_LPF                                0x2000838c   Data           4  ecgtohr.o(.bss)
-    m_ECG_LPF_pre                            0x20008390   Data           4  ecgtohr.o(.bss)
-    m_ECG_HPF_pre                            0x20008394   Data           4  ecgtohr.o(.bss)
-    m_ECG_HPF                                0x20008398   Data           4  ecgtohr.o(.bss)
-    m_ECG_LPF_diff                           0x2000839c   Data           4  ecgtohr.o(.bss)
-    m_ECG_Peak_Index                         0x200083a0   Data           4  ecgtohr.o(.bss)
-    m_TimeIndexECG                           0x200083a4   Data           4  ecgtohr.o(.bss)
-    m_RR_IntervalCnt                         0x200083a8   Data           4  ecgtohr.o(.bss)
-    m_ECG_Shift                              0x200083ac   Data           4  ecgtohr.o(.bss)
-    m_ECG_LPF_Shift                          0x200083b0   Data           4  ecgtohr.o(.bss)
-    m_ECG_Diff_Shift                         0x200083b4   Data           4  ecgtohr.o(.bss)
-    m_ECG_Diff_Shift_pre                     0x200083b8   Data           4  ecgtohr.o(.bss)
-    m_ECG_Lpf_Diff_Shift                     0x200083bc   Data           4  ecgtohr.o(.bss)
-    rmsMax                                   0x200083c0   Data           4  ecgtohr.o(.bss)
-    rmsMax_next                              0x200083c4   Data           4  ecgtohr.o(.bss)
-    rmsMaxUsedCount                          0x200083c8   Data           4  ecgtohr.o(.bss)
-    shiftCnt                                 0x200083cc   Data           4  ecgtohr.o(.bss)
-    resultRRI                                0x200083d0   Data           4  ecgtohr.o(.bss)
-    resultAmplitude                          0x200083d4   Data           4  ecgtohr.o(.bss)
-    ECGShiftBuffer                           0x200083d8   Data          40  ecgtohr.o(.bss)
-    ECGLPFShiftBuffer                        0x20008400   Data          40  ecgtohr.o(.bss)
-    ECGDiffShiftBuffer                       0x20008428   Data          40  ecgtohr.o(.bss)
-    ECGLpfDiffShiftBuffer                    0x20008450   Data          40  ecgtohr.o(.bss)
-    __heap_base                              0x20008478   Data           0  boot_vectors.o(HEAP)
-    __heap_limit                             0x20008578   Data           0  boot_vectors.o(HEAP)
-    dev_bdaddr                               0x20008578   Data           6  nvds.o(retention_mem_area0)
-    sys_startup_flag                         0x2000857e   Data           1  arch_main.o(retention_mem_area0)
-    sleep_md                                 0x2000857f   Data           1  arch_sleep.o(retention_mem_area0)
-    sleep_pend                               0x20008580   Data           1  arch_sleep.o(retention_mem_area0)
-    sleep_cnt                                0x20008581   Data           1  arch_sleep.o(retention_mem_area0)
-    sleep_ext_force                          0x20008582   Data           1  arch_sleep.o(retention_mem_area0)
-    cal_enable                               0x20008584   Data           1  arch_system.o(retention_mem_area0)
-    force_rf_cal                             0x20008585   Data           1  arch_system.o(retention_mem_area0)
-    lp_clk_sel                               0x20008588   Data           4  arch_system.o(retention_mem_area0)
-    rcx_freq                                 0x2000858c   Data           4  arch_system.o(retention_mem_area0)
-    rcx_period                               0x20008590   Data           4  arch_system.o(retention_mem_area0)
-    rcx_slot_duration                        0x20008594   Data           4  arch_system.o(retention_mem_area0)
-    alt_evts                                 0x20008598   Data          24  llc.obj(retention_mem_area0)
-    wkupct_quad_IRQ_status                   0x200085b0   Data           1  wkupct_quadec.o(retention_mem_area0)
-    arch_rwble_last_event                    0x200085be   Data           1  rwble.o(retention_mem_area0)
-    set_boost_low_vbat1v_overhead            0x200085bf   Data           1  rwble.o(retention_mem_area0)
-    fine_hit                                 0x200085c0   Data           1  rwble.o(retention_mem_area0)
-    clk_freq_trim_reg_value                  0x200085c2   Data           2  rwble.o(retention_mem_area0)
-    wakeup_lp_comp                           0x200085c4   Data           2  rwble.o(retention_mem_area0)
-    bass_env                                 0x200085c6   Data          14  bass.o(retention_mem_area0)
-    bass_state                               0x200085d4   Data           1  bass_task.o(retention_mem_area0)
-    spotar_env                               0x200085d6   Data           8  spotar.o(retention_mem_area0)
-    spotar_state                             0x200085de   Data           1  spotar_task.o(retention_mem_area0)
-    diss_env                                 0x200085e0   Data          18  diss.o(retention_mem_area0)
-    diss_state                               0x200085f2   Data           1  diss_task.o(retention_mem_area0)
-    app_env                                  0x2000860c   Data          12  app.o(retention_mem_area0)
-    app_prf_srv_perm                         0x20008618   Data          20  app.o(retention_mem_area0)
-    app_state                                0x2000862c   Data           1  app_task.o(retention_mem_area0)
-    cur_batt_level                           0x20008670   Data           1  app_bass.o(retention_mem_area0)
-    batt_alert_en                            0x20008671   Data           1  app_bass.o(retention_mem_area0)
-    bat_led_state                            0x20008672   Data           1  app_bass.o(retention_mem_area0)
-    bat_lvl_alert_used                       0x20008673   Data           1  app_bass.o(retention_mem_area0)
-    bat_led_port                             0x20008674   Data           1  app_bass.o(retention_mem_area0)
-    bat_led_pin                              0x20008675   Data           1  app_bass.o(retention_mem_area0)
-    bat_poll_timeout                         0x20008676   Data           2  app_bass.o(retention_mem_area0)
-    spota_state                              0x20008680   Data          40  app_spotar.o(retention_mem_area0)
-    spss_env                                 0x200086a8   Data          16  sps_server.o(retention_mem_area0)
+    IsPeak                                   0x200080d4   Data           1  ecgtohr.o(.bss)
+    m_EcgInitFlag                            0x200080d8   Data           4  ecgtohr.o(.bss)
+    m_ECG                                    0x200080dc   Data           4  ecgtohr.o(.bss)
+    m_ECG_pre                                0x200080e0   Data           4  ecgtohr.o(.bss)
+    m_ECG_diff                               0x200080e4   Data           4  ecgtohr.o(.bss)
+    m_ECG_LPF                                0x200080e8   Data           4  ecgtohr.o(.bss)
+    m_ECG_LPF_pre                            0x200080ec   Data           4  ecgtohr.o(.bss)
+    m_ECG_HPF_pre                            0x200080f0   Data           4  ecgtohr.o(.bss)
+    m_ECG_HPF                                0x200080f4   Data           4  ecgtohr.o(.bss)
+    m_ECG_LPF_diff                           0x200080f8   Data           4  ecgtohr.o(.bss)
+    m_ECG_Peak_Index                         0x200080fc   Data           4  ecgtohr.o(.bss)
+    m_TimeIndexECG                           0x20008100   Data           4  ecgtohr.o(.bss)
+    m_RR_IntervalCnt                         0x20008104   Data           4  ecgtohr.o(.bss)
+    m_ECG_Shift                              0x20008108   Data           4  ecgtohr.o(.bss)
+    m_ECG_LPF_Shift                          0x2000810c   Data           4  ecgtohr.o(.bss)
+    m_ECG_Diff_Shift                         0x20008110   Data           4  ecgtohr.o(.bss)
+    m_ECG_Diff_Shift_pre                     0x20008114   Data           4  ecgtohr.o(.bss)
+    m_ECG_Lpf_Diff_Shift                     0x20008118   Data           4  ecgtohr.o(.bss)
+    rmsMax                                   0x2000811c   Data           4  ecgtohr.o(.bss)
+    rmsMax_next                              0x20008120   Data           4  ecgtohr.o(.bss)
+    rmsMaxUsedCount                          0x20008124   Data           4  ecgtohr.o(.bss)
+    shiftCnt                                 0x20008128   Data           4  ecgtohr.o(.bss)
+    resultRRI                                0x2000812c   Data           4  ecgtohr.o(.bss)
+    resultAmplitude                          0x20008130   Data           4  ecgtohr.o(.bss)
+    ECGShiftBuffer                           0x20008134   Data          40  ecgtohr.o(.bss)
+    ECGLPFShiftBuffer                        0x2000815c   Data          40  ecgtohr.o(.bss)
+    ECGDiffShiftBuffer                       0x20008184   Data          40  ecgtohr.o(.bss)
+    ECGLpfDiffShiftBuffer                    0x200081ac   Data          40  ecgtohr.o(.bss)
+    __heap_base                              0x200081d8   Data           0  boot_vectors.o(HEAP)
+    __heap_limit                             0x200082d8   Data           0  boot_vectors.o(HEAP)
+    dev_bdaddr                               0x200082d8   Data           6  nvds.o(retention_mem_area0)
+    sys_startup_flag                         0x200082de   Data           1  arch_main.o(retention_mem_area0)
+    sleep_md                                 0x200082df   Data           1  arch_sleep.o(retention_mem_area0)
+    sleep_pend                               0x200082e0   Data           1  arch_sleep.o(retention_mem_area0)
+    sleep_cnt                                0x200082e1   Data           1  arch_sleep.o(retention_mem_area0)
+    sleep_ext_force                          0x200082e2   Data           1  arch_sleep.o(retention_mem_area0)
+    cal_enable                               0x200082e4   Data           1  arch_system.o(retention_mem_area0)
+    force_rf_cal                             0x200082e5   Data           1  arch_system.o(retention_mem_area0)
+    lp_clk_sel                               0x200082e8   Data           4  arch_system.o(retention_mem_area0)
+    rcx_freq                                 0x200082ec   Data           4  arch_system.o(retention_mem_area0)
+    rcx_period                               0x200082f0   Data           4  arch_system.o(retention_mem_area0)
+    rcx_slot_duration                        0x200082f4   Data           4  arch_system.o(retention_mem_area0)
+    alt_evts                                 0x200082f8   Data          24  llc.obj(retention_mem_area0)
+    wkupct_quad_IRQ_status                   0x20008310   Data           1  wkupct_quadec.o(retention_mem_area0)
+    arch_rwble_last_event                    0x2000831e   Data           1  rwble.o(retention_mem_area0)
+    set_boost_low_vbat1v_overhead            0x2000831f   Data           1  rwble.o(retention_mem_area0)
+    fine_hit                                 0x20008320   Data           1  rwble.o(retention_mem_area0)
+    clk_freq_trim_reg_value                  0x20008322   Data           2  rwble.o(retention_mem_area0)
+    wakeup_lp_comp                           0x20008324   Data           2  rwble.o(retention_mem_area0)
+    bass_env                                 0x20008326   Data          14  bass.o(retention_mem_area0)
+    bass_state                               0x20008334   Data           1  bass_task.o(retention_mem_area0)
+    spotar_env                               0x20008336   Data           8  spotar.o(retention_mem_area0)
+    spotar_state                             0x2000833e   Data           1  spotar_task.o(retention_mem_area0)
+    diss_env                                 0x20008340   Data          18  diss.o(retention_mem_area0)
+    diss_state                               0x20008352   Data           1  diss_task.o(retention_mem_area0)
+    app_env                                  0x2000836c   Data          12  app.o(retention_mem_area0)
+    app_prf_srv_perm                         0x20008378   Data          20  app.o(retention_mem_area0)
+    app_state                                0x2000838c   Data           1  app_task.o(retention_mem_area0)
+    cur_batt_level                           0x200083d0   Data           1  app_bass.o(retention_mem_area0)
+    batt_alert_en                            0x200083d1   Data           1  app_bass.o(retention_mem_area0)
+    bat_led_state                            0x200083d2   Data           1  app_bass.o(retention_mem_area0)
+    bat_lvl_alert_used                       0x200083d3   Data           1  app_bass.o(retention_mem_area0)
+    bat_led_port                             0x200083d4   Data           1  app_bass.o(retention_mem_area0)
+    bat_led_pin                              0x200083d5   Data           1  app_bass.o(retention_mem_area0)
+    bat_poll_timeout                         0x200083d6   Data           2  app_bass.o(retention_mem_area0)
+    spota_state                              0x200083e0   Data          40  app_spotar.o(retention_mem_area0)
+    spss_env                                 0x20008408   Data          16  sps_server.o(retention_mem_area0)
     rwip_heap_non_ret                        0x200087f4   Data        2060  jump_table.o(heap_mem_area_not_ret)
     SystemCoreClock                          0x20009000   Data           0  rom_symdef.txt ABSOLUTE
     error                                    0x20009004   Data           0  rom_symdef.txt ABSOLUTE
@@ -2775,9 +2755,9 @@ Memory Map of the image
 
 
 
-  Load Region LR_IROM5 (Base: 0x20000440, Size: 0x000074fc, Max: 0x000093c0, ABSOLUTE)
+  Load Region LR_IROM5 (Base: 0x20000440, Size: 0x00007444, Max: 0x000093c0, ABSOLUTE)
 
-    Execution Region ER_IROM5 (Base: 0x20000440, Size: 0x000074fc, Max: 0x00007ac0, ABSOLUTE)
+    Execution Region ER_IROM5 (Base: 0x20000440, Size: 0x00007444, Max: 0x00007ac0, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2844,299 +2824,296 @@ Memory Map of the image
     0x20004874   0x0000018c   Code   RO         2433    .text               app_spotar_task.o
     0x20004a00   0x00000048   Code   RO         2458    .text               app_diss.o
     0x20004a48   0x00000164   Code   RO         2476    .text               app_diss_task.o
-    0x20004bac   0x00000ab0   Code   RO         2490    .text               user_periph_setup.o
-    0x2000565c   0x000000b8   Code   RO         2526    .text               ads1292.o
-    0x20005714   0x0000009c   Code   RO         2553    .text               afe4400.o
-    0x200057b0   0x00000084   Code   RO         2577    .text               dsp.o
-    0x20005834   0x00000204   Code   RO         2650    .text               ecgtohr.o
-    0x20005a38   0x000000ac   Code   RO         2695    .text               sps_server.o
-    0x20005ae4   0x00000234   Code   RO         2731    .text               sps_server_task.o
-    0x20005d18   0x00000148   Code   RO         2758    .text               user_sps_device.o
-    0x20005e60   0x00000038   Code   RO         2796    .text               user_spss.o
-    0x20005e98   0x00000090   Code   RO         2820    .text               user_spss_task.o
-    0x20005f28   0x000000b2   Code   RO         2873    .text               mf_p.l(fadd.o)
-    0x20005fda   0x0000007a   Code   RO         2875    .text               mf_p.l(fmul.o)
-    0x20006054   0x0000007c   Code   RO         2877    .text               mf_p.l(fdiv.o)
-    0x200060d0   0x00000164   Code   RO         2881    .text               mf_p.l(dadd.o)
-    0x20006234   0x000000f0   Code   RO         2883    .text               mf_p.l(ddiv.o)
-    0x20006324   0x00000016   Code   RO         2885    .text               mf_p.l(fflti.o)
-    0x2000633a   0x00000032   Code   RO         2887    .text               mf_p.l(ffixi.o)
-    0x2000636c   0x00000028   Code   RO         2889    .text               mf_p.l(f2d.o)
-    0x20006394   0x00000028   Code   RO         2891    .text               mf_p.l(cdrcmple.o)
-    0x200063bc   0x00000038   Code   RO         2893    .text               mf_p.l(d2f.o)
-    0x200063f4   0x00000014   Code   RO         2895    .text               mf_p.l(cfrcmple.o)
-    0x20006408   0x00000026   Code   RO         2911    .text               mc_p.l(llsshr.o)
-    0x2000642e   0x00000082   Code   RO         2922    .text               mf_p.l(fepilogue.o)
-    0x200064b0   0x000000a2   Code   RO         2924    .text               mf_p.l(dsqrt.o)
-    0x20006552   0x00000002   PAD
-    0x20006554   0x00000024   Code   RO         2926    .text               mc_p.l(init.o)
-    0x20006578   0x0000000c   Ven    RO         2936    Veneer$$Code        anon$$obj.o
-    0x20006584   0x0000000c   Ven    RO         2937    Veneer$$Code        anon$$obj.o
-    0x20006590   0x0000000c   Ven    RO         2938    Veneer$$Code        anon$$obj.o
-    0x2000659c   0x0000000c   Ven    RO         2939    Veneer$$Code        anon$$obj.o
-    0x200065a8   0x0000000c   Ven    RO         2940    Veneer$$Code        anon$$obj.o
-    0x200065b4   0x0000000c   Ven    RO         2941    Veneer$$Code        anon$$obj.o
-    0x200065c0   0x0000000c   Ven    RO         2942    Veneer$$Code        anon$$obj.o
-    0x200065cc   0x0000000c   Ven    RO         2943    Veneer$$Code        anon$$obj.o
-    0x200065d8   0x0000000c   Ven    RO         2944    Veneer$$Code        anon$$obj.o
-    0x200065e4   0x0000000c   Ven    RO         2945    Veneer$$Code        anon$$obj.o
-    0x200065f0   0x0000000c   Ven    RO         2946    Veneer$$Code        anon$$obj.o
-    0x200065fc   0x0000000c   Ven    RO         2947    Veneer$$Code        anon$$obj.o
-    0x20006608   0x0000000c   Ven    RO         2948    Veneer$$Code        anon$$obj.o
-    0x20006614   0x0000000c   Ven    RO         2949    Veneer$$Code        anon$$obj.o
-    0x20006620   0x0000000c   Ven    RO         2950    Veneer$$Code        anon$$obj.o
-    0x2000662c   0x0000000c   Ven    RO         2951    Veneer$$Code        anon$$obj.o
-    0x20006638   0x0000000c   Ven    RO         2952    Veneer$$Code        anon$$obj.o
-    0x20006644   0x0000000c   Ven    RO         2953    Veneer$$Code        anon$$obj.o
-    0x20006650   0x0000000c   Ven    RO         2954    Veneer$$Code        anon$$obj.o
-    0x2000665c   0x0000000c   Ven    RO         2955    Veneer$$Code        anon$$obj.o
-    0x20006668   0x0000000c   Ven    RO         2956    Veneer$$Code        anon$$obj.o
-    0x20006674   0x0000000c   Ven    RO         2957    Veneer$$Code        anon$$obj.o
-    0x20006680   0x0000000c   Ven    RO         2958    Veneer$$Code        anon$$obj.o
-    0x2000668c   0x0000000c   Ven    RO         2959    Veneer$$Code        anon$$obj.o
-    0x20006698   0x0000000c   Ven    RO         2960    Veneer$$Code        anon$$obj.o
-    0x200066a4   0x0000000c   Ven    RO         2961    Veneer$$Code        anon$$obj.o
-    0x200066b0   0x0000000c   Ven    RO         2962    Veneer$$Code        anon$$obj.o
-    0x200066bc   0x0000000c   Ven    RO         2963    Veneer$$Code        anon$$obj.o
-    0x200066c8   0x0000000c   Ven    RO         2964    Veneer$$Code        anon$$obj.o
-    0x200066d4   0x0000000c   Ven    RO         2965    Veneer$$Code        anon$$obj.o
-    0x200066e0   0x0000000c   Ven    RO         2966    Veneer$$Code        anon$$obj.o
-    0x200066ec   0x0000000c   Ven    RO         2967    Veneer$$Code        anon$$obj.o
-    0x200066f8   0x0000000c   Ven    RO         2968    Veneer$$Code        anon$$obj.o
-    0x20006704   0x0000000c   Ven    RO         2969    Veneer$$Code        anon$$obj.o
-    0x20006710   0x0000000c   Ven    RO         2970    Veneer$$Code        anon$$obj.o
-    0x2000671c   0x0000000c   Ven    RO         2971    Veneer$$Code        anon$$obj.o
-    0x20006728   0x0000000c   Ven    RO         2972    Veneer$$Code        anon$$obj.o
-    0x20006734   0x0000000c   Ven    RO         2973    Veneer$$Code        anon$$obj.o
-    0x20006740   0x0000000c   Ven    RO         2974    Veneer$$Code        anon$$obj.o
-    0x2000674c   0x0000000c   Ven    RO         2975    Veneer$$Code        anon$$obj.o
-    0x20006758   0x0000000c   Ven    RO         2976    Veneer$$Code        anon$$obj.o
-    0x20006764   0x0000000c   Ven    RO         2977    Veneer$$Code        anon$$obj.o
-    0x20006770   0x0000000c   Ven    RO         2978    Veneer$$Code        anon$$obj.o
-    0x2000677c   0x0000000c   Ven    RO         2979    Veneer$$Code        anon$$obj.o
-    0x20006788   0x0000000c   Ven    RO         2980    Veneer$$Code        anon$$obj.o
-    0x20006794   0x0000000c   Ven    RO         2981    Veneer$$Code        anon$$obj.o
-    0x200067a0   0x0000000c   Ven    RO         2982    Veneer$$Code        anon$$obj.o
-    0x200067ac   0x0000000c   Ven    RO         2983    Veneer$$Code        anon$$obj.o
-    0x200067b8   0x0000000c   Ven    RO         2984    Veneer$$Code        anon$$obj.o
-    0x200067c4   0x0000000c   Ven    RO         2985    Veneer$$Code        anon$$obj.o
-    0x200067d0   0x0000000c   Ven    RO         2986    Veneer$$Code        anon$$obj.o
-    0x200067dc   0x0000000c   Ven    RO         2987    Veneer$$Code        anon$$obj.o
-    0x200067e8   0x0000000c   Ven    RO         2988    Veneer$$Code        anon$$obj.o
-    0x200067f4   0x0000000c   Ven    RO         2989    Veneer$$Code        anon$$obj.o
-    0x20006800   0x0000000c   Ven    RO         2990    Veneer$$Code        anon$$obj.o
-    0x2000680c   0x0000000c   Ven    RO         2991    Veneer$$Code        anon$$obj.o
-    0x20006818   0x0000000c   Ven    RO         2992    Veneer$$Code        anon$$obj.o
-    0x20006824   0x0000000c   Ven    RO         2993    Veneer$$Code        anon$$obj.o
-    0x20006830   0x0000000c   Ven    RO         2994    Veneer$$Code        anon$$obj.o
-    0x2000683c   0x0000000c   Ven    RO         2995    Veneer$$Code        anon$$obj.o
-    0x20006848   0x0000000c   Ven    RO         2996    Veneer$$Code        anon$$obj.o
-    0x20006854   0x0000000c   Ven    RO         2997    Veneer$$Code        anon$$obj.o
-    0x20006860   0x0000000c   Ven    RO         2998    Veneer$$Code        anon$$obj.o
-    0x2000686c   0x0000000c   Ven    RO         2999    Veneer$$Code        anon$$obj.o
-    0x20006878   0x0000000c   Ven    RO         3000    Veneer$$Code        anon$$obj.o
-    0x20006884   0x0000000c   Ven    RO         3001    Veneer$$Code        anon$$obj.o
-    0x20006890   0x0000000c   Ven    RO         3002    Veneer$$Code        anon$$obj.o
-    0x2000689c   0x0000000c   Ven    RO         3003    Veneer$$Code        anon$$obj.o
-    0x200068a8   0x0000000c   Ven    RO         3004    Veneer$$Code        anon$$obj.o
-    0x200068b4   0x0000000c   Ven    RO         3005    Veneer$$Code        anon$$obj.o
-    0x200068c0   0x0000000c   Ven    RO         3006    Veneer$$Code        anon$$obj.o
-    0x200068cc   0x0000000c   Ven    RO         3007    Veneer$$Code        anon$$obj.o
-    0x200068d8   0x0000000c   Ven    RO         3008    Veneer$$Code        anon$$obj.o
-    0x200068e4   0x0000000c   Ven    RO         3009    Veneer$$Code        anon$$obj.o
-    0x200068f0   0x0000000c   Ven    RO         3010    Veneer$$Code        anon$$obj.o
-    0x200068fc   0x0000000c   Ven    RO         3011    Veneer$$Code        anon$$obj.o
-    0x20006908   0x0000000c   Ven    RO         3012    Veneer$$Code        anon$$obj.o
-    0x20006914   0x0000000c   Ven    RO         3013    Veneer$$Code        anon$$obj.o
-    0x20006920   0x0000000c   Ven    RO         3014    Veneer$$Code        anon$$obj.o
-    0x2000692c   0x0000000c   Ven    RO         3015    Veneer$$Code        anon$$obj.o
-    0x20006938   0x0000000c   Ven    RO         3016    Veneer$$Code        anon$$obj.o
-    0x20006944   0x0000000c   Ven    RO         3017    Veneer$$Code        anon$$obj.o
-    0x20006950   0x0000000c   Ven    RO         3018    Veneer$$Code        anon$$obj.o
-    0x2000695c   0x0000000c   Ven    RO         3019    Veneer$$Code        anon$$obj.o
-    0x20006968   0x0000000c   Ven    RO         3020    Veneer$$Code        anon$$obj.o
-    0x20006974   0x0000000c   Ven    RO         3021    Veneer$$Code        anon$$obj.o
-    0x20006980   0x0000000c   Ven    RO         3022    Veneer$$Code        anon$$obj.o
-    0x2000698c   0x0000000c   Ven    RO         3023    Veneer$$Code        anon$$obj.o
-    0x20006998   0x0000000c   Ven    RO         3024    Veneer$$Code        anon$$obj.o
-    0x200069a4   0x0000000c   Ven    RO         3025    Veneer$$Code        anon$$obj.o
-    0x200069b0   0x0000000c   Ven    RO         3026    Veneer$$Code        anon$$obj.o
-    0x200069bc   0x0000000c   Ven    RO         3027    Veneer$$Code        anon$$obj.o
-    0x200069c8   0x0000000c   Ven    RO         3028    Veneer$$Code        anon$$obj.o
-    0x200069d4   0x0000000c   Ven    RO         3029    Veneer$$Code        anon$$obj.o
-    0x200069e0   0x0000000c   Ven    RO         3030    Veneer$$Code        anon$$obj.o
-    0x200069ec   0x0000000c   Ven    RO         3031    Veneer$$Code        anon$$obj.o
-    0x200069f8   0x0000000c   Ven    RO         3032    Veneer$$Code        anon$$obj.o
-    0x20006a04   0x0000000c   Ven    RO         3033    Veneer$$Code        anon$$obj.o
-    0x20006a10   0x0000000c   Ven    RO         3034    Veneer$$Code        anon$$obj.o
-    0x20006a1c   0x0000000c   Ven    RO         3035    Veneer$$Code        anon$$obj.o
-    0x20006a28   0x0000000c   Ven    RO         3036    Veneer$$Code        anon$$obj.o
-    0x20006a34   0x0000000c   Ven    RO         3037    Veneer$$Code        anon$$obj.o
-    0x20006a40   0x0000000c   Ven    RO         3038    Veneer$$Code        anon$$obj.o
-    0x20006a4c   0x0000000c   Ven    RO         3039    Veneer$$Code        anon$$obj.o
-    0x20006a58   0x0000000c   Ven    RO         3040    Veneer$$Code        anon$$obj.o
-    0x20006a64   0x0000000c   Ven    RO         3041    Veneer$$Code        anon$$obj.o
-    0x20006a70   0x0000000c   Ven    RO         3042    Veneer$$Code        anon$$obj.o
-    0x20006a7c   0x0000000c   Ven    RO         3043    Veneer$$Code        anon$$obj.o
-    0x20006a88   0x0000000c   Ven    RO         3044    Veneer$$Code        anon$$obj.o
-    0x20006a94   0x0000000c   Ven    RO         3045    Veneer$$Code        anon$$obj.o
-    0x20006aa0   0x0000000c   Ven    RO         3046    Veneer$$Code        anon$$obj.o
-    0x20006aac   0x0000000c   Ven    RO         3047    Veneer$$Code        anon$$obj.o
-    0x20006ab8   0x0000000c   Ven    RO         3048    Veneer$$Code        anon$$obj.o
-    0x20006ac4   0x0000000c   Ven    RO         3049    Veneer$$Code        anon$$obj.o
-    0x20006ad0   0x0000000c   Ven    RO         3050    Veneer$$Code        anon$$obj.o
-    0x20006adc   0x0000000c   Ven    RO         3051    Veneer$$Code        anon$$obj.o
-    0x20006ae8   0x0000000c   Ven    RO         3052    Veneer$$Code        anon$$obj.o
-    0x20006af4   0x0000000c   Ven    RO         3053    Veneer$$Code        anon$$obj.o
-    0x20006b00   0x0000000c   Ven    RO         3054    Veneer$$Code        anon$$obj.o
-    0x20006b0c   0x0000000e   Code   RO         2930    i.__scatterload_copy  mc_p.l(handlers.o)
-    0x20006b1a   0x00000002   Code   RO         2931    i.__scatterload_null  mc_p.l(handlers.o)
-    0x20006b1c   0x0000000e   Code   RO         2932    i.__scatterload_zeroinit  mc_p.l(handlers.o)
-    0x20006b2a   0x00000002   PAD
-    0x20006b2c   0x0000000c   Code   RO         2917    i.__set_errno       mc_p.l(errno.o)
-    0x20006b38   0x00000054   Code   RO         2845    i.free              mc_p.l(malloc.o)
-    0x20006b8c   0x0000006c   Code   RO         2846    i.malloc            mc_p.l(malloc.o)
-    0x20006bf8   0x00000048   Code   RO         2837    i.sqrt              m_ps.l(sqrt.o)
-    0x20006c40   0x00000006   Data   RO          289    .constdata          nvds.o
-    0x20006c46   0x00000016   Data   RO          567    .constdata          jump_table.o
-    0x20006c5c   0x00000130   Data   RO          827    .constdata          arch_patch.o
-    0x20006d8c   0x00000008   Data   RO          828    .constdata          arch_patch.o
-    0x20006d94   0x00000030   Data   RO          829    .constdata          arch_patch.o
-    0x20006dc4   0x00000130   Data   RO          908    .constdata          llc.obj
-    0x20006ef4   0x00000010   Data   RO          909    .constdata          llc.obj
-    0x20006f04   0x000000b0   Data   RO          910    .constdata          llc.obj
-    0x20006fb4   0x00000008   Data   RO          911    .constdata          llc.obj
-    0x20006fbc   0x00000010   Data   RO          912    .constdata          llc.obj
-    0x20006fcc   0x00000050   Data   RO         1243    .constdata          spi_flash.o
-    0x2000701c   0x0000003c   Data   RO         1588    .constdata          bass.o
-    0x20007058   0x00000002   Data   RO         1589    .constdata          bass.o
-    0x2000705a   0x00000005   Data   RO         1590    .constdata          bass.o
-    0x2000705f   0x00000001   PAD
-    0x20007060   0x00000010   Data   RO         1591    .constdata          bass.o
-    0x20007070   0x00000008   Data   RO         1614    .constdata          bass_task.o
-    0x20007078   0x00000008   Data   RO         1615    .constdata          bass_task.o
-    0x20007080   0x00000018   Data   RO         1616    .constdata          bass_task.o
-    0x20007098   0x00000008   Data   RO         1617    .constdata          bass_task.o
-    0x200070a0   0x00000018   Data   RO         1618    .constdata          bass_task.o
-    0x200070b8   0x00000008   Data   RO         1619    .constdata          bass_task.o
-    0x200070c0   0x00000002   Data   RO         1644    .constdata          spotar.o
-    0x200070c2   0x00000010   Data   RO         1645    .constdata          spotar.o
-    0x200070d2   0x00000010   Data   RO         1646    .constdata          spotar.o
-    0x200070e2   0x00000010   Data   RO         1647    .constdata          spotar.o
-    0x200070f2   0x00000010   Data   RO         1648    .constdata          spotar.o
-    0x20007102   0x00000010   Data   RO         1649    .constdata          spotar.o
-    0x20007112   0x00000010   Data   RO         1650    .constdata          spotar.o
-    0x20007122   0x00000002   PAD
-    0x20007124   0x00000010   Data   RO         1651    .constdata          spotar.o
-    0x20007134   0x00000008   Data   RO         1686    .constdata          spotar_task.o
-    0x2000713c   0x00000008   Data   RO         1687    .constdata          spotar_task.o
-    0x20007144   0x00000018   Data   RO         1688    .constdata          spotar_task.o
-    0x2000715c   0x00000008   Data   RO         1689    .constdata          spotar_task.o
-    0x20007164   0x00000018   Data   RO         1690    .constdata          spotar_task.o
-    0x2000717c   0x00000008   Data   RO         1691    .constdata          spotar_task.o
-    0x20007184   0x000000e4   Data   RO         1709    .constdata          diss.o
-    0x20007268   0x00000002   Data   RO         1710    .constdata          diss.o
-    0x2000726a   0x00000005   Data   RO         1711    .constdata          diss.o
-    0x2000726f   0x00000005   Data   RO         1712    .constdata          diss.o
-    0x20007274   0x00000005   Data   RO         1713    .constdata          diss.o
-    0x20007279   0x00000005   Data   RO         1714    .constdata          diss.o
-    0x2000727e   0x00000005   Data   RO         1715    .constdata          diss.o
-    0x20007283   0x00000005   Data   RO         1716    .constdata          diss.o
-    0x20007288   0x00000005   Data   RO         1717    .constdata          diss.o
-    0x2000728d   0x00000005   Data   RO         1718    .constdata          diss.o
-    0x20007292   0x00000005   Data   RO         1719    .constdata          diss.o
-    0x20007297   0x00000001   PAD
-    0x20007298   0x00000010   Data   RO         1720    .constdata          diss.o
-    0x200072a8   0x00000008   Data   RO         1743    .constdata          diss_task.o
-    0x200072b0   0x00000010   Data   RO         1744    .constdata          diss_task.o
-    0x200072c0   0x00000008   Data   RO         1745    .constdata          diss_task.o
-    0x200072c8   0x00000018   Data   RO         1746    .constdata          diss_task.o
-    0x200072e0   0x00000008   Data   RO         1747    .constdata          diss_task.o
-    0x200072e8   0x00000094   Data   RO         1845    .constdata          app.o
-    0x2000737c   0x0000003c   Data   RO         1984    .constdata          app_task.o
-    0x200073b8   0x00000008   Data   RO         1985    .constdata          app_task.o
-    0x200073c0   0x00000008   Data   RO         1986    .constdata          app_task.o
-    0x200073c8   0x0000001c   Data   RO         2074    .constdata          app_entry_point.o
-    0x200073e4   0x00000030   Data   RO         2388    .constdata          app_bass_task.o
-    0x20007414   0x00000028   Data   RO         2434    .constdata          app_spotar_task.o
-    0x2000743c   0x00000010   Data   RO         2477    .constdata          app_diss_task.o
-    0x2000744c   0x000000c4   Data   RO         2554    .constdata          afe4400.o
-    0x20007510   0x00000148   Data   RO         2583    .constdata          dsp.o
-    0x20007658   0x00000004   Data   RO         2657    .constdata          ecgtohr.o
-    0x2000765c   0x00000010   Data   RO         2696    .constdata          sps_server.o
-    0x2000766c   0x00000010   Data   RO         2697    .constdata          sps_server.o
-    0x2000767c   0x00000010   Data   RO         2698    .constdata          sps_server.o
-    0x2000768c   0x00000010   Data   RO         2699    .constdata          sps_server.o
-    0x2000769c   0x00000002   Data   RO         2700    .constdata          sps_server.o
-    0x2000769e   0x00000002   Data   RO         2701    .constdata          sps_server.o
-    0x200076a0   0x00000002   Data   RO         2702    .constdata          sps_server.o
-    0x200076a2   0x00000002   Data   RO         2703    .constdata          sps_server.o
-    0x200076a4   0x000000d0   Data   RO         2704    .constdata          sps_server.o
-    0x20007774   0x00000010   Data   RO         2705    .constdata          sps_server.o
-    0x20007784   0x00000008   Data   RO         2733    .constdata          sps_server_task.o
-    0x2000778c   0x00000008   Data   RO         2734    .constdata          sps_server_task.o
-    0x20007794   0x00000028   Data   RO         2735    .constdata          sps_server_task.o
-    0x200077bc   0x00000018   Data   RO         2736    .constdata          sps_server_task.o
-    0x200077d4   0x00000008   Data   RO         2737    .constdata          sps_server_task.o
-    0x200077dc   0x00000004   Data   RO         2762    .constdata          user_sps_device.o
-    0x200077e0   0x00000030   Data   RO         2821    .constdata          user_spss_task.o
-    0x20007810   0x0000002d   Data   RO         2706    .conststring        sps_server.o
-    0x2000783d   0x00000003   PAD
-    0x20007840   0x00000030   Data   RO         2928    Region$$Table       anon$$obj.o
-    0x20007870   0x00000004   Data   RW          714    .data               arch_system.o
-    0x20007874   0x00000013   Data   RW         1652    .data               spotar.o
-    0x20007887   0x00000013   Data   RW         1653    .data               spotar.o
-    0x2000789a   0x00000013   Data   RW         1654    .data               spotar.o
-    0x200078ad   0x00000013   Data   RW         1655    .data               spotar.o
-    0x200078c0   0x00000013   Data   RW         1656    .data               spotar.o
-    0x200078d3   0x00000013   Data   RW         1657    .data               spotar.o
-    0x200078e6   0x00000004   Data   RW         2498    .data               user_periph_setup.o
-    0x200078ea   0x0000000c   Data   RW         2528    .data               ads1292.o
-    0x200078f6   0x00000013   Data   RW         2707    .data               sps_server.o
-    0x20007909   0x00000013   Data   RW         2708    .data               sps_server.o
-    0x2000791c   0x00000013   Data   RW         2709    .data               sps_server.o
-    0x2000792f   0x00000001   PAD
-    0x20007930   0x00000004   Data   RW         2913    .data               mc_p.l(mvars.o)
-    0x20007934   0x00000004   Data   RW         2914    .data               mc_p.l(mvars.o)
-    0x20007938   0x00000004   Data   RW         2918    .data               mc_p.l(errno.o)
+    0x20004bac   0x00000b94   Code   RO         2490    .text               user_periph_setup.o
+    0x20005740   0x000000b8   Code   RO         2526    .text               ads1292.o
+    0x200057f8   0x0000009c   Code   RO         2553    .text               afe4400.o
+    0x20005894   0x00000204   Code   RO         2650    .text               ecgtohr.o
+    0x20005a98   0x000000ac   Code   RO         2695    .text               sps_server.o
+    0x20005b44   0x00000234   Code   RO         2731    .text               sps_server_task.o
+    0x20005d78   0x0000016c   Code   RO         2758    .text               user_sps_device.o
+    0x20005ee4   0x00000038   Code   RO         2796    .text               user_spss.o
+    0x20005f1c   0x000000a8   Code   RO         2820    .text               user_spss_task.o
+    0x20005fc4   0x000000b2   Code   RO         2873    .text               mf_p.l(fadd.o)
+    0x20006076   0x0000007a   Code   RO         2875    .text               mf_p.l(fmul.o)
+    0x200060f0   0x0000007c   Code   RO         2877    .text               mf_p.l(fdiv.o)
+    0x2000616c   0x00000164   Code   RO         2881    .text               mf_p.l(dadd.o)
+    0x200062d0   0x000000f0   Code   RO         2883    .text               mf_p.l(ddiv.o)
+    0x200063c0   0x00000016   Code   RO         2885    .text               mf_p.l(fflti.o)
+    0x200063d6   0x00000032   Code   RO         2887    .text               mf_p.l(ffixi.o)
+    0x20006408   0x00000028   Code   RO         2889    .text               mf_p.l(f2d.o)
+    0x20006430   0x00000028   Code   RO         2891    .text               mf_p.l(cdrcmple.o)
+    0x20006458   0x00000038   Code   RO         2893    .text               mf_p.l(d2f.o)
+    0x20006490   0x00000014   Code   RO         2895    .text               mf_p.l(cfrcmple.o)
+    0x200064a4   0x00000026   Code   RO         2911    .text               mc_p.l(llsshr.o)
+    0x200064ca   0x00000082   Code   RO         2922    .text               mf_p.l(fepilogue.o)
+    0x2000654c   0x000000a2   Code   RO         2924    .text               mf_p.l(dsqrt.o)
+    0x200065ee   0x00000002   PAD
+    0x200065f0   0x00000024   Code   RO         2926    .text               mc_p.l(init.o)
+    0x20006614   0x0000000c   Ven    RO         2936    Veneer$$Code        anon$$obj.o
+    0x20006620   0x0000000c   Ven    RO         2937    Veneer$$Code        anon$$obj.o
+    0x2000662c   0x0000000c   Ven    RO         2938    Veneer$$Code        anon$$obj.o
+    0x20006638   0x0000000c   Ven    RO         2939    Veneer$$Code        anon$$obj.o
+    0x20006644   0x0000000c   Ven    RO         2940    Veneer$$Code        anon$$obj.o
+    0x20006650   0x0000000c   Ven    RO         2941    Veneer$$Code        anon$$obj.o
+    0x2000665c   0x0000000c   Ven    RO         2942    Veneer$$Code        anon$$obj.o
+    0x20006668   0x0000000c   Ven    RO         2943    Veneer$$Code        anon$$obj.o
+    0x20006674   0x0000000c   Ven    RO         2944    Veneer$$Code        anon$$obj.o
+    0x20006680   0x0000000c   Ven    RO         2945    Veneer$$Code        anon$$obj.o
+    0x2000668c   0x0000000c   Ven    RO         2946    Veneer$$Code        anon$$obj.o
+    0x20006698   0x0000000c   Ven    RO         2947    Veneer$$Code        anon$$obj.o
+    0x200066a4   0x0000000c   Ven    RO         2948    Veneer$$Code        anon$$obj.o
+    0x200066b0   0x0000000c   Ven    RO         2949    Veneer$$Code        anon$$obj.o
+    0x200066bc   0x0000000c   Ven    RO         2950    Veneer$$Code        anon$$obj.o
+    0x200066c8   0x0000000c   Ven    RO         2951    Veneer$$Code        anon$$obj.o
+    0x200066d4   0x0000000c   Ven    RO         2952    Veneer$$Code        anon$$obj.o
+    0x200066e0   0x0000000c   Ven    RO         2953    Veneer$$Code        anon$$obj.o
+    0x200066ec   0x0000000c   Ven    RO         2954    Veneer$$Code        anon$$obj.o
+    0x200066f8   0x0000000c   Ven    RO         2955    Veneer$$Code        anon$$obj.o
+    0x20006704   0x0000000c   Ven    RO         2956    Veneer$$Code        anon$$obj.o
+    0x20006710   0x0000000c   Ven    RO         2957    Veneer$$Code        anon$$obj.o
+    0x2000671c   0x0000000c   Ven    RO         2958    Veneer$$Code        anon$$obj.o
+    0x20006728   0x0000000c   Ven    RO         2959    Veneer$$Code        anon$$obj.o
+    0x20006734   0x0000000c   Ven    RO         2960    Veneer$$Code        anon$$obj.o
+    0x20006740   0x0000000c   Ven    RO         2961    Veneer$$Code        anon$$obj.o
+    0x2000674c   0x0000000c   Ven    RO         2962    Veneer$$Code        anon$$obj.o
+    0x20006758   0x0000000c   Ven    RO         2963    Veneer$$Code        anon$$obj.o
+    0x20006764   0x0000000c   Ven    RO         2964    Veneer$$Code        anon$$obj.o
+    0x20006770   0x0000000c   Ven    RO         2965    Veneer$$Code        anon$$obj.o
+    0x2000677c   0x0000000c   Ven    RO         2966    Veneer$$Code        anon$$obj.o
+    0x20006788   0x0000000c   Ven    RO         2967    Veneer$$Code        anon$$obj.o
+    0x20006794   0x0000000c   Ven    RO         2968    Veneer$$Code        anon$$obj.o
+    0x200067a0   0x0000000c   Ven    RO         2969    Veneer$$Code        anon$$obj.o
+    0x200067ac   0x0000000c   Ven    RO         2970    Veneer$$Code        anon$$obj.o
+    0x200067b8   0x0000000c   Ven    RO         2971    Veneer$$Code        anon$$obj.o
+    0x200067c4   0x0000000c   Ven    RO         2972    Veneer$$Code        anon$$obj.o
+    0x200067d0   0x0000000c   Ven    RO         2973    Veneer$$Code        anon$$obj.o
+    0x200067dc   0x0000000c   Ven    RO         2974    Veneer$$Code        anon$$obj.o
+    0x200067e8   0x0000000c   Ven    RO         2975    Veneer$$Code        anon$$obj.o
+    0x200067f4   0x0000000c   Ven    RO         2976    Veneer$$Code        anon$$obj.o
+    0x20006800   0x0000000c   Ven    RO         2977    Veneer$$Code        anon$$obj.o
+    0x2000680c   0x0000000c   Ven    RO         2978    Veneer$$Code        anon$$obj.o
+    0x20006818   0x0000000c   Ven    RO         2979    Veneer$$Code        anon$$obj.o
+    0x20006824   0x0000000c   Ven    RO         2980    Veneer$$Code        anon$$obj.o
+    0x20006830   0x0000000c   Ven    RO         2981    Veneer$$Code        anon$$obj.o
+    0x2000683c   0x0000000c   Ven    RO         2982    Veneer$$Code        anon$$obj.o
+    0x20006848   0x0000000c   Ven    RO         2983    Veneer$$Code        anon$$obj.o
+    0x20006854   0x0000000c   Ven    RO         2984    Veneer$$Code        anon$$obj.o
+    0x20006860   0x0000000c   Ven    RO         2985    Veneer$$Code        anon$$obj.o
+    0x2000686c   0x0000000c   Ven    RO         2986    Veneer$$Code        anon$$obj.o
+    0x20006878   0x0000000c   Ven    RO         2987    Veneer$$Code        anon$$obj.o
+    0x20006884   0x0000000c   Ven    RO         2988    Veneer$$Code        anon$$obj.o
+    0x20006890   0x0000000c   Ven    RO         2989    Veneer$$Code        anon$$obj.o
+    0x2000689c   0x0000000c   Ven    RO         2990    Veneer$$Code        anon$$obj.o
+    0x200068a8   0x0000000c   Ven    RO         2991    Veneer$$Code        anon$$obj.o
+    0x200068b4   0x0000000c   Ven    RO         2992    Veneer$$Code        anon$$obj.o
+    0x200068c0   0x0000000c   Ven    RO         2993    Veneer$$Code        anon$$obj.o
+    0x200068cc   0x0000000c   Ven    RO         2994    Veneer$$Code        anon$$obj.o
+    0x200068d8   0x0000000c   Ven    RO         2995    Veneer$$Code        anon$$obj.o
+    0x200068e4   0x0000000c   Ven    RO         2996    Veneer$$Code        anon$$obj.o
+    0x200068f0   0x0000000c   Ven    RO         2997    Veneer$$Code        anon$$obj.o
+    0x200068fc   0x0000000c   Ven    RO         2998    Veneer$$Code        anon$$obj.o
+    0x20006908   0x0000000c   Ven    RO         2999    Veneer$$Code        anon$$obj.o
+    0x20006914   0x0000000c   Ven    RO         3000    Veneer$$Code        anon$$obj.o
+    0x20006920   0x0000000c   Ven    RO         3001    Veneer$$Code        anon$$obj.o
+    0x2000692c   0x0000000c   Ven    RO         3002    Veneer$$Code        anon$$obj.o
+    0x20006938   0x0000000c   Ven    RO         3003    Veneer$$Code        anon$$obj.o
+    0x20006944   0x0000000c   Ven    RO         3004    Veneer$$Code        anon$$obj.o
+    0x20006950   0x0000000c   Ven    RO         3005    Veneer$$Code        anon$$obj.o
+    0x2000695c   0x0000000c   Ven    RO         3006    Veneer$$Code        anon$$obj.o
+    0x20006968   0x0000000c   Ven    RO         3007    Veneer$$Code        anon$$obj.o
+    0x20006974   0x0000000c   Ven    RO         3008    Veneer$$Code        anon$$obj.o
+    0x20006980   0x0000000c   Ven    RO         3009    Veneer$$Code        anon$$obj.o
+    0x2000698c   0x0000000c   Ven    RO         3010    Veneer$$Code        anon$$obj.o
+    0x20006998   0x0000000c   Ven    RO         3011    Veneer$$Code        anon$$obj.o
+    0x200069a4   0x0000000c   Ven    RO         3012    Veneer$$Code        anon$$obj.o
+    0x200069b0   0x0000000c   Ven    RO         3013    Veneer$$Code        anon$$obj.o
+    0x200069bc   0x0000000c   Ven    RO         3014    Veneer$$Code        anon$$obj.o
+    0x200069c8   0x0000000c   Ven    RO         3015    Veneer$$Code        anon$$obj.o
+    0x200069d4   0x0000000c   Ven    RO         3016    Veneer$$Code        anon$$obj.o
+    0x200069e0   0x0000000c   Ven    RO         3017    Veneer$$Code        anon$$obj.o
+    0x200069ec   0x0000000c   Ven    RO         3018    Veneer$$Code        anon$$obj.o
+    0x200069f8   0x0000000c   Ven    RO         3019    Veneer$$Code        anon$$obj.o
+    0x20006a04   0x0000000c   Ven    RO         3020    Veneer$$Code        anon$$obj.o
+    0x20006a10   0x0000000c   Ven    RO         3021    Veneer$$Code        anon$$obj.o
+    0x20006a1c   0x0000000c   Ven    RO         3022    Veneer$$Code        anon$$obj.o
+    0x20006a28   0x0000000c   Ven    RO         3023    Veneer$$Code        anon$$obj.o
+    0x20006a34   0x0000000c   Ven    RO         3024    Veneer$$Code        anon$$obj.o
+    0x20006a40   0x0000000c   Ven    RO         3025    Veneer$$Code        anon$$obj.o
+    0x20006a4c   0x0000000c   Ven    RO         3026    Veneer$$Code        anon$$obj.o
+    0x20006a58   0x0000000c   Ven    RO         3027    Veneer$$Code        anon$$obj.o
+    0x20006a64   0x0000000c   Ven    RO         3028    Veneer$$Code        anon$$obj.o
+    0x20006a70   0x0000000c   Ven    RO         3029    Veneer$$Code        anon$$obj.o
+    0x20006a7c   0x0000000c   Ven    RO         3030    Veneer$$Code        anon$$obj.o
+    0x20006a88   0x0000000c   Ven    RO         3031    Veneer$$Code        anon$$obj.o
+    0x20006a94   0x0000000c   Ven    RO         3032    Veneer$$Code        anon$$obj.o
+    0x20006aa0   0x0000000c   Ven    RO         3033    Veneer$$Code        anon$$obj.o
+    0x20006aac   0x0000000c   Ven    RO         3034    Veneer$$Code        anon$$obj.o
+    0x20006ab8   0x0000000c   Ven    RO         3035    Veneer$$Code        anon$$obj.o
+    0x20006ac4   0x0000000c   Ven    RO         3036    Veneer$$Code        anon$$obj.o
+    0x20006ad0   0x0000000c   Ven    RO         3037    Veneer$$Code        anon$$obj.o
+    0x20006adc   0x0000000c   Ven    RO         3038    Veneer$$Code        anon$$obj.o
+    0x20006ae8   0x0000000c   Ven    RO         3039    Veneer$$Code        anon$$obj.o
+    0x20006af4   0x0000000c   Ven    RO         3040    Veneer$$Code        anon$$obj.o
+    0x20006b00   0x0000000c   Ven    RO         3041    Veneer$$Code        anon$$obj.o
+    0x20006b0c   0x0000000c   Ven    RO         3042    Veneer$$Code        anon$$obj.o
+    0x20006b18   0x0000000c   Ven    RO         3043    Veneer$$Code        anon$$obj.o
+    0x20006b24   0x0000000c   Ven    RO         3044    Veneer$$Code        anon$$obj.o
+    0x20006b30   0x0000000c   Ven    RO         3045    Veneer$$Code        anon$$obj.o
+    0x20006b3c   0x0000000c   Ven    RO         3046    Veneer$$Code        anon$$obj.o
+    0x20006b48   0x0000000c   Ven    RO         3047    Veneer$$Code        anon$$obj.o
+    0x20006b54   0x0000000c   Ven    RO         3048    Veneer$$Code        anon$$obj.o
+    0x20006b60   0x0000000c   Ven    RO         3049    Veneer$$Code        anon$$obj.o
+    0x20006b6c   0x0000000c   Ven    RO         3050    Veneer$$Code        anon$$obj.o
+    0x20006b78   0x0000000c   Ven    RO         3051    Veneer$$Code        anon$$obj.o
+    0x20006b84   0x0000000c   Ven    RO         3052    Veneer$$Code        anon$$obj.o
+    0x20006b90   0x0000000c   Ven    RO         3053    Veneer$$Code        anon$$obj.o
+    0x20006b9c   0x0000000e   Code   RO         2930    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x20006baa   0x00000002   Code   RO         2931    i.__scatterload_null  mc_p.l(handlers.o)
+    0x20006bac   0x0000000e   Code   RO         2932    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x20006bba   0x00000002   PAD
+    0x20006bbc   0x0000000c   Code   RO         2917    i.__set_errno       mc_p.l(errno.o)
+    0x20006bc8   0x00000054   Code   RO         2845    i.free              mc_p.l(malloc.o)
+    0x20006c1c   0x0000006c   Code   RO         2846    i.malloc            mc_p.l(malloc.o)
+    0x20006c88   0x00000048   Code   RO         2837    i.sqrt              m_ps.l(sqrt.o)
+    0x20006cd0   0x00000006   Data   RO          289    .constdata          nvds.o
+    0x20006cd6   0x00000016   Data   RO          567    .constdata          jump_table.o
+    0x20006cec   0x00000130   Data   RO          827    .constdata          arch_patch.o
+    0x20006e1c   0x00000008   Data   RO          828    .constdata          arch_patch.o
+    0x20006e24   0x00000030   Data   RO          829    .constdata          arch_patch.o
+    0x20006e54   0x00000130   Data   RO          908    .constdata          llc.obj
+    0x20006f84   0x00000010   Data   RO          909    .constdata          llc.obj
+    0x20006f94   0x000000b0   Data   RO          910    .constdata          llc.obj
+    0x20007044   0x00000008   Data   RO          911    .constdata          llc.obj
+    0x2000704c   0x00000010   Data   RO          912    .constdata          llc.obj
+    0x2000705c   0x00000050   Data   RO         1243    .constdata          spi_flash.o
+    0x200070ac   0x0000003c   Data   RO         1588    .constdata          bass.o
+    0x200070e8   0x00000002   Data   RO         1589    .constdata          bass.o
+    0x200070ea   0x00000005   Data   RO         1590    .constdata          bass.o
+    0x200070ef   0x00000001   PAD
+    0x200070f0   0x00000010   Data   RO         1591    .constdata          bass.o
+    0x20007100   0x00000008   Data   RO         1614    .constdata          bass_task.o
+    0x20007108   0x00000008   Data   RO         1615    .constdata          bass_task.o
+    0x20007110   0x00000018   Data   RO         1616    .constdata          bass_task.o
+    0x20007128   0x00000008   Data   RO         1617    .constdata          bass_task.o
+    0x20007130   0x00000018   Data   RO         1618    .constdata          bass_task.o
+    0x20007148   0x00000008   Data   RO         1619    .constdata          bass_task.o
+    0x20007150   0x00000002   Data   RO         1644    .constdata          spotar.o
+    0x20007152   0x00000010   Data   RO         1645    .constdata          spotar.o
+    0x20007162   0x00000010   Data   RO         1646    .constdata          spotar.o
+    0x20007172   0x00000010   Data   RO         1647    .constdata          spotar.o
+    0x20007182   0x00000010   Data   RO         1648    .constdata          spotar.o
+    0x20007192   0x00000010   Data   RO         1649    .constdata          spotar.o
+    0x200071a2   0x00000010   Data   RO         1650    .constdata          spotar.o
+    0x200071b2   0x00000002   PAD
+    0x200071b4   0x00000010   Data   RO         1651    .constdata          spotar.o
+    0x200071c4   0x00000008   Data   RO         1686    .constdata          spotar_task.o
+    0x200071cc   0x00000008   Data   RO         1687    .constdata          spotar_task.o
+    0x200071d4   0x00000018   Data   RO         1688    .constdata          spotar_task.o
+    0x200071ec   0x00000008   Data   RO         1689    .constdata          spotar_task.o
+    0x200071f4   0x00000018   Data   RO         1690    .constdata          spotar_task.o
+    0x2000720c   0x00000008   Data   RO         1691    .constdata          spotar_task.o
+    0x20007214   0x000000e4   Data   RO         1709    .constdata          diss.o
+    0x200072f8   0x00000002   Data   RO         1710    .constdata          diss.o
+    0x200072fa   0x00000005   Data   RO         1711    .constdata          diss.o
+    0x200072ff   0x00000005   Data   RO         1712    .constdata          diss.o
+    0x20007304   0x00000005   Data   RO         1713    .constdata          diss.o
+    0x20007309   0x00000005   Data   RO         1714    .constdata          diss.o
+    0x2000730e   0x00000005   Data   RO         1715    .constdata          diss.o
+    0x20007313   0x00000005   Data   RO         1716    .constdata          diss.o
+    0x20007318   0x00000005   Data   RO         1717    .constdata          diss.o
+    0x2000731d   0x00000005   Data   RO         1718    .constdata          diss.o
+    0x20007322   0x00000005   Data   RO         1719    .constdata          diss.o
+    0x20007327   0x00000001   PAD
+    0x20007328   0x00000010   Data   RO         1720    .constdata          diss.o
+    0x20007338   0x00000008   Data   RO         1743    .constdata          diss_task.o
+    0x20007340   0x00000010   Data   RO         1744    .constdata          diss_task.o
+    0x20007350   0x00000008   Data   RO         1745    .constdata          diss_task.o
+    0x20007358   0x00000018   Data   RO         1746    .constdata          diss_task.o
+    0x20007370   0x00000008   Data   RO         1747    .constdata          diss_task.o
+    0x20007378   0x00000094   Data   RO         1845    .constdata          app.o
+    0x2000740c   0x0000003c   Data   RO         1984    .constdata          app_task.o
+    0x20007448   0x00000008   Data   RO         1985    .constdata          app_task.o
+    0x20007450   0x00000008   Data   RO         1986    .constdata          app_task.o
+    0x20007458   0x0000001c   Data   RO         2074    .constdata          app_entry_point.o
+    0x20007474   0x00000030   Data   RO         2388    .constdata          app_bass_task.o
+    0x200074a4   0x00000028   Data   RO         2434    .constdata          app_spotar_task.o
+    0x200074cc   0x00000010   Data   RO         2477    .constdata          app_diss_task.o
+    0x200074dc   0x000000c4   Data   RO         2554    .constdata          afe4400.o
+    0x200075a0   0x00000004   Data   RO         2657    .constdata          ecgtohr.o
+    0x200075a4   0x00000010   Data   RO         2696    .constdata          sps_server.o
+    0x200075b4   0x00000010   Data   RO         2697    .constdata          sps_server.o
+    0x200075c4   0x00000010   Data   RO         2698    .constdata          sps_server.o
+    0x200075d4   0x00000010   Data   RO         2699    .constdata          sps_server.o
+    0x200075e4   0x00000002   Data   RO         2700    .constdata          sps_server.o
+    0x200075e6   0x00000002   Data   RO         2701    .constdata          sps_server.o
+    0x200075e8   0x00000002   Data   RO         2702    .constdata          sps_server.o
+    0x200075ea   0x00000002   Data   RO         2703    .constdata          sps_server.o
+    0x200075ec   0x000000d0   Data   RO         2704    .constdata          sps_server.o
+    0x200076bc   0x00000010   Data   RO         2705    .constdata          sps_server.o
+    0x200076cc   0x00000008   Data   RO         2733    .constdata          sps_server_task.o
+    0x200076d4   0x00000008   Data   RO         2734    .constdata          sps_server_task.o
+    0x200076dc   0x00000028   Data   RO         2735    .constdata          sps_server_task.o
+    0x20007704   0x00000018   Data   RO         2736    .constdata          sps_server_task.o
+    0x2000771c   0x00000008   Data   RO         2737    .constdata          sps_server_task.o
+    0x20007724   0x00000004   Data   RO         2762    .constdata          user_sps_device.o
+    0x20007728   0x00000030   Data   RO         2821    .constdata          user_spss_task.o
+    0x20007758   0x0000002d   Data   RO         2706    .conststring        sps_server.o
+    0x20007785   0x00000003   PAD
+    0x20007788   0x00000030   Data   RO         2928    Region$$Table       anon$$obj.o
+    0x200077b8   0x00000004   Data   RW          714    .data               arch_system.o
+    0x200077bc   0x00000013   Data   RW         1652    .data               spotar.o
+    0x200077cf   0x00000013   Data   RW         1653    .data               spotar.o
+    0x200077e2   0x00000013   Data   RW         1654    .data               spotar.o
+    0x200077f5   0x00000013   Data   RW         1655    .data               spotar.o
+    0x20007808   0x00000013   Data   RW         1656    .data               spotar.o
+    0x2000781b   0x00000013   Data   RW         1657    .data               spotar.o
+    0x2000782e   0x00000004   Data   RW         2498    .data               user_periph_setup.o
+    0x20007832   0x0000000c   Data   RW         2528    .data               ads1292.o
+    0x2000783e   0x00000013   Data   RW         2707    .data               sps_server.o
+    0x20007851   0x00000013   Data   RW         2708    .data               sps_server.o
+    0x20007864   0x00000013   Data   RW         2709    .data               sps_server.o
+    0x20007877   0x00000001   PAD
+    0x20007878   0x00000004   Data   RW         2913    .data               mc_p.l(mvars.o)
+    0x2000787c   0x00000004   Data   RW         2914    .data               mc_p.l(mvars.o)
+    0x20007880   0x00000004   Data   RW         2918    .data               mc_p.l(errno.o)
 
 
-    Execution Region RW_IRAM50 (Base: 0x20008000, Size: 0x000006b8, Max: 0x000007f4, ABSOLUTE)
+    Execution Region RW_IRAM50 (Base: 0x20008000, Size: 0x00000418, Max: 0x000007f4, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20008000   0x000000d4   Zero   RW         2491    .bss                user_periph_setup.o
-    0x200080d4   0x000002a4   Zero   RW         2582    .bss                dsp.o
-    0x20008378   0x00000100   Zero   RW         2654    .bss                ecgtohr.o
-    0x20008478   0x00000100   Zero   RW          230    HEAP                boot_vectors.o
-    0x20008578   0x00000006   Zero   RW          291    retention_mem_area0  nvds.o
-    0x2000857e   0x00000001   Zero   RW          315    retention_mem_area0  arch_main.o
-    0x2000857f   0x00000004   Zero   RW          661    retention_mem_area0  arch_sleep.o
-    0x20008583   0x00000001   PAD
-    0x20008584   0x00000014   Zero   RW          715    retention_mem_area0  arch_system.o
-    0x20008598   0x00000018   Zero   RW          913    retention_mem_area0  llc.obj
-    0x200085b0   0x0000000c   Zero   RW         1130    retention_mem_area0  wkupct_quadec.o
-    0x200085bc   0x00000001   Zero   RW         1305    retention_mem_area0  rf_580.o
-    0x200085bd   0x00000001   PAD
-    0x200085be   0x00000008   Zero   RW         1350    retention_mem_area0  rwble.o
-    0x200085c6   0x0000000e   Zero   RW         1592    retention_mem_area0  bass.o
-    0x200085d4   0x00000001   Zero   RW         1620    retention_mem_area0  bass_task.o
-    0x200085d5   0x00000001   PAD
-    0x200085d6   0x00000008   Zero   RW         1658    retention_mem_area0  spotar.o
-    0x200085de   0x00000001   Zero   RW         1692    retention_mem_area0  spotar_task.o
-    0x200085df   0x00000001   PAD
-    0x200085e0   0x00000012   Zero   RW         1721    retention_mem_area0  diss.o
-    0x200085f2   0x00000001   Zero   RW         1748    retention_mem_area0  diss_task.o
-    0x200085f3   0x00000001   PAD
-    0x200085f4   0x00000038   Zero   RW         1848    retention_mem_area0  app.o
-    0x2000862c   0x00000001   Zero   RW         1987    retention_mem_area0  app_task.o
-    0x2000862d   0x00000003   PAD
-    0x20008630   0x00000018   Zero   RW         2119    retention_mem_area0  app_easy_msg_utils.o
-    0x20008648   0x00000028   Zero   RW         2317    retention_mem_area0  app_easy_timer.o
-    0x20008670   0x0000000a   Zero   RW         2353    retention_mem_area0  app_bass.o
-    0x2000867a   0x00000002   PAD
-    0x2000867c   0x0000002c   Zero   RW         2409    retention_mem_area0  app_spotar.o
-    0x200086a8   0x00000010   Zero   RW         2710    retention_mem_area0  sps_server.o
+    0x200080d4   0x00000100   Zero   RW         2654    .bss                ecgtohr.o
+    0x200081d4   0x00000004   PAD
+    0x200081d8   0x00000100   Zero   RW          230    HEAP                boot_vectors.o
+    0x200082d8   0x00000006   Zero   RW          291    retention_mem_area0  nvds.o
+    0x200082de   0x00000001   Zero   RW          315    retention_mem_area0  arch_main.o
+    0x200082df   0x00000004   Zero   RW          661    retention_mem_area0  arch_sleep.o
+    0x200082e3   0x00000001   PAD
+    0x200082e4   0x00000014   Zero   RW          715    retention_mem_area0  arch_system.o
+    0x200082f8   0x00000018   Zero   RW          913    retention_mem_area0  llc.obj
+    0x20008310   0x0000000c   Zero   RW         1130    retention_mem_area0  wkupct_quadec.o
+    0x2000831c   0x00000001   Zero   RW         1305    retention_mem_area0  rf_580.o
+    0x2000831d   0x00000001   PAD
+    0x2000831e   0x00000008   Zero   RW         1350    retention_mem_area0  rwble.o
+    0x20008326   0x0000000e   Zero   RW         1592    retention_mem_area0  bass.o
+    0x20008334   0x00000001   Zero   RW         1620    retention_mem_area0  bass_task.o
+    0x20008335   0x00000001   PAD
+    0x20008336   0x00000008   Zero   RW         1658    retention_mem_area0  spotar.o
+    0x2000833e   0x00000001   Zero   RW         1692    retention_mem_area0  spotar_task.o
+    0x2000833f   0x00000001   PAD
+    0x20008340   0x00000012   Zero   RW         1721    retention_mem_area0  diss.o
+    0x20008352   0x00000001   Zero   RW         1748    retention_mem_area0  diss_task.o
+    0x20008353   0x00000001   PAD
+    0x20008354   0x00000038   Zero   RW         1848    retention_mem_area0  app.o
+    0x2000838c   0x00000001   Zero   RW         1987    retention_mem_area0  app_task.o
+    0x2000838d   0x00000003   PAD
+    0x20008390   0x00000018   Zero   RW         2119    retention_mem_area0  app_easy_msg_utils.o
+    0x200083a8   0x00000028   Zero   RW         2317    retention_mem_area0  app_easy_timer.o
+    0x200083d0   0x0000000a   Zero   RW         2353    retention_mem_area0  app_bass.o
+    0x200083da   0x00000002   PAD
+    0x200083dc   0x0000002c   Zero   RW         2409    retention_mem_area0  app_spotar.o
+    0x20008408   0x00000010   Zero   RW         2710    retention_mem_area0  sps_server.o
 
 
     Execution Region RW_IRAM51 (Base: 0x200087f4, Size: 0x0000080c, Max: 0x0000080c, ABSOLUTE, UNINIT)
@@ -3201,72 +3178,71 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       288         18          0          0          0       2345   adc.o
-       184          6          0         12          0       1915   ads1292.o
-       156          6        196          0          0       1544   afe4400.o
-      1044         30        148          0         56      19566   app.o
-       352         16          0          0         10       3599   app_bass.o
-       196         30         48          0          0       4704   app_bass_task.o
-       104          8          0          0          0       3645   app_default_handlers.o
-        72          4          0          0          0       1614   app_diss.o
-       356         40         16          0          0       2946   app_diss_task.o
-        72          8          0          0         24       2753   app_easy_msg_utils.o
-       310         24          0          0         40       4601   app_easy_timer.o
-       136         10         28          0          0       3847   app_entry_point.o
-        38          0          0          0          0       1379   app_msg_utils.o
-      1772         40          0          0        380      12610   app_spotar.o
-       396         16         40          0          0       3674   app_spotar_task.o
-       500         18         76          0          1      12448   app_task.o
-       456         38          0          0       1503      28599   arch_main.o
-       376         94        360          0          0      14490   arch_patch.o
-       196         18          0          0          4       4149   arch_sleep.o
-       848         66          0          4         20      98293   arch_system.o
-       276          4          0          0          0       2205   attm_db_128.o
+       288         18          0          0          0       2253   adc.o
+       184          6          0         12          0       1827   ads1292.o
+       156          6        196          0          0       1464   afe4400.o
+      1044         30        148          0         56      19246   app.o
+       352         16          0          0         10       3495   app_bass.o
+       196         30         48          0          0       4492   app_bass_task.o
+       104          8          0          0          0       3561   app_default_handlers.o
+        72          4          0          0          0       1562   app_diss.o
+       356         40         16          0          0       2746   app_diss_task.o
+        72          8          0          0         24       2669   app_easy_msg_utils.o
+       310         24          0          0         40       4477   app_easy_timer.o
+       136         10         28          0          0       3723   app_entry_point.o
+        38          0          0          0          0       1339   app_msg_utils.o
+      1772         40          0          0        380      12378   app_spotar.o
+       396         16         40          0          0       3450   app_spotar_task.o
+       500         18         76          0          1      11976   app_task.o
+       456         38          0          0       1503      28279   arch_main.o
+       376         94        360          0          0      14286   arch_patch.o
+       196         18          0          0          4       4045   arch_sleep.o
+       848         66          0          4         20      97965   arch_system.o
+       276          4          0          0          0       2133   attm_db_128.o
        236         18          0          0          0         72   atts_task.obj
-       192         12         83          0         14       4953   bass.o
-       788         16         80          0          1       6239   bass_task.o
-       164          6          0          0          0       2393   battery.o
-       108         22        160          0       1792        760   boot_vectors.o
+       192         12         83          0         14       4833   bass.o
+       788         16         80          0          1       6071   bass_task.o
+       164          6          0          0          0       2321   battery.o
+       108         22        160          0       1792        740   boot_vectors.o
        196         12          0          0          0        108   ch_map.obj
-       164         14        291          0         18       6189   diss.o
-       252         12         64          0          1       4280   diss_task.o
-       132          8        328          0        676       6474   dsp.o
-       516         42          4          0        256       3205   ecgtohr.o
-         0          0        100          0          0       1280   gapm.o
+       164         14        291          0         18       6053   diss.o
+       252         12         64          0          1       4068   diss_task.o
+       516         42          4          0        256       3121   ecgtohr.o
+         0          0        100          0          0       1240   gapm.o
        384         38          0          0          0        112   gapm_util.obj
-       540         34          0          0         20      10883   gpio.o
-        24         10          0          0          0       1261   hardfault_handler.o
-         2          0        374          0       6324       4763   jump_table.o
+       540         34          0          0         20      10695   gpio.o
+        24         10          0          0          0       1221   hardfault_handler.o
+         2          0        374          0       6324       4683   jump_table.o
        184         18          0          0          0         96   ke_task.obj
        636         24        520          0         24        324   llc.obj
-        56          6          0          0          0       6415   nmi_handler.o
-       520         36        170          0          6       9536   nvds.o
-       240          6          0          0          0       5018   prf_utils.o
-       748        176          0          0          1      65493   rf_580.o
-       812         62          0          0          8     116696   rwble.o
-       400         34          0          0          0      65246   rwip.o
+        56          6          0          0          0       6375   nmi_handler.o
+       520         36        170          0          6       9424   nvds.o
+       240          6          0          0          0       4858   prf_utils.o
+       748        176          0          0          1      65353   rf_580.o
+       812         62          0          0          8     116436   rwble.o
+       400         34          0          0          0      65166   rwip.o
        348         24          0          0          0        160   smpc.obj
        532          4          0          0          0         84   smpc_task.obj
-       316          8          0          0          2       2771   spi.o
-       724         14         80          0         16       6505   spi_flash.o
-        84         14        114        114          8       7349   spotar.o
-      1116         74         80          0          1       6406   spotar_task.o
-       172         12        341         57         16       6095   sps_server.o
-       564         12         88          0          1       7243   sps_server_task.o
-        44          0          0          0          0        693   syscntl.o
-        80         18          0          0          0     200659   system_armcm0.o
-        16          4          0          0          4       1288   systick.o
-       444         32          0          0          0       2943   trng.o
-      2736        136          0          4        212       5984   user_periph_setup.o
-       328         34          4          0          1       3599   user_sps_device.o
-        56          4          0          0          0       1285   user_spss.o
-       144         14         48          0          0       3413   user_spss_task.o
-       120         14          0          0         12       6677   wkupct_quadec.o
+       316          8          0          0          2       2559   spi.o
+       724         14         80          0         16       6201   spi_flash.o
+        84         14        114        114          8       7237   spotar.o
+      1116         74         80          0          1       6258   spotar_task.o
+       172         12        341         57         16       5951   sps_server.o
+       564         12         88          0          1       7063   sps_server_task.o
+        44          0          0          0          0        673   syscntl.o
+        80         18          0          0          0     200143   system_armcm0.o
+        16          4          0          0          4       1228   systick.o
+       444         32          0          0          0       2867   trng.o
+      2964        152          0          4        212       6075   user_periph_setup.o
+       364         32          4          0          1       3652   user_sps_device.o
+        56          4          0          0          0       1237   user_spss.o
+       168         16         48          0          0       3280   user_spss_task.o
+       120         14          0          0         12       6537   wkupct_quadec.o
 
     ----------------------------------------------------------------------
-     24680       1994       3896        192      11500     815876   Object Totals
-      1428        476         48          0         32          0   (incl. Generated)
-         6          0          7          1         16          0   (incl. Padding)
+     24824       1998       3568        192      10828     801941   Object Totals
+      1416        472         48          0         32          0   (incl. Generated)
+         6          0          7          1         20          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -3323,15 +3299,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     26624       2054       3896        204      11500     812900   Grand Totals
-     26624       2054       3896        204      11500     812900   ELF Image Totals
-     26624       2054       3896        204          0          0   ROM Totals
+     26768       2058       3568        204      10828     799009   Grand Totals
+     26768       2058       3568        204      10828     799009   ELF Image Totals
+     26768       2058       3568        204          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                30520 (  29.80kB)
-    Total RW  Size (RW Data + ZI Data)             11704 (  11.43kB)
-    Total ROM Size (Code + RO Data + RW Data)      30724 (  30.00kB)
+    Total RO  Size (Code + RO Data)                30336 (  29.63kB)
+    Total RW  Size (RW Data + ZI Data)             11032 (  10.77kB)
+    Total ROM Size (Code + RO Data + RW Data)      30540 (  29.82kB)
 
 ==============================================================================
 
