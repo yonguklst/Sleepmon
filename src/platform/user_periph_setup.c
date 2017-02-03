@@ -41,6 +41,7 @@ bool charging=false;
 bool battcheck=false;
 void user_send_ble(void);
 void user_send_70(void);
+void user_send_35(void);
 void system_on(void);
 void system_off(void);
 
@@ -136,20 +137,20 @@ void butcb0()
 		
 		if(samplemode==1)
 		{
-			if(i%2==0)
+			if(i%4==0)
 			{
-				ecgbuff[i/2].part[3]=ecg_raw.part[2];
-				ecgbuff[i/2].part[2]=ecg_raw.part[1];
-				ecgbuff[i/2].part[1]=ecg_raw.part[0];
-				ecgbuff[i/2].part[6]=ppg_raw.part[2];
-				ecgbuff[i/2].part[5]=ppg_raw.part[1];
-				ecgbuff[i/2].part[4]=ppg_raw.part[0];
-				ecgbuff[i/2].part[0]=cnt++;
+				ecgbuff[i/4].part[3]=ecg_raw.part[2];
+				ecgbuff[i/4].part[2]=ecg_raw.part[1];
+				ecgbuff[i/4].part[1]=ecg_raw.part[0];
+				ecgbuff[i/4].part[6]=ppg_raw.part[2];
+				ecgbuff[i/4].part[5]=ppg_raw.part[1];
+				ecgbuff[i/4].part[4]=ppg_raw.part[0];
+				ecgbuff[i/4].part[0]=cnt++;
 			}
 			i++;
 			if(i>=20)
 			{	
-				user_send_70();
+				user_send_35();
 				i=0;
 			}
 		}
