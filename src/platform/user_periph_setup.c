@@ -42,6 +42,7 @@ bool battcheck=false;
 void user_send_ble(void);
 void user_send_70(void);
 void user_send_35(void);
+void 	user_send_flow(void);
 void system_on(void);
 void system_off(void);
 
@@ -88,57 +89,42 @@ void butcb0()
 		wdg_resume();   
 	
 		DATA24 ecg_raw,ppg_raw;
-		ecg_raw=ADS1292R_RDATA();
 	
-		ppg_raw=AFE4400_RDATA();
-		n_ECG_pre = n_ECG;
-		n_ECG = ecg_raw.data;
 
-		// ECG High Pass Filter
-		n_ECG_HPF_pre = n_ECG_HPF;
-		n_ECG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * n_ECG_HPF_pre)
-		+ (0.053 / (0.053 + SAMPLINGTIME)) * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
-		
-			// ECG Low Pass Filter
-		//n_ECG_LPF_pre = n_ECG_LPF;
-		//n_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * n_ECG_LPF_pre 
-		//+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * n_ECG_HPF_pre;	// LPF fc = 30 Hz
-		
-		
-	//	ecg_raw.data+=940000;
-		
-		m_PPG_pre = m_PPG;
-		m_PPG =ppg_raw.data;
-		
-		m_PPG_HPF_pre = m_PPG_HPF;
-		m_PPG_HPF = ((0.159 / (0.159 + SAMPLINGTIME)) * m_PPG_HPF_pre)
-		+ (0.159 / (0.159 + SAMPLINGTIME)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
-		
-		//m_PPG_LPF_pre = m_PPG_LPF;
-		//m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0159))) * m_PPG_LPF_pre 
-		//+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0159)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
-		
-		/*
-		l_ECG_pre = l_ECG;
-		l_ECG = ecg_raw.data;
-
-		// ECG High Pass Filter
-		l_ECG_HPF_pre = l_ECG_HPF;
-		l_ECG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * l_ECG_HPF_pre)
-		+ (0.053 / (0.053 + SAMPLINGTIME)) * (l_ECG - l_ECG_pre);	// HPF fc = 3 Hz
-		
-			// ECG Low Pass Filter
-		l_ECG_LPF_pre = l_ECG_LPF;
-		l_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * l_ECG_LPF_pre 
-		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * l_ECG_HPF_pre;	// LPF fc = 30 Hz
-		*/
-		ecg_raw.data=((int)n_ECG_HPF);
-		ppg_raw.data=((int)m_PPG_HPF);
 		
 		if(samplemode==1)
 		{
 			if(i%4==0)
-			{
+			{	
+				ecg_raw=ADS1292R_RDATA();
+				ppg_raw=AFE4400_RDATA();
+				n_ECG_pre = n_ECG;
+				n_ECG = ecg_raw.data;
+
+				// ECG High Pass Filter
+				n_ECG_HPF_pre = n_ECG_HPF;
+				n_ECG_HPF = ((0.053 / (0.053 + 0.008)) * n_ECG_HPF_pre)
+				+ (0.053 / (0.053 + 0.008)) * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
+				
+					// ECG Low Pass Filter
+				n_ECG_LPF_pre = n_ECG_LPF;
+				n_ECG_LPF = (1 - (0.008 / (0.008 + 0.0053))) * n_ECG_LPF_pre 
+				+ (0.008 / (0.008 + 0.0053)) * n_ECG_HPF_pre;	// LPF fc = 30 Hz
+				
+				m_PPG_pre = m_PPG;
+				m_PPG =ppg_raw.data;
+				
+				m_PPG_HPF_pre = m_PPG_HPF;
+				m_PPG_HPF = ((0.159 / (0.159 + 0.008)) * m_PPG_HPF_pre)
+				+ (0.159 / (0.159 + 0.008)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
+				
+				m_PPG_LPF_pre = m_PPG_LPF;
+				m_PPG_LPF = (1 - (0.008 / (0.008 + 0.0159))) * m_PPG_LPF_pre 
+				+ (0.008 / (0.008 + 0.0159)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
+				
+				ecg_raw.data=((int)n_ECG_LPF);
+				ppg_raw.data=((int)m_PPG_LPF);
+		
 				ecgbuff[i/4].part[3]=ecg_raw.part[2];
 				ecgbuff[i/4].part[2]=ecg_raw.part[1];
 				ecgbuff[i/4].part[1]=ecg_raw.part[0];
@@ -156,6 +142,35 @@ void butcb0()
 		}
 		else// if(samplemode==0)
 		{
+			ecg_raw=ADS1292R_RDATA();
+			ppg_raw=AFE4400_RDATA();
+			n_ECG_pre = n_ECG;
+			n_ECG = ecg_raw.data;
+
+			// ECG High Pass Filter
+			n_ECG_HPF_pre = n_ECG_HPF;
+			n_ECG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * n_ECG_HPF_pre)
+			+ (0.053 / (0.053 + SAMPLINGTIME)) * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
+			
+				// ECG Low Pass Filter
+			n_ECG_LPF_pre = n_ECG_LPF;
+			n_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * n_ECG_LPF_pre 
+			+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * n_ECG_HPF_pre;	// LPF fc = 30 Hz
+			
+			m_PPG_pre = m_PPG;
+			m_PPG =ppg_raw.data;
+			
+			m_PPG_HPF_pre = m_PPG_HPF;
+			m_PPG_HPF = ((0.159 / (0.159 + SAMPLINGTIME)) * m_PPG_HPF_pre)
+			+ (0.159 / (0.159 + SAMPLINGTIME)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
+			
+			m_PPG_LPF_pre = m_PPG_LPF;
+			m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0159))) * m_PPG_LPF_pre 
+			+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0159)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
+			
+			ecg_raw.data=((int)n_ECG_LPF);
+			ppg_raw.data=((int)m_PPG_LPF);
+			
 			ecgbuff[i].part[3]=ecg_raw.part[2];
 			ecgbuff[i].part[2]=ecg_raw.part[1];
 			ecgbuff[i].part[1]=ecg_raw.part[0];

@@ -94,6 +94,15 @@ void user_send_35()
     memcpy(&req->data[0], ecgbuff, 35); 
     ke_msg_send(req);
 }
+void user_send_flow()
+{
+    struct sps_server_data_tx_req * req = KE_MSG_ALLOC_DYN(SPS_SERVER_RX_FLOW_CTRL_REQ,
+        TASK_SPS_SERVER, TASK_APP, sps_server_data_tx_req, 35);
+    
+    req->length = 35;
+    memcpy(&req->data[0], ecgbuff, 35); 
+    ke_msg_send(req);
+}
 /**
  ****************************************************************************************
  * @brief Sends a exchange MTU command
