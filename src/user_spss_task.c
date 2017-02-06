@@ -160,6 +160,12 @@ int user_sps_server_data_tx_cfm_handler(ke_msg_id_t const msgid,
  ****************************************************************************************
  */
 extern uint8_t samplemode;
+extern float n_ECG_Ts;
+extern float n_ECG_HPF_set3Hz;
+extern float n_ECG_LPF_set30Hz;
+extern float m_PPG_Ts;
+extern float m_PPG_HPF_set1Hz;
+extern float m_PPG_LPF_set10Hz;
 int user_sps_server_data_rx_ind_handler(ke_msg_id_t const msgid,
                                       struct sps_server_data_rx_ind const *param,
                                       ke_task_id_t const dest_id,
@@ -183,13 +189,33 @@ int user_sps_server_data_rx_ind_handler(ke_msg_id_t const msgid,
 			}
 			else if(val==0x11)
 			{
-				samplemode=0;
 				system_on();
+				
+				samplemode=0;//500sps
+				n_ECG_Ts = 0.002;
+				n_ECG_HPF_set3Hz = 0.053 / (0.053 + n_ECG_Ts);
+				n_ECG_LPF_set30Hz = n_ECG_Ts / n_ECG_Ts + 0.0053;
+				
+				m_PPG_Ts = 0.002;
+				m_PPG_HPF_set1Hz =  (0.159 / (0.159 + m_PPG_Ts));
+				m_PPG_LPF_set10Hz = m_PPG_Ts / (m_PPG_Ts + 0.0159);
+				
+
 			}
 			else if(val==0x12)
 			{
-				samplemode=1;
 				system_on();
+				
+				samplemode=1;//250sps
+				n_ECG_Ts = 0.008;
+				n_ECG_HPF_set3Hz = 0.053 / (0.053 + n_ECG_Ts);
+				n_ECG_LPF_set30Hz = n_ECG_Ts / n_ECG_Ts + 0.0053;
+				
+				m_PPG_Ts = 0.008;
+				m_PPG_HPF_set1Hz =  (0.159 / (0.159 + m_PPG_Ts));
+				m_PPG_LPF_set10Hz = m_PPG_Ts / (m_PPG_Ts + 0.0159);
+				
+
 			}
 			
 			

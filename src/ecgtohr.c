@@ -44,6 +44,9 @@ float resultAmplitude = 0;
 bool IsPeak=false;
 
 
+const float m_ECG_HPF_set3Hz = (0.053 / (0.053 + SAMPLINGTIME));
+const float m_ECG_LPF_set30Hz = (SAMPLINGTIME / (SAMPLINGTIME + 0.0053));
+
 int getHR(int ecg_raw) {
 	int rri = getRRI(ecg_raw);
 
@@ -74,22 +77,17 @@ bool getPeak(float ecg_raw) {
 	
 	// ECG High Pass Filter
 	m_ECG_HPF_pre = m_ECG_HPF;
-	m_ECG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * m_ECG_HPF_pre)
-	+ (0.053 / (0.053 + SAMPLINGTIME)) * (m_ECG - m_ECG_pre);	// HPF fc = 3 Hz
+	m_ECG_HPF = (m_ECG_HPF_set3Hz * m_ECG_HPF_pre)
+	+ m_ECG_HPF_set3Hz * (m_ECG - m_ECG_pre);	// HPF fc = 3 Hz
 	
 		// ECG Low Pass Filter
 	m_ECG_LPF_pre = m_ECG_LPF;
-	m_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * m_ECG_LPF_pre 
-	+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * m_ECG_HPF_pre;	// LPF fc = 30 Hz
+	m_ECG_LPF = (1 - m_ECG_LPF_set30Hz) * m_ECG_LPF_pre 
+	+ m_ECG_LPF_set30Hz * m_ECG_HPF_pre;	// LPF fc = 30 Hz
 	
 	m_ECG_LPF_diff = m_ECG_LPF_pre - m_ECG_LPF;
 	
 	
-	
-	
-
-
-
 	ECGShiftBuffer[shiftCnt] = m_ECG;
 	ECGLPFShiftBuffer[shiftCnt] = m_ECG_LPF;
 	ECGDiffShiftBuffer[shiftCnt] = m_ECG_diff;
@@ -138,7 +136,8 @@ bool getPeak(float ecg_raw) {
 }
 
 
-int getRRI(float ecg_raw) {
+int getRRI(float ecg_raw) 
+{
 	resultRRI = 0;
 
 	if (m_EcgInitFlag == 0) {
@@ -157,13 +156,13 @@ int getRRI(float ecg_raw) {
 	
 	// ECG High Pass Filter
 	m_ECG_HPF_pre = m_ECG_HPF;
-	m_ECG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * m_ECG_HPF_pre)
-	+ (0.053 / (0.053 + SAMPLINGTIME)) * (m_ECG - m_ECG_pre);	// HPF fc = 9Hz
+	m_ECG_HPF = (m_ECG_HPF_set3Hz * m_ECG_HPF_pre)
+	+ m_ECG_HPF_set3Hz * (m_ECG - m_ECG_pre);	// HPF fc = 9Hz
 	
 		// ECG Low Pass Filter
 	m_ECG_LPF_pre = m_ECG_LPF;
-	m_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * m_ECG_LPF_pre 
-	+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * m_ECG_HPF_pre;	// LPF fc = 30 Hz
+	m_ECG_LPF = (1 - m_ECG_LPF_set30Hz) * m_ECG_LPF_pre 
+	+ m_ECG_LPF_set30Hz * m_ECG_HPF_pre;	// LPF fc = 30 Hz
 	
 	m_ECG_LPF_diff = m_ECG_LPF - m_ECG_LPF_pre; //원래반대였음
 	
@@ -175,11 +174,20 @@ int getRRI(float ecg_raw) {
 		ECGDiffShiftBuffer[shiftCnt] = ECGDiffShiftBuffer[shiftCnt+1];
 		ECGLpfDiffShiftBuffer[shiftCnt] = ECGLpfDiffShiftBuffer[shiftCnt+1];
   }
+
+/*
+	shiftCnt = SHIFT_MAX_DATA-1;
+	memmove(&ECGShiftBuffer[0], &ECGShiftBuffer[1], shiftCnt);
+	memmove(&ECGLPFShiftBuffer[0], &ECGLPFShiftBuffer[1],shiftCnt);
+	memmove(&ECGDiffShiftBuffer[0], &ECGDiffShiftBuffer[1],shiftCnt);
+	memmove(&ECGLpfDiffShiftBuffer[0], &ECGLpfDiffShiftBuffer[1], shiftCnt);
+	*/
+	
+	
 	ECGShiftBuffer[shiftCnt] = m_ECG;
 	ECGLPFShiftBuffer[shiftCnt] = m_ECG_LPF;
 	ECGDiffShiftBuffer[shiftCnt] = m_ECG_diff;
 	ECGLpfDiffShiftBuffer[shiftCnt] = m_ECG_LPF_diff;
-
 	//int shiftLocation = shiftCnt - shiftData;
 	//int shiftLocation = shiftCnt - shiftData;
 //	if (shiftLocation < 0) shiftLocation += SHIFT_MAX_DATA;

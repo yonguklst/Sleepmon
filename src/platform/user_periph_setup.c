@@ -33,7 +33,7 @@
 #include "arch_wdg.h"
 #include "app_bass.h"
 SPI_Pad_t spi_FLASH_CS_Pad;
-SAMPLE ecgbuff[20];
+SAMPLE chunkBuffer[20];
 extern uint8_t cur_batt_level;
 extern bool connected;
 bool systemstat=false;
@@ -46,19 +46,12 @@ void 	user_send_flow(void);
 void system_on(void);
 void system_off(void);
 
- float n_ECG;
- float n_ECG_pre;
- float n_ECG_LPF;
- float n_ECG_LPF_pre;
- float n_ECG_HPF_pre;
- float n_ECG_HPF;
-
- float l_ECG;
- float l_ECG_pre;
- float l_ECG_LPF;
- float l_ECG_LPF_pre;
- float l_ECG_HPF_pre;
- float l_ECG_HPF;
+float n_ECG=0.0;
+float n_ECG_pre=0.0;
+float n_ECG_LPF=0.0;
+float n_ECG_LPF_pre=0.0;
+float n_ECG_HPF_pre=0.0;
+float n_ECG_HPF=0.0;
 
 float m_PPG = 0.0;
 float m_PPG_pre = 0.0;
@@ -71,19 +64,28 @@ extern const int SAMPLING;// = 500;
 extern const float SAMPLINGTIME;// = 1.0 / SAMPLING;
 
 //uint16_t rri_pre;
-uint16_t rri_ready;
+uint16_t rri_ready=0;
 uint16_t ldcnt=0;
 uint16_t ldoff=0;
 uint16_t leastbeep=0;
 uint16_t resetcnt=14;
 uint8_t samplemode=0;
 
+float n_ECG_Ts = 0.004;
+float n_ECG_HPF_set3Hz = 0.929824561; //0.053 / (0.053 + n_ECG_Ts);
+float n_ECG_LPF_set30Hz = 0.430107527; //(n_ECG_Ts / n_ECG_Ts + 0.0053))
+
+float m_PPG_Ts = 0.004;
+float m_PPG_HPF_set1Hz =  0.975460123;//((0.159 / (0.159 + m_PPG_Ts))
+float m_PPG_LPF_set10Hz = 0.201005025; //m_PPG_Ts / (m_PPG_Ts + 0.0159)
+	
 void butcb0()
 {
 
 	static uint8_t i=0;
 	static uint8_t cnt=0;
-	
+//	static bool select=false;
+	uint8_t i_divided;
 	
 		wdg_reload(WATCHDOG_DEFAULT_PERIOD);
 		wdg_resume();   
@@ -92,55 +94,64 @@ void butcb0()
 	
 
 		
-		if(samplemode==1)
+		if(samplemode==1)//250sps(2CH)
 		{
+
 			if(i%4==0)
 			{	
+
 				ecg_raw=ADS1292R_RDATA();
 				ppg_raw=AFE4400_RDATA();
+				
 				n_ECG_pre = n_ECG;
 				n_ECG = ecg_raw.data;
-
-				// ECG High Pass Filter
-				n_ECG_HPF_pre = n_ECG_HPF;
-				n_ECG_HPF = ((0.053 / (0.053 + 0.008)) * n_ECG_HPF_pre)
-				+ (0.053 / (0.053 + 0.008)) * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
-				
-					// ECG Low Pass Filter
-				n_ECG_LPF_pre = n_ECG_LPF;
-				n_ECG_LPF = (1 - (0.008 / (0.008 + 0.0053))) * n_ECG_LPF_pre 
-				+ (0.008 / (0.008 + 0.0053)) * n_ECG_HPF_pre;	// LPF fc = 30 Hz
 				
 				m_PPG_pre = m_PPG;
 				m_PPG =ppg_raw.data;
+
+				// ECG High Pass Filter
+				n_ECG_HPF_pre = n_ECG_HPF;
+				n_ECG_HPF = (n_ECG_HPF_set3Hz * n_ECG_HPF_pre)
+				+ n_ECG_HPF_set3Hz * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
+				
+					// ECG Low Pass Filter
+				n_ECG_LPF_pre = n_ECG_LPF;
+				n_ECG_LPF = (1 - n_ECG_LPF_set30Hz) * n_ECG_LPF_pre 
+				+ n_ECG_LPF_set30Hz * n_ECG_HPF_pre;	// LPF fc = 30 Hz
+
 				
 				m_PPG_HPF_pre = m_PPG_HPF;
-				m_PPG_HPF = ((0.159 / (0.159 + 0.008)) * m_PPG_HPF_pre)
-				+ (0.159 / (0.159 + 0.008)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
+				m_PPG_HPF = (m_PPG_HPF_set1Hz * m_PPG_HPF_pre)
+				+ m_PPG_HPF_set1Hz * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
 				
 				m_PPG_LPF_pre = m_PPG_LPF;
-				m_PPG_LPF = (1 - (0.008 / (0.008 + 0.0159))) * m_PPG_LPF_pre 
-				+ (0.008 / (0.008 + 0.0159)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
+				m_PPG_LPF = (1 - m_PPG_LPF_set10Hz) * m_PPG_LPF_pre 
+				+ m_PPG_LPF_set10Hz * m_PPG_HPF_pre;	// LPF fc = 10 Hz
 				
 				ecg_raw.data=((int)n_ECG_LPF);
 				ppg_raw.data=((int)m_PPG_LPF);
 		
-				ecgbuff[i/4].part[3]=ecg_raw.part[2];
-				ecgbuff[i/4].part[2]=ecg_raw.part[1];
-				ecgbuff[i/4].part[1]=ecg_raw.part[0];
-				ecgbuff[i/4].part[6]=ppg_raw.part[2];
-				ecgbuff[i/4].part[5]=ppg_raw.part[1];
-				ecgbuff[i/4].part[4]=ppg_raw.part[0];
-				ecgbuff[i/4].part[0]=cnt++;
+				i_divided=i/4;
+				
+				chunkBuffer[i_divided].part[3]=ecg_raw.part[2];
+				chunkBuffer[i_divided].part[2]=ecg_raw.part[1];
+				chunkBuffer[i_divided].part[1]=ecg_raw.part[0];
+				chunkBuffer[i_divided].part[6]=ppg_raw.part[2];
+				chunkBuffer[i_divided].part[5]=ppg_raw.part[1];
+				chunkBuffer[i_divided].part[4]=ppg_raw.part[0];
+				chunkBuffer[i_divided].part[0]=cnt++;
 			}
 			i++;
 			if(i>=20)
 			{	
+				//if(select)  user_send_flow();
 				user_send_35();
+				//select= !select;
 				i=0;
 			}
+			
 		}
-		else// if(samplemode==0)
+		else// if(samplemode==0) //500sps
 		{
 			ecg_raw=ADS1292R_RDATA();
 			ppg_raw=AFE4400_RDATA();
@@ -149,35 +160,34 @@ void butcb0()
 
 			// ECG High Pass Filter
 			n_ECG_HPF_pre = n_ECG_HPF;
-			n_ECG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * n_ECG_HPF_pre)
-			+ (0.053 / (0.053 + SAMPLINGTIME)) * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
+			n_ECG_HPF = (n_ECG_HPF_set3Hz * n_ECG_HPF_pre)
+			+ n_ECG_HPF_set3Hz * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
 			
-				// ECG Low Pass Filter
 			n_ECG_LPF_pre = n_ECG_LPF;
-			n_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * n_ECG_LPF_pre 
-			+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * n_ECG_HPF_pre;	// LPF fc = 30 Hz
+			n_ECG_LPF = (1 - n_ECG_LPF_set30Hz) * n_ECG_LPF_pre 
+			+ n_ECG_LPF_set30Hz * n_ECG_HPF_pre;	// LPF fc = 30 Hz
 			
 			m_PPG_pre = m_PPG;
 			m_PPG =ppg_raw.data;
 			
 			m_PPG_HPF_pre = m_PPG_HPF;
-			m_PPG_HPF = ((0.159 / (0.159 + SAMPLINGTIME)) * m_PPG_HPF_pre)
-			+ (0.159 / (0.159 + SAMPLINGTIME)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
+				m_PPG_HPF = (m_PPG_HPF_set1Hz * m_PPG_HPF_pre)
+				+ m_PPG_HPF_set1Hz * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
 			
 			m_PPG_LPF_pre = m_PPG_LPF;
-			m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0159))) * m_PPG_LPF_pre 
-			+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0159)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
+			m_PPG_LPF = (1 - m_PPG_LPF_set10Hz) * m_PPG_LPF_pre 
+				+ m_PPG_LPF_set10Hz * m_PPG_HPF_pre;	// LPF fc = 10 Hz
 			
 			ecg_raw.data=((int)n_ECG_LPF);
 			ppg_raw.data=((int)m_PPG_LPF);
 			
-			ecgbuff[i].part[3]=ecg_raw.part[2];
-			ecgbuff[i].part[2]=ecg_raw.part[1];
-			ecgbuff[i].part[1]=ecg_raw.part[0];
-			ecgbuff[i].part[6]=ppg_raw.part[2];
-			ecgbuff[i].part[5]=ppg_raw.part[1];
-			ecgbuff[i].part[4]=ppg_raw.part[0];
-			ecgbuff[i].part[0]=cnt++;
+			chunkBuffer[i].part[3]=ecg_raw.part[2];
+			chunkBuffer[i].part[2]=ecg_raw.part[1];
+			chunkBuffer[i].part[1]=ecg_raw.part[0];
+			chunkBuffer[i].part[6]=ppg_raw.part[2];
+			chunkBuffer[i].part[5]=ppg_raw.part[1];
+			chunkBuffer[i].part[4]=ppg_raw.part[0];
+			chunkBuffer[i].part[0]=cnt++;
 			i++;
 			if(i>=20)
 			{	
@@ -187,10 +197,7 @@ void butcb0()
 		}
 }
 
-	
-	
-	
-uint32_t lastrri=800;
+
 void butcb1()
 {
 	
@@ -201,6 +208,7 @@ void butcb1()
 	{
 			DATA24 ecg_raw;
 			ecg_raw=ADS1292R_RDATA();
+		
 			GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_7, OUTPUT, PID_GPIO, true);//SPEAKER
 
 			if(ldcnt>50 || cur_batt_level<10)
@@ -222,10 +230,10 @@ void butcb1()
 				ldcnt=0;
 				leastbeep++;
 			}
-						
+
 		n_ECG_pre = n_ECG;
 		n_ECG = ecg_raw.data;
-
+		/*				
 		// ECG High Pass Filter
 		n_ECG_HPF_pre = n_ECG_HPF;
 		n_ECG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * n_ECG_HPF_pre)
@@ -246,11 +254,9 @@ void butcb1()
 		m_PPG_LPF_pre = m_PPG_LPF;
 		m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * m_PPG_LPF_pre 
 		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
-	
+	*/
 			
-			rri_ready = getRRI(m_PPG_LPF);
-			//if(rri_ready>=400 && rri_ready<1000) lastrri=rri_ready;
-//		if(rri_ready>=400 || leastbeep>=lastrri/2)
+			rri_ready = getRRI(n_ECG);
 
 			if(rri_ready>=300 && rri_ready<=2000)
 			{
@@ -374,7 +380,7 @@ void sleepcb()
 	else if(battcheck)
 	{
 		app_batt_lvl();
-		
+ 		
 		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_1, OUTPUT, PID_GPIO, true);//LED1
 		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_2, OUTPUT, PID_GPIO, true);//LED2
 		GPIO_ConfigurePin(GPIO_PORT_0, GPIO_PIN_3, OUTPUT, PID_GPIO, true);//LED3

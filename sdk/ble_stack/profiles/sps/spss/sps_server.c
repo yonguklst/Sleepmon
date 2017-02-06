@@ -45,7 +45,7 @@
 
 #define SPS_SERVER_TX_CHAR_LEN      160
 #define SPS_SERVER_RX_CHAR_LEN      160
-#define SPS_FLOW_CTRL_CHAR_LEN      1
+#define SPS_FLOW_CTRL_CHAR_LEN      40
 
 #define SPS_SERVER_ENABLE_DESC  "Enable SPS Device"
 #define SPS_SERVER_TX_DESC      "Server TX Data"

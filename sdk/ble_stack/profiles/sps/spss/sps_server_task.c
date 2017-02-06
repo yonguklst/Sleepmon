@@ -245,20 +245,20 @@ static int sps_server_data_tx_req_handler(ke_msg_id_t const msgid,
  ****************************************************************************************
  */
 static int sps_server_rx_flow_ctrl_req_handler(ke_msg_id_t const msgid,
-                                   struct sps_server_rx_flow_ctrl_req const *param,
+                                   struct sps_server_data_tx_req const *param,
                                    ke_task_id_t const dest_id,
                                    ke_task_id_t const src_id)
  
 {
     // Set value in data base
-    attmdb_att_set_value(spss_env.shdl + SPSS_IDX_FLOW_CTRL_VAL, sizeof(param->flow_control_state), (uint8_t*) &(param->flow_control_state ));
+    attmdb_att_set_value(spss_env.shdl + SPSS_IDX_FLOW_CTRL_VAL, sizeof(uint8_t) * param->length, (uint8_t *)param->data);//sizeof(param->flow_control_state), (uint8_t*) &(param->flow_control_state ));
 
     // Send notification to the client
     prf_server_send_event((prf_env_struct *)&(spss_env), false, spss_env.shdl + SPSS_IDX_FLOW_CTRL_VAL);
     spss_env.pending_ntf_cmp++;
 
     //Set flag
-    spss_env.rx_flow_en = (param->flow_control_state == FLOW_ON ? true : false);
+  //  spss_env.rx_flow_en = (param->flow_control_state == FLOW_ON ? true : false);
 
     return (KE_MSG_CONSUMED);
 }

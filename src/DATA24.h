@@ -12,7 +12,7 @@
 	
 #include <stdint.h>
  
- typedef struct SAMPLE
+ typedef struct SAMPLE//Chunk : [0]=cnt. [1]~[3]=ECG Data, [4]~[6]=PPG Data
 {
 	uint8_t part[7];
 }SAMPLE;

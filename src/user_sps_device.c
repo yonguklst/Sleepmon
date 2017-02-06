@@ -41,7 +41,7 @@
 #include "arch_wdg.h"
 
 bool connected=false;
-extern SAMPLE ecgbuff[20];
+extern SAMPLE chunkBuffer[20];
 
 enum process_event_response user_spss_process_handler(ke_msg_id_t const msgid,
                                          void const *param,
@@ -73,7 +73,7 @@ void user_send_ble()
         TASK_SPS_SERVER, TASK_APP, sps_server_data_tx_req, 140);
     
     req->length = 140;
-    memcpy(&req->data[0], ecgbuff, 140); 
+    memcpy(&req->data[0], chunkBuffer, 140); 
     ke_msg_send(req);
 }
 void user_send_70()
@@ -82,7 +82,7 @@ void user_send_70()
         TASK_SPS_SERVER, TASK_APP, sps_server_data_tx_req, 70);
     
     req->length = 70;
-    memcpy(&req->data[0], ecgbuff, 70); 
+    memcpy(&req->data[0], chunkBuffer, 70); 
     ke_msg_send(req);
 }
 void user_send_35()
@@ -91,7 +91,7 @@ void user_send_35()
         TASK_SPS_SERVER, TASK_APP, sps_server_data_tx_req, 35);
     
     req->length = 35;
-    memcpy(&req->data[0], ecgbuff, 35); 
+    memcpy(&req->data[0], chunkBuffer, 35); 
     ke_msg_send(req);
 }
 void user_send_flow()
@@ -100,7 +100,7 @@ void user_send_flow()
         TASK_SPS_SERVER, TASK_APP, sps_server_data_tx_req, 35);
     
     req->length = 35;
-    memcpy(&req->data[0], ecgbuff, 35); 
+    memcpy(&req->data[0], chunkBuffer, 35); 
     ke_msg_send(req);
 }
 /**
