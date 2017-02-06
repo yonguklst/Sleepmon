@@ -33,7 +33,7 @@ int rmsMaxUsedCount = 0;
 
 const int SHIFT_MAX_DATA = 10;
 const int shiftData = SHIFT_MAX_DATA / 2;
-int shiftCnt = 0;
+
 float ECGShiftBuffer[SHIFT_MAX_DATA] = { 0.0 };
 float ECGLPFShiftBuffer[SHIFT_MAX_DATA] = { 0.0 };
 float ECGDiffShiftBuffer[SHIFT_MAX_DATA] = { 0.0 };
@@ -46,6 +46,9 @@ bool IsPeak=false;
 
 const float m_ECG_HPF_set3Hz = (0.053 / (0.053 + SAMPLINGTIME));
 const float m_ECG_LPF_set30Hz = (SAMPLINGTIME / (SAMPLINGTIME + 0.0053));
+const uint8_t shiftCnt = SHIFT_MAX_DATA-1;
+const uint8_t stepsize = sizeof(float);
+const uint8_t arrayshiftp = shiftCnt * stepsize;
 
 int getHR(int ecg_raw) {
 	int rri = getRRI(ecg_raw);
@@ -57,7 +60,7 @@ int getHR(int ecg_raw) {
 	
 	return 0;
 }
-
+/*
 bool getPeak(float ecg_raw) {
 	IsPeak = false;
 
@@ -135,7 +138,7 @@ bool getPeak(float ecg_raw) {
 	return IsPeak;
 }
 
-
+*/
 int getRRI(float ecg_raw) 
 {
 	resultRRI = 0;
@@ -166,7 +169,7 @@ int getRRI(float ecg_raw)
 	
 	m_ECG_LPF_diff = m_ECG_LPF - m_ECG_LPF_pre; //원래반대였음
 	
-	
+	/*
 	for(shiftCnt=0; shiftCnt<SHIFT_MAX_DATA-1; shiftCnt++)
   {
     ECGShiftBuffer[shiftCnt] = ECGShiftBuffer[shiftCnt+1];
@@ -174,14 +177,14 @@ int getRRI(float ecg_raw)
 		ECGDiffShiftBuffer[shiftCnt] = ECGDiffShiftBuffer[shiftCnt+1];
 		ECGLpfDiffShiftBuffer[shiftCnt] = ECGLpfDiffShiftBuffer[shiftCnt+1];
   }
+*/
 
-/*
-	shiftCnt = SHIFT_MAX_DATA-1;
-	memmove(&ECGShiftBuffer[0], &ECGShiftBuffer[1], shiftCnt);
-	memmove(&ECGLPFShiftBuffer[0], &ECGLPFShiftBuffer[1],shiftCnt);
-	memmove(&ECGDiffShiftBuffer[0], &ECGDiffShiftBuffer[1],shiftCnt);
-	memmove(&ECGLpfDiffShiftBuffer[0], &ECGLpfDiffShiftBuffer[1], shiftCnt);
-	*/
+
+	memmove(&ECGShiftBuffer[0], &ECGShiftBuffer[1], arrayshiftp);
+	memmove(&ECGLPFShiftBuffer[0], &ECGLPFShiftBuffer[1],arrayshiftp);
+	memmove(&ECGDiffShiftBuffer[0], &ECGDiffShiftBuffer[1], arrayshiftp);
+	memmove(&ECGLpfDiffShiftBuffer[0], &ECGLpfDiffShiftBuffer[1], arrayshiftp);
+	
 	
 	
 	ECGShiftBuffer[shiftCnt] = m_ECG;
