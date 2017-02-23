@@ -207,6 +207,20 @@ int user_sps_server_data_rx_ind_handler(ke_msg_id_t const msgid,
 				system_on();
 				
 				samplemode=1;//250sps
+				n_ECG_Ts = 0.004;
+				n_ECG_HPF_set3Hz = 0.053 / (0.053 + n_ECG_Ts);
+				n_ECG_LPF_set30Hz = n_ECG_Ts / n_ECG_Ts + 0.0053;
+				
+				m_PPG_Ts = 0.004;
+				m_PPG_HPF_set1Hz =  (0.159 / (0.159 + m_PPG_Ts));
+				m_PPG_LPF_set10Hz = m_PPG_Ts / (m_PPG_Ts + 0.0159);
+
+			}
+			else if(val==0x13)
+			{
+				system_on();
+				
+				samplemode=2;//125sps
 				n_ECG_Ts = 0.008;
 				n_ECG_HPF_set3Hz = 0.053 / (0.053 + n_ECG_Ts);
 				n_ECG_LPF_set30Hz = n_ECG_Ts / n_ECG_Ts + 0.0053;
@@ -214,10 +228,8 @@ int user_sps_server_data_rx_ind_handler(ke_msg_id_t const msgid,
 				m_PPG_Ts = 0.008;
 				m_PPG_HPF_set1Hz =  (0.159 / (0.159 + m_PPG_Ts));
 				m_PPG_LPF_set10Hz = m_PPG_Ts / (m_PPG_Ts + 0.0159);
-				
 
 			}
-			
 			
 	
     return (KE_MSG_CONSUMED);

@@ -79,7 +79,7 @@ float m_PPG_Ts = 0.004;
 float m_PPG_HPF_set1Hz =  0.975460123;//((0.159 / (0.159 + m_PPG_Ts))
 float m_PPG_LPF_set10Hz = 0.201005025; //m_PPG_Ts / (m_PPG_Ts + 0.0159)
 	
-void butcb0()
+void DRDY_cb0()
 {
 
 	static uint8_t i=0;
@@ -93,8 +93,7 @@ void butcb0()
 		DATA24 ecg_raw,ppg_raw;
 	
 
-		
-		if(samplemode==1)//250sps(2CH)
+		if(samplemode==2)//125sps
 		{
 
 			if(i%4==0)
@@ -115,7 +114,7 @@ void butcb0()
 				+ n_ECG_HPF_set3Hz * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
 				
 					// ECG Low Pass Filter
-				n_ECG_LPF_pre = n_ECG_LPF;
+			n_ECG_LPF_pre = n_ECG_LPF;
 				n_ECG_LPF = (1 - n_ECG_LPF_set30Hz) * n_ECG_LPF_pre 
 				+ n_ECG_LPF_set30Hz * n_ECG_HPF_pre;	// LPF fc = 30 Hz
 
@@ -124,7 +123,7 @@ void butcb0()
 				m_PPG_HPF = (m_PPG_HPF_set1Hz * m_PPG_HPF_pre)
 				+ m_PPG_HPF_set1Hz * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
 				
-				m_PPG_LPF_pre = m_PPG_LPF;
+				//m_PPG_LPF_pre = m_PPG_LPF;
 				m_PPG_LPF = (1 - m_PPG_LPF_set10Hz) * m_PPG_LPF_pre 
 				+ m_PPG_LPF_set10Hz * m_PPG_HPF_pre;	// LPF fc = 10 Hz
 				
@@ -149,7 +148,62 @@ void butcb0()
 				//select= !select;
 				i=0;
 			}
-			
+		}
+		else if(samplemode==1)//250sps
+		{
+
+			if(i%2==0)
+			{	
+
+				ecg_raw=ADS1292R_RDATA();
+				ppg_raw=AFE4400_RDATA();
+				
+				n_ECG_pre = n_ECG;
+				n_ECG = ecg_raw.data;
+				
+				m_PPG_pre = m_PPG;
+				m_PPG =ppg_raw.data;
+
+				// ECG High Pass Filter
+				n_ECG_HPF_pre = n_ECG_HPF;
+				n_ECG_HPF = (n_ECG_HPF_set3Hz * n_ECG_HPF_pre)
+				+ n_ECG_HPF_set3Hz * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
+				
+					// ECG Low Pass Filter
+			n_ECG_LPF_pre = n_ECG_LPF;
+				n_ECG_LPF = (1 - n_ECG_LPF_set30Hz) * n_ECG_LPF_pre 
+				+ n_ECG_LPF_set30Hz * n_ECG_HPF_pre;	// LPF fc = 30 Hz
+
+				
+				m_PPG_HPF_pre = m_PPG_HPF;
+				m_PPG_HPF = (m_PPG_HPF_set1Hz * m_PPG_HPF_pre)
+				+ m_PPG_HPF_set1Hz * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
+				
+				//m_PPG_LPF_pre = m_PPG_LPF;
+				m_PPG_LPF = (1 - m_PPG_LPF_set10Hz) * m_PPG_LPF_pre 
+				+ m_PPG_LPF_set10Hz * m_PPG_HPF_pre;	// LPF fc = 10 Hz
+				
+				ecg_raw.data=((int)n_ECG_LPF);
+				ppg_raw.data=((int)m_PPG_LPF);
+		
+				i_divided=i/2;
+				
+				chunkBuffer[i_divided].part[3]=ecg_raw.part[2];
+				chunkBuffer[i_divided].part[2]=ecg_raw.part[1];
+				chunkBuffer[i_divided].part[1]=ecg_raw.part[0];
+				chunkBuffer[i_divided].part[6]=ppg_raw.part[2];
+				chunkBuffer[i_divided].part[5]=ppg_raw.part[1];
+				chunkBuffer[i_divided].part[4]=ppg_raw.part[0];
+				chunkBuffer[i_divided].part[0]=cnt++;
+			}
+			i++;
+			if(i>=20)
+			{	
+				//if(select)  user_send_flow();
+				user_send_70();
+				//select= !select;
+				i=0;
+			}
 		}
 		else// if(samplemode==0) //500sps
 		{
@@ -198,7 +252,7 @@ void butcb0()
 }
 
 
-void butcb1()
+void DRDY_cb1()
 {
 	
 	static uint8_t beepcnt=0;
@@ -233,29 +287,7 @@ void butcb1()
 
 		n_ECG_pre = n_ECG;
 		n_ECG = ecg_raw.data;
-		/*				
-		// ECG High Pass Filter
-		n_ECG_HPF_pre = n_ECG_HPF;
-		n_ECG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * n_ECG_HPF_pre)
-		+ (0.053 / (0.053 + SAMPLINGTIME)) * (n_ECG - n_ECG_pre);	// HPF fc = 3 Hz
-		
-			// ECG Low Pass Filter
-		n_ECG_LPF_pre = n_ECG_LPF;
-		n_ECG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * n_ECG_LPF_pre 
-		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * n_ECG_HPF_pre;	// LPF fc = 30 Hz
-			
-		m_PPG_pre = m_PPG;
-		m_PPG =n_ECG_LPF;
-		
-		m_PPG_HPF_pre = m_PPG_HPF;
-		m_PPG_HPF = ((0.053 / (0.053 + SAMPLINGTIME)) * m_PPG_HPF_pre)
-		+ (0.053 / (0.053 + SAMPLINGTIME)) * (m_PPG - m_PPG_pre);	// HPF fc = 1 Hz
-		
-		m_PPG_LPF_pre = m_PPG_LPF;
-		m_PPG_LPF = (1 - (SAMPLINGTIME / (SAMPLINGTIME + 0.0053))) * m_PPG_LPF_pre 
-		+ (SAMPLINGTIME / (SAMPLINGTIME + 0.0053)) * m_PPG_HPF_pre;	// LPF fc = 10 Hz
-	*/
-			
+
 			rri_ready = getRRI(n_ECG);
 
 			if(rri_ready>=300 && rri_ready<=2000)
@@ -468,7 +500,7 @@ void afeon()
 	
 	GPIO_ConfigurePin(GPIO_PORT_1, GPIO_PIN_2, INPUT, PID_GPIO, true);//DRDY
 	GPIO_EnableIRQ( GPIO_PORT_1, GPIO_PIN_2, GPIO0_IRQn, true, true,0); 
-	GPIO_RegisterCallback(GPIO0_IRQn, butcb0);
+	GPIO_RegisterCallback(GPIO0_IRQn, DRDY_cb0);
 	
 }
 
@@ -513,7 +545,7 @@ void system_on()
 			
 			GPIO_ConfigurePin(GPIO_PORT_1, GPIO_PIN_2, INPUT, PID_GPIO, true);//DRDY
 			GPIO_EnableIRQ( GPIO_PORT_1, GPIO_PIN_2, GPIO0_IRQn, true, true,0); 
-			GPIO_RegisterCallback(GPIO0_IRQn, butcb1);
+			GPIO_RegisterCallback(GPIO0_IRQn, DRDY_cb1);
 		}
 		systemstat=true;
 		resetcnt=14;
